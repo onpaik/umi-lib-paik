@@ -38,6 +38,5 @@
     "browserFiles": [
       "src/locale.js"
     ]
-  },
-  "gitHead": "c890173b33d7a07bc54bdd8ace4c49f5d89d0193"
+  }
 }
