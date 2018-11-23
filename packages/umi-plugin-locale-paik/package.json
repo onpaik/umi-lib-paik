@@ -9,11 +9,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/umijs/umi/tree/master/packages/umi-plugin-locale"
+    "url": "https://github.com/onpaik/umi-lib-paik/tree/master/packages/umi-plugin-locale-paik"
   },
-  "homepage": "https://github.com/umijs/umi/tree/master/packages/umi-plugin-locale",
+  "homepage": "https://github.com/onpaik/umi-lib-paik/tree/master/packages/umi-plugin-locale-paik",
   "bugs": {
-    "url": "https://github.com/umijs/umi/issues"
+    "url": "https://github.com/onpaik/umi-lib-paik/issues"
   },
   "license": "MIT",
   "files": [
