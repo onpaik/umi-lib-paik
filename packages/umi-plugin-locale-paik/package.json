@@ -1,6 +1,6 @@
 {
   "name": "umi-plugin-locale-paik",
-  "version": "2.2.3",
+  "version": "2.3.0-alpha.0",
   "description": "A umi plugin for provide internationalization function.",
   "main": "./lib/index.js",
   "authors": [
