@@ -1,8 +1,14 @@
 {
-  "lerna": "2.0.0",
+  "lerna": "3.4.3",
   "npmClient": "npm",
   "version": "independent",
   "packages": [
     "packages/*"
-  ]
+  ],
+  "registry":"https://registry.npmjs.org/",
+  "command": {
+		"publish": {
+			"verifyAccess": false
+		}
+	}
 }

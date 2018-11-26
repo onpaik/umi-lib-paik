@@ -4,3 +4,4 @@
 package-lock.json
 yarn-error.log
 *.tgz
+lerna-debug.log

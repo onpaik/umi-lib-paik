@@ -1,8 +1,10 @@
 {
   "name": "umi-plugin-locale-paik",
-  "version": "2.3.0-alpha.0",
+  "version": "2.3.10-alpha.0",
   "description": "A umi plugin for provide internationalization function.",
   "main": "./lib/index.js",
+  "jsnext:main": "./es/index.js",
+  "module": "./es/index.js",
   "authors": [
     "yutingzhao1991 <yutingzhao1991@sina.com> (https://github.com/yutingzhao1991)",
     "unpaikon"
@@ -38,5 +40,8 @@
     "browserFiles": [
       "src/locale.js"
     ]
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
