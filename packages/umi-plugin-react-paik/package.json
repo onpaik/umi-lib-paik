@@ -1,0 +1,51 @@
+{
+  "name": "umi-plugin-react-paik",
+  "version": "1.2.3",
+  "main": "./lib/index.js",
+  "jsnext:main": "./es/index.js",
+  "module": "./es/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/onpaik/umi-lib-paik/tree/master/packages/umi-plugin-react-paik"
+  },
+  "homepage": "https://github.com/onpaik/umi-lib-paik/tree/master/packages/umi-plugin-react-paik",
+  "authors": [
+    "chencheng <sorrycc@gmail.com> (https://github.com/sorrycc)",
+    "unpaikon"
+  ],
+  "bugs": {
+    "url": "https://github.com/onpaik/umi-lib-paik/issues"
+  },
+  "files": [
+    "lib",
+    "src"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "antd": "^3.10.9",
+    "antd-mobile": "^2.2.6",
+    "babel-plugin-import": "^1.11.0",
+    "fastclick": "^1.0.6",
+    "is-plain-object": "^2.0.4",
+    "lodash.isequal": "^4.5.0",
+    "mustache": "^3.0.1",
+    "preact": "^8.3.1",
+    "preact-compat": "^3.18.4",
+    "register-service-worker": "^1.5.2",
+    "umi-plugin-dll": "^1.2.0",
+    "umi-plugin-dva": "^1.2.1",
+    "umi-plugin-hd": "^1.2.0",
+    "umi-plugin-locale": "^2.2.2",
+    "umi-plugin-locale-paik": "^2.3.6",
+    "umi-plugin-polyfills": "^1.2.0",
+    "umi-plugin-routes": "^1.0.1",
+    "webpack": "4.26.1",
+    "workbox-webpack-plugin": "^3.6.3"
+  },
+  "umiTools": {
+    "browserFiles": [
+      "src/plugins/pwa/registerServiceWorker.js",
+      "src/plugins/title/TitleWrapper.js"
+    ]
+  }
+}
