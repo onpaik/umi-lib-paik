@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 const { transformFileSync } = require('@babel/core');
-const { readdirSync,statSync,writeFileSync } = require('fs');
+const { readdirSync,statSync, writeFileSync,readFileSync } = require('fs');
 const mkdirp = require('mkdirp');
-const { join, dirname } = require('path');
+const { join, dirname, extname } = require('path');
 const rimraf = require('rimraf');
 
 const cwd = process.cwd();
@@ -44,9 +44,14 @@ const writeFile = async ( destPath, code) => {
 }
 const build = file => {
   modMap.map(mod => {
-    const { code  } = transformFileSync(file, getBabelConfig(mod));
+    const ext = extname(file);
     const destPath = file.replace(/src/,mod);
-    writeFile(destPath,code);
+    if(ext.match(/js/gi)){
+      const { code  } = transformFileSync(file, getBabelConfig(mod));
+      writeFile(destPath,code);
+    }else{
+      writeFile(destPath,readFileSync(file));
+    }
     return mod;
   })
 }
