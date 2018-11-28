@@ -1,0 +1,38 @@
+{
+  "name": "eslint-config-onpaik",
+  "version": "1.2.2",
+  "description": "This package provides .eslintrc config based on eslint-config-airbnb.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/onpaik/umi-lib-paik/tree/master/packages/eslint-config-onpaik"
+  },
+  "homepage": "https://github.com/onpaik/umi-lib-paik/tree/master/packages/eslint-config-onpaik",
+  "bugs": {
+    "url": "https://github.com/onpaik/umi-lib-paik/issues"
+  },
+  "keywords": [
+    "eslintconfig",
+    "paik"
+  ],
+  "author": "unpaikon",
+  "license": "ISC",
+  "dependencies": {
+    "babel-eslint": "10.0.1",
+    "eslint": "^5.9.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^3.3.0",
+    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-flowtype": "^3.2.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jest": "^22.1.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-prettier": "^3.0.0",
+    "eslint-plugin-react": "^7.11.1",
+    "lint-staged": "^8.1.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
+}
