@@ -35,9 +35,7 @@
     "mustache": "^2.3.0",
     "prop-types": "^15.6.2",
     "react-intl": "^2.4.0",
-    "umi-utils": "^1.2.1"
-  },
-  "devDependencies": {
+    "umi-utils": "^1.2.1",
     "lodash.groupby": "^4.6.0"
   },
   "umiTools": {
