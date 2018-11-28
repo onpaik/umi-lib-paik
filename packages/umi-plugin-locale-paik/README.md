@@ -1,6 +1,6 @@
  官方插件的改良版本
 
-# useage
+# usage
 ```
 {
   enable: true,
@@ -12,7 +12,8 @@
 }
 ```
 ## momentLocaleMap antLocaleMap 
-moment,antd,并不是严格和浏览器语言一致的的国际化文件，可以根据配置指定加载的文件
+moment,antd国际化文件名称并不是严格和浏览器语言一致的的，可以根据配置指定加载的文件
 
 ## localeMap
-当 default 不是标准的文件命名时，指定和locale/locales下面的某个文件的国际化内容
+当 default 不是标准的文件命名时（如zh,en），指定和locale/locales下面的某个文件的国际化内容,
+如上，当语言为zh时，使用zh-CN的本地国际化内容，当语言为en时，使用en-US的国际化内容
