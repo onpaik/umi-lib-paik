@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-onpaik",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "This package provides .eslintrc config based on eslint-config-airbnb.",
   "main": "index.js",
   "repository": {
