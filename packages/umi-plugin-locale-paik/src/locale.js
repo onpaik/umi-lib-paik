@@ -15,7 +15,9 @@ function getLocale() {
 }
 
 let intl = {
-  formatMessage: () => null,
+  formatMessage: () => {
+    return null;
+  },
 };
 
 // react-intl 没有直接暴露 formatMessage 这个方法
