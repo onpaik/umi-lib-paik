@@ -1,6 +1,7 @@
 .DS_Store
 /node_modules
 /packages/*/node_modules
+/packages/umi-plugin-locale-paik/examples/*/node_modules
 package-lock.json
 yarn-error.log
 *.tgz

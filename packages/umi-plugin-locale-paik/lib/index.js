@@ -15,6 +15,10 @@ var _umiUtils = require("umi-utils");
 
 var _mustache = _interopRequireDefault(require("mustache"));
 
+var _globby = _interopRequireDefault(require("globby"));
+
+var _lodash = _interopRequireDefault(require("lodash.groupby"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
@@ -29,10 +33,12 @@ function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = 
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-var momentLocation = require.resolve('moment/locale/zh-cn').replace(/zh\-cn\.js$/, '');
+var momentLocation = require.resolve('moment/locale/zh-cn').replace(/zh-cn\.js$/, '');
 
-function getMomentLocale(lang, country) {
-  if ((0, _fs.existsSync)((0, _path.join)(momentLocation, "".concat(lang, "-").concat(country.toLocaleLowerCase(), ".js")))) {
+var antLocation = require.resolve('antd/lib/locale-provider/zh_CN').replace(/zh_CN\.js$/, '');
+
+function getMomentLocale(lang, country, momentLocaleMap) {
+  if (country && (0, _fs.existsSync)((0, _path.join)(momentLocation, "".concat(lang, "-").concat(country.toLocaleLowerCase(), ".js")))) {
     return "".concat(lang, "-").concat(country.toLocaleLowerCase());
   }
 
@@ -40,35 +46,72 @@ function getMomentLocale(lang, country) {
     return lang;
   }
 
+  if (momentLocaleMap && momentLocaleMap[lang] && (0, _fs.existsSync)((0, _path.join)(momentLocation, "".concat(momentLocaleMap[lang], ".js")))) {
+    return momentLocaleMap[lang];
+  }
+
+  return '';
+}
+
+function getAntdLocale(lang, country, antLocaleMap) {
+  if (country && (0, _fs.existsSync)((0, _path.join)(antLocation, "".concat(lang, "_").concat(country, ".js")))) {
+    return "".concat(lang, "_").concat(country);
+  }
+
+  if (antLocaleMap && antLocaleMap[lang] && (0, _fs.existsSync)((0, _path.join)(antLocation, "".concat(antLocaleMap[lang], ".js")))) {
+    return antLocaleMap[lang];
+  }
+
   return '';
 } // export for test
 
 
-function getLocaleFileList(absSrcPath, singular) {
-  var localeList = [];
-  var localePath = (0, _path.join)(absSrcPath, singular ? 'locale' : 'locales');
-
-  if ((0, _fs.existsSync)(localePath)) {
-    var localePaths = (0, _fs.readdirSync)(localePath);
-
-    for (var i = 0; i < localePaths.length; i++) {
-      var fullname = (0, _path.join)(localePath, localePaths[i]);
-      var stats = (0, _fs.statSync)(fullname);
-      var fileInfo = /^([a-z]{2})-([A-Z]{2})\.(js|ts)$/.exec(localePaths[i]);
-
-      if (stats.isFile() && fileInfo) {
-        localeList.push({
-          lang: fileInfo[1],
-          country: fileInfo[2],
-          name: "".concat(fileInfo[1], "-").concat(fileInfo[2]),
-          path: (0, _umiUtils.winPath)(fullname),
-          momentLocale: getMomentLocale(fileInfo[1], fileInfo[2])
-        });
-      }
-    }
+function getLocaleFileList() {
+  for (var _len = arguments.length, arg = new Array(_len), _key = 0; _key < _len; _key++) {
+    arg[_key] = arguments[_key];
   }
 
-  return localeList;
+  var absSrcPath = arg[0],
+      absPagesPath = arg[1],
+      singular = arg[2],
+      momentLocaleMap = arg[3],
+      antLocaleMap = arg[4];
+  var localeFileMath = /^([a-z]{2})-([A-Z]{2})\.(js|ts)$/;
+  var localeFolder = singular ? 'locale' : 'locales';
+
+  var localeFiles = _globby.default.sync('*.{ts,js}', {
+    cwd: (0, _path.join)(absSrcPath, localeFolder)
+  }).map(function (name) {
+    return (0, _path.join)(absSrcPath, localeFolder, name);
+  }).concat(_globby.default.sync("**/".concat(localeFolder, "/*.{ts,js}"), {
+    cwd: absPagesPath
+  }).map(function (name) {
+    return (0, _path.join)(absPagesPath, name);
+  })).filter(function (p) {
+    return localeFileMath.test((0, _path.basename)(p));
+  }).map(function (fullname) {
+    var fileName = (0, _path.basename)(fullname);
+    var fileInfo = localeFileMath.exec(fileName);
+    return {
+      name: "".concat(fileInfo[1], "-").concat(fileInfo[2]),
+      path: fullname
+    };
+  });
+
+  var groups = (0, _lodash.default)(localeFiles, 'name');
+  return Object.keys(groups).map(function (name) {
+    var fileInfo = name.split('-');
+    return {
+      lang: fileInfo[0],
+      name: name,
+      country: fileInfo[1],
+      paths: groups[name].map(function (item) {
+        return (0, _umiUtils.winPath)(item.path);
+      }),
+      antdLocale: getAntdLocale(fileInfo[0], fileInfo[1], antLocaleMap),
+      momentLocale: getMomentLocale(fileInfo[0], fileInfo[1], momentLocaleMap)
+    };
+  });
 } // data come from https://caniuse.com/#search=intl
 // you can find all browsers in https://github.com/browserslist/browserslist#browsers
 
@@ -104,6 +147,10 @@ function _default(api) {
   var config = api.config,
       paths = api.paths;
   var targets = config.targets;
+  var momentLocaleMap = options.momentLocaleMap || undefined;
+  var antLocaleMap = options.momentLocaleMap || undefined;
+  var localeMap = options.localeMap || undefined;
+  var defaultLocale = options.default || 'zh-CN';
 
   if (isNeedPolyfill(targets)) {
     api.addEntryPolyfillImports({
@@ -117,24 +164,40 @@ function _default(api) {
     api.rebuildTmpFiles();
   });
   api.addRendererWrapperWithComponent(function () {
-    var localeFileList = getLocaleFileList(paths.absSrcPath, config.singular);
-    var wrapperTpl = (0, _fs.readFileSync)((0, _path.join)(__dirname, '../template/wrapper.jsx.tpl'), 'utf-8');
-    var defaultLocale = options.default || 'zh-CN';
+    var localeFileList = getLocaleFileList(paths.absSrcPath, paths.absPagesPath, config.singular, momentLocaleMap, antLocaleMap);
+    var wrapperTpl = (0, _fs.readFileSync)((0, _path.join)(__dirname, './template/wrapper.jsx.tpl'), 'utf-8');
 
     var _defaultLocale$split = defaultLocale.split('-'),
         _defaultLocale$split2 = _slicedToArray(_defaultLocale$split, 2),
         lang = _defaultLocale$split2[0],
         country = _defaultLocale$split2[1];
 
+    var list = [];
+
+    if (localeMap) {
+      var locales = Object.keys(localeMap);
+
+      var _list = locales.map(function (lang) {
+        var findLocale = localeFileList.find(function (o) {
+          return o.name === localeMap[lang];
+        });
+        return _objectSpread({}, findLocale, {
+          name: lang
+        });
+      });
+
+      list = _list;
+    }
+
     var wrapperContent = _mustache.default.render(wrapperTpl, {
-      localeList: localeFileList,
+      localeList: localeFileList.concat(list),
       antd: options.antd === undefined ? true : options.antd,
       baseNavigator: options.baseNavigator === undefined ? true : options.baseNavigator,
       useLocalStorage: true,
       defaultLocale: defaultLocale,
       defaultLang: lang,
-      defaultAntdLocale: "".concat(lang, "_").concat(country),
-      defaultMomentLocale: getMomentLocale(lang, country)
+      defaultAntdLocale: getAntdLocale(lang, country, antLocaleMap),
+      defaultMomentLocale: getMomentLocale(lang, country, momentLocaleMap)
     });
 
     var wrapperPath = (0, _path.join)(paths.absTmpDirPath, './LocaleWrapper.jsx');

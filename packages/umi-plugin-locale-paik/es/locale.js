@@ -27,12 +27,7 @@ define(["exports", "react-intl"], function (_exports, _reactIntl) {
 
   /* eslint-disable no-undef */
   function setLocale(lang) {
-    if (lang !== undefined && !/^([a-z]{2})-([A-Z]{2})$/.test(lang)) {
-      // for reset when lang === undefined
-      throw new Error('setLocale lang format error');
-    }
-
-    if (getLocale() !== lang) {
+    if (lang && getLocale() !== lang) {
       window.localStorage.setItem('umi_locale', lang || '');
       window.location.reload();
     }

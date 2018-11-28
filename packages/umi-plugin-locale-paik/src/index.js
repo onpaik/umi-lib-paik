@@ -1,9 +1,3 @@
-//
-// TODOLIST:
-//   - 单元测试
-//   - example 里面的 antd 依赖改为 umi 插件
-//
-
 import { join, dirname, basename } from 'path';
 import { existsSync, readFileSync, writeFileSync } from 'fs';
 import { winPath } from 'umi-utils';
@@ -13,11 +7,15 @@ import groupBy from 'lodash.groupby';
 
 const momentLocation = require
   .resolve('moment/locale/zh-cn')
-  .replace(/zh\-cn\.js$/, '');
+  .replace(/zh-cn\.js$/, '');
 
-function getMomentLocale(lang, country) {
+const antLocation = require
+.resolve('antd/lib/locale-provider/zh_CN')
+.replace(/zh_CN\.js$/, '');
+
+function getMomentLocale(lang, country,momentLocaleMap) {
   if (
-    existsSync(
+    country && existsSync(
       join(momentLocation, `${lang}-${country.toLocaleLowerCase()}.js`),
     )
   ) {
@@ -26,11 +24,28 @@ function getMomentLocale(lang, country) {
   if (existsSync(join(momentLocation, `${lang}.js`))) {
     return lang;
   }
+  if (momentLocaleMap && momentLocaleMap[lang] && existsSync(join(momentLocation, `${momentLocaleMap[lang]}.js`))) {
+    return momentLocaleMap[lang];
+  }
   return '';
 }
 
+function getAntdLocale(lang,country, antLocaleMap){
+  if (
+    country && existsSync(
+      join(antLocation, `${lang}_${country}.js`),
+    )
+  ) {
+    return `${lang}_${country}`;
+  }
+  if (antLocaleMap && antLocaleMap[lang] && existsSync(join(antLocation, `${antLocaleMap[lang]}.js`))) {
+    return antLocaleMap[lang];
+  }
+  return '';
+}
 // export for test
-export function getLocaleFileList(absSrcPath, absPagesPath, singular) {
+export function getLocaleFileList(...arg) {
+  const [ absSrcPath, absPagesPath, singular,momentLocaleMap,antLocaleMap ] = arg;
   const localeFileMath = /^([a-z]{2})-([A-Z]{2})\.(js|ts)$/;
   const localeFolder = singular ? 'locale' : 'locales';
   const localeFiles = globby
@@ -59,10 +74,11 @@ export function getLocaleFileList(absSrcPath, absPagesPath, singular) {
     const fileInfo = name.split('-');
     return {
       lang: fileInfo[0],
-      name,
+      name: name,
       country: fileInfo[1],
       paths: groups[name].map(item => winPath(item.path)),
-      momentLocale: getMomentLocale(fileInfo[0], fileInfo[1]),
+      antdLocale: getAntdLocale(fileInfo[0], fileInfo[1],antLocaleMap),
+      momentLocale: getMomentLocale(fileInfo[0], fileInfo[1],momentLocaleMap),
     };
   });
 }
@@ -102,7 +118,10 @@ export function isNeedPolyfill(targets = {}) {
 export default function(api, options = {}) {
   const { config, paths } = api;
   const { targets } = config;
-
+  const momentLocaleMap = options.momentLocaleMap || undefined;
+  const antLocaleMap = options.momentLocaleMap || undefined;
+  const localeMap = options.localeMap || undefined;
+  const defaultLocale = options.default || 'zh-CN';
   if (isNeedPolyfill(targets)) {
     api.addEntryPolyfillImports({
       source: 'intl',
@@ -123,23 +142,37 @@ export default function(api, options = {}) {
       paths.absSrcPath,
       paths.absPagesPath,
       config.singular,
+      momentLocaleMap,
+      antLocaleMap,
     );
     const wrapperTpl = readFileSync(
-      join(__dirname, '../template/wrapper.jsx.tpl'),
+      join(__dirname, './template/wrapper.jsx.tpl'),
       'utf-8',
     );
-    const defaultLocale = options.default || 'zh-CN';
+    
     const [lang, country] = defaultLocale.split('-');
+    let list = [];
+    if(localeMap){
+      const locales = Object.keys(localeMap);
+      const _list = locales.map(lang => {
+        const findLocale = localeFileList.find(o => o.name === localeMap[lang]);
+        return {
+          ...findLocale,
+          name: lang,
+        };
+      })
+      list = _list;
+    }
     const wrapperContent = Mustache.render(wrapperTpl, {
-      localeList: localeFileList,
+      localeList: localeFileList.concat(list),
       antd: options.antd === undefined ? true : options.antd,
       baseNavigator:
         options.baseNavigator === undefined ? true : options.baseNavigator,
       useLocalStorage: true,
       defaultLocale,
       defaultLang: lang,
-      defaultAntdLocale: `${lang}_${country}`,
-      defaultMomentLocale: getMomentLocale(lang, country),
+      defaultAntdLocale: getAntdLocale(lang,country,antLocaleMap),
+      defaultMomentLocale: getMomentLocale(lang, country,momentLocaleMap),
     });
     const wrapperPath = join(paths.absTmpDirPath, './LocaleWrapper.jsx');
     writeFileSync(wrapperPath, wrapperContent, 'utf-8');
