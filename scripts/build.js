@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const { transformFileSync } = require('@babel/core');
-const { readdirSync,statSync, writeFileSync,readFileSync } = require('fs');
+const { readdirSync,statSync, writeFileSync,readFileSync,existsSync } = require('fs');
 const mkdirp = require('mkdirp');
 const { join, dirname, extname } = require('path');
 const rimraf = require('rimraf');
@@ -73,6 +73,9 @@ const fileDisplay = (filePath) => {
 
 packages.map(mod => {
   cleanDir(mod);
-  fileDisplay(`${packagesFloder}/${mod}/src`);
+  const dir = `${packagesFloder}/${mod}/src`;
+  if(existsSync(dir)){
+    fileDisplay(dir);
+  }
   return mod;
 })
