@@ -9,13 +9,10 @@ const InjectedWrapper = injectIntl(function ComponentWrapper(props) {
 })
 {{/localeList.length}}
 
-{{#localeList}}
-{{#antd}}
-{{#momentLocale}}
-import 'moment/locale/{{momentLocale}}';
-{{/momentLocale}}
-{{/antd}}
-{{/localeList}}
+
+{{#momentLocaleList}}
+import 'moment/locale/{{{.}}}';
+{{/momentLocaleList}}
 
 const baseNavigator = {{{baseNavigator}}};
 const useLocalStorage = {{{useLocalStorage}}};
@@ -33,7 +30,7 @@ const localeInfo = {
   {{#localeList}}
   '{{name}}': {
     messages: {
-      {{#paths}}...require('{{{.}}}').default,{{/paths}}
+      {{#paths}}...require('{{{url}}}'){{affter}},{{/paths}}
     },
     locale: '{{name}}',
     {{#antd}}antd: require('antd/lib/locale-provider/{{antdLocale}}'),{{/antd}}

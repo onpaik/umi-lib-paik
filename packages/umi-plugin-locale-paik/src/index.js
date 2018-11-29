@@ -1,4 +1,4 @@
-import { join, dirname, basename } from 'path';
+import { join, dirname, basename,extname} from 'path';
 import { existsSync, readFileSync, writeFileSync } from 'fs';
 import { winPath } from 'umi-utils';
 import Mustache from 'mustache';
@@ -46,16 +46,16 @@ function getAntdLocale(lang,country, antLocaleMap){
 // export for test
 export function getLocaleFileList(...arg) {
   const [ absSrcPath, absPagesPath, singular,momentLocaleMap,antLocaleMap ] = arg;
-  const localeFileMath = /^([a-z]{2})-([A-Z]{2})\.(js|ts)$/;
+  const localeFileMath = /^([a-z]{2})-([A-Z]{2})\.(js|ts|json)$/;
   const localeFolder = singular ? 'locale' : 'locales';
   const localeFiles = globby
-    .sync('*.{ts,js}', {
+    .sync('*.{ts,js,json}', {
       cwd: join(absSrcPath, localeFolder),
     })
     .map(name => join(absSrcPath, localeFolder, name))
     .concat(
       globby
-        .sync(`**/${localeFolder}/*.{ts,js}`, {
+        .sync(`**/${localeFolder}/*.{ts,js,json}`, {
           cwd: absPagesPath,
         })
         .map(name => join(absPagesPath, name)),
@@ -72,11 +72,16 @@ export function getLocaleFileList(...arg) {
   const groups = groupBy(localeFiles, 'name');
   return Object.keys(groups).map(name => {
     const fileInfo = name.split('-');
+    const paths = groups[name].map(item => winPath(item.path));
+    const newPaths = paths.map(url=>({
+      url,
+      affter:extname(url).replace('.','') === 'json' ? '' : '.default',
+    }))
     return {
       lang: fileInfo[0],
       name: name,
       country: fileInfo[1],
-      paths: groups[name].map(item => winPath(item.path)),
+      paths:newPaths,
       antdLocale: getAntdLocale(fileInfo[0], fileInfo[1],antLocaleMap),
       momentLocale: getMomentLocale(fileInfo[0], fileInfo[1],momentLocaleMap),
     };
@@ -119,7 +124,7 @@ export default function(api, options = {}) {
   const { config, paths } = api;
   const { targets } = config;
   const momentLocaleMap = options.momentLocaleMap || undefined;
-  const antLocaleMap = options.momentLocaleMap || undefined;
+  const antLocaleMap = options.antLocaleMap || undefined;
   const localeMap = options.localeMap || undefined;
   const defaultLocale = options.default || 'zh-CN';
   if (isNeedPolyfill(targets)) {
@@ -163,8 +168,15 @@ export default function(api, options = {}) {
       })
       list = _list;
     }
+    const localeList = localeFileList.concat(list);
+    const momentLocale = [];
+    localeList.map(locale =>{
+      momentLocale.push(locale.momentLocale);
+      return locale;
+    });
     const wrapperContent = Mustache.render(wrapperTpl, {
-      localeList: localeFileList.concat(list),
+      localeList: localeList,
+      momentLocaleList: Array.from(new Set(momentLocale)),
       antd: options.antd === undefined ? true : options.antd,
       baseNavigator:
         options.baseNavigator === undefined ? true : options.baseNavigator,
