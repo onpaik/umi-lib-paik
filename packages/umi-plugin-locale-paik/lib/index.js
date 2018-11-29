@@ -76,14 +76,14 @@ function getLocaleFileList() {
       singular = arg[2],
       momentLocaleMap = arg[3],
       antLocaleMap = arg[4];
-  var localeFileMath = /^([a-z]{2})-([A-Z]{2})\.(js|ts)$/;
+  var localeFileMath = /^([a-z]{2})-([A-Z]{2})\.(js|ts|json)$/;
   var localeFolder = singular ? 'locale' : 'locales';
 
-  var localeFiles = _globby.default.sync('*.{ts,js}', {
+  var localeFiles = _globby.default.sync('*.{ts,js,json}', {
     cwd: (0, _path.join)(absSrcPath, localeFolder)
   }).map(function (name) {
     return (0, _path.join)(absSrcPath, localeFolder, name);
-  }).concat(_globby.default.sync("**/".concat(localeFolder, "/*.{ts,js}"), {
+  }).concat(_globby.default.sync("**/".concat(localeFolder, "/*.{ts,js,json}"), {
     cwd: absPagesPath
   }).map(function (name) {
     return (0, _path.join)(absPagesPath, name);
@@ -101,13 +101,20 @@ function getLocaleFileList() {
   var groups = (0, _lodash.default)(localeFiles, 'name');
   return Object.keys(groups).map(function (name) {
     var fileInfo = name.split('-');
+    var paths = groups[name].map(function (item) {
+      return (0, _umiUtils.winPath)(item.path);
+    });
+    var newPaths = paths.map(function (url) {
+      return {
+        url: url,
+        affter: (0, _path.extname)(url).replace('.', '') === 'json' ? '' : '.default'
+      };
+    });
     return {
       lang: fileInfo[0],
       name: name,
       country: fileInfo[1],
-      paths: groups[name].map(function (item) {
-        return (0, _umiUtils.winPath)(item.path);
-      }),
+      paths: newPaths,
       antdLocale: getAntdLocale(fileInfo[0], fileInfo[1], antLocaleMap),
       momentLocale: getMomentLocale(fileInfo[0], fileInfo[1], momentLocaleMap)
     };
@@ -148,7 +155,7 @@ function _default(api) {
       paths = api.paths;
   var targets = config.targets;
   var momentLocaleMap = options.momentLocaleMap || undefined;
-  var antLocaleMap = options.momentLocaleMap || undefined;
+  var antLocaleMap = options.antLocaleMap || undefined;
   var localeMap = options.localeMap || undefined;
   var defaultLocale = options.default || 'zh-CN';
 
@@ -189,8 +196,16 @@ function _default(api) {
       list = _list;
     }
 
+    var localeList = localeFileList.concat(list);
+    var momentLocale = [];
+    localeList.map(function (locale) {
+      momentLocale.push(locale.momentLocale);
+      return locale;
+    });
+
     var wrapperContent = _mustache.default.render(wrapperTpl, {
-      localeList: localeFileList.concat(list),
+      localeList: localeList,
+      momentLocaleList: Array.from(new Set(momentLocale)),
       antd: options.antd === undefined ? true : options.antd,
       baseNavigator: options.baseNavigator === undefined ? true : options.baseNavigator,
       useLocalStorage: true,
