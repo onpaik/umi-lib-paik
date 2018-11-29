@@ -7,10 +7,9 @@ const InjectedWrapper = injectIntl(function ComponentWrapper(props) {
   return props.children;
 })
 
+
 import 'moment/locale/en-nz';
 import 'moment/locale/zh-cn';
-import 'moment/locale/zh-cn';
-import 'moment/locale/en-nz';
 
 const baseNavigator = true;
 const useLocalStorage = true;
@@ -18,12 +17,12 @@ const useLocalStorage = true;
 import { LocaleProvider } from 'antd';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
-const defaultAntd = require('antd/lib/locale-provider/');
+const defaultAntd = require('antd/lib/locale-provider/zh_CN');
 
 const localeInfo = {
   'en-US': {
     messages: {
-      ...require('/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/src/locale/en-US.js').default,...require('/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/src/page/temp/locale/en-US.js').default,
+      ...require('/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/src/locale/en-US.json'),...require('/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/src/page/temp/locale/en-US.js').default,
     },
     locale: 'en-US',
     antd: require('antd/lib/locale-provider/en_US'),
@@ -50,7 +49,7 @@ const localeInfo = {
   },
   'en': {
     messages: {
-      ...require('/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/src/locale/en-US.js').default,...require('/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/src/page/temp/locale/en-US.js').default,
+      ...require('/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/src/locale/en-US.json'),...require('/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/src/page/temp/locale/en-US.js').default,
     },
     locale: 'en',
     antd: require('antd/lib/locale-provider/en_US'),
