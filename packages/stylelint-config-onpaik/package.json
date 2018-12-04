@@ -1,0 +1,23 @@
+{
+  "name": "stylelint-config-onpaik",
+  "version": "1.1.1",
+  "description": "stylelint config",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/onpaik/umi-lib-paik/tree/master/packages/stylelint-config-onpaik"
+  },
+  "keywords": [
+    "stylelint",
+    "paik"
+  ],
+  "author": "unonpaik",
+  "license": "MIT",
+  "dependencies": {
+    "prettier-stylelint": "^0.4.2",
+    "stylelint": "^9.9.0",
+    "stylelint-config-idiomatic-order": "^6.2.0",
+    "stylelint-config-standard": "^18.2.0",
+    "stylelint-order": "^2.0.0"
+  }
+}
