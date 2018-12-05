@@ -118,7 +118,8 @@ global.json
 ## example
 
 index.jsx
-```
+
+```javascript
 import { FormattedMessage, setLocale, getLocale } from 'umi/locale';
 import globalMsg from './message/global.json'
 // import globalMsg from './message/global.js'
@@ -167,7 +168,6 @@ export default () => {
     </div>
   );
 };
-
 ```
 
 ![zh-CN](https://github.com/onpaik/umi-lib-paik/tree/master/packages/umi-plugin-translate-paik/assets/zh-CN.png)
