@@ -1,43 +1,47 @@
-import {
-  formatMessage,
-  setLocale,
-  getLocale,
-  FormattedMessage,
-} from 'umi/locale';
-import { DatePicker } from 'antd';
-// setLocale('en');
+import { FormattedMessage, setLocale, getLocale } from 'umi/locale';
+import globalMsg from './message/global.json'
+// import globalMsg from './message/global.js'
+
 export default () => {
-  console.log(
-    getLocale(),
-    formatMessage(
-      {
-        id: 'test',
-      },
-      {
-        name: 'antd',
-      },
-    ),
-  );
+  const locale =  getLocale();
+  const style = {
+    backgroundColor: 'red',
+  }
   return (
     <div>
-      hello world.
-      <FormattedMessage id="test" values={{ name: 'antd' }} />
-      <br />
-      <FormattedMessage id="test2" values={{ name: 'test2' }} />
-      <DatePicker />
+      <FormattedMessage {...globalMsg.global } values={{title:'测试'}}/>
+      <br></br>
       <button
+        style={locale === 'zh-CN' ? style : {}}
         onClick={() => {
-          setLocale('en');
-        }}
-      >
-        en-US
-      </button>
-      <button
-        onClick={() => {
-          setLocale('zh');
+          setLocale('zh-CN');
         }}
       >
         zh-CN
+      </button>
+      <button
+        style={locale === 'zh-TW' ? style : {}}
+        onClick={() => {
+          setLocale('zh-TW');
+        }}
+      >
+        zh-TW
+      </button>
+      <button
+        style={locale === 'zh-HK' ? style : {}}
+        onClick={() => {
+          setLocale('zh-HK');
+        }}
+      >
+        zh-HK
+      </button>
+      <button
+        style={locale === 'en-US' ? style : {}}
+        onClick={() => {
+          setLocale('en-US');
+        }}
+      >
+        en-US
       </button>
     </div>
   );

@@ -1,3 +1,10 @@
 {
-  "test": "test en {name}"
+	"title-global": "global-title {title}",
+	"title-global2": "global-title2",
+	"title-global3": "global-title3",
+	"text-global1": "dd1",
+	"text-global2": "dd2",
+	"text-global233": "dd233",
+	"title-global2s": "global-title2",
+	"text-global2333": "dd2333"
 }

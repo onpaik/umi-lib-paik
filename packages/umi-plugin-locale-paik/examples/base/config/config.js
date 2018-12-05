@@ -11,6 +11,16 @@ export default {
         default: 'zh',
       },
     ],
+    [
+      '../../../umi-plugin-translate-paik/src/index',{
+        support:{
+          enUS:'en-US',
+          zhCN:'zh-CN',
+          zhTW:'zh-TW',
+          zhHK:'zh-HK',
+        }
+      }
+    ]
   ],
   singular: true,
 };

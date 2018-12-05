@@ -1,0 +1,9 @@
+{
+  "global":{
+    "id":"title-global",
+    "defaultMessage":"全局标题{title}",
+    "enUS":"global-title {title}",
+    "zhTW":"全域性標題{title}",
+    "zhHK":"全局標題{title}"
+  }
+}
