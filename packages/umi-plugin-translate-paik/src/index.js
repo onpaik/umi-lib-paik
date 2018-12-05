@@ -41,6 +41,9 @@ function getmessageFloder(singular){
 function getLocaleFloder(singular){
   return singular ? 'locale' : 'locales';
 }
+function getTempLocale(singular) {
+  return singular ? '.locale' : '.locales';
+}
 function noKey(obj){
   return Object.keys(obj).length === 0
 }
@@ -97,16 +100,18 @@ async function addIntl(...arg){
   const [ file,singular,absSrcPath,support ] = arg;
   const { path } = file;
   const ext = extname(path).replace('.',''); 
-  const newPath = path.replace(/src/,`src\/${getLocaleFloder(singular)}/.locale`);
+  const floder = getLocaleFloder(singular);
+  const tfloder = getTempLocale(singular);
+  const newPath = path.replace(/src/,`src\/${floder}/${tfloder}`);
   let data = {};
   if(ext ==='js' || ext ==='ts'){
-    await rimraf.sync(`${absSrcPath}locale/.locale`);
+    await rimraf.sync(`${absSrcPath}${floder}/${tfloder}`);
     const { code } = transformFileSync(path, getBabelConfig());
     
     await writeFile(newPath,code);
     delete require.cache[newPath]
     const content = require(newPath).default;
-    await rimraf.sync(`${absSrcPath}locale/.locale`);
+    await rimraf.sync(`${absSrcPath}${floder}/${tfloder}`);
     data = transLate(content,support,data);
   }
   if(ext === 'json'){
@@ -141,14 +146,14 @@ async function getTransLataData(...arg){
       // console.log(data);
       return file;
     })
-  generateFile(data,support,absSrcPath);
+  generateFile(data,support,absSrcPath,singular);
   return data;
 }
 function generateFile(...arg){
-  const [ data, support,absSrcPath ] = arg;
+  const [ data, support,absSrcPath,singular ] = arg;
   const langs = Object.values(support);
   langs.map(lang =>{
-    const langPath = `${absSrcPath}/locale/${lang}.json`;
+    const langPath = `${absSrcPath}/${getLocaleFloder(singular)}/${lang}.json`;
     if(existsSync(langPath)){
       const orignData = require(langPath);
       writeFileSync(langPath,JSON.stringify({
