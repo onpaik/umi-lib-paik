@@ -1,5 +1,5 @@
 {
-  "name": "umi-plugin-locale-translate-paik",
+  "name": "umi-plugin-translate-paik",
   "version": "1.2.7",
   "description": "A umi plugin for locale translate with plugin umi-plugin-locale-paik",
   "main": "./lib/index.js",
@@ -10,9 +10,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/onpaik/umi-lib-paik/tree/master/packages/umi-plugin-locale-translate-paik"
+    "url": "https://github.com/onpaik/umi-lib-paik/tree/master/packages/umi-plugin-translate-paik"
   },
-  "homepage": "https://github.com/onpaik/umi-lib-paik/tree/master/packages/umi-plugin-locale-translate-paik",
+  "homepage": "https://github.com/onpaik/umi-lib-paik/tree/master/packages/umi-plugin-translate-paik",
   "bugs": {
     "url": "https://github.com/onpaik/umi-lib-paik/issues"
   },
