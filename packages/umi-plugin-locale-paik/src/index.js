@@ -87,6 +87,31 @@ export function getLocaleFileList(...arg) {
     };
   });
 }
+// export for test
+export function getLocaleFileListNew(...arg) {
+  const [ absSrcPath, singular,momentLocaleMap,antLocaleMap ] = arg;
+  const localeList = [];
+  const localePath = join(absSrcPath, singular ? 'locale' : 'locales');
+  if (existsSync(localePath)) {
+    const localePaths = readdirSync(localePath);
+    for (let i = 0; i < localePaths.length; i++) {
+      const fullname = join(localePath, localePaths[i]);
+      const stats = statSync(fullname);
+      const fileInfo = /^([a-z]{2})-([A-Z]{2})\.(js|ts|json)$/.exec(localePaths[i]);
+      if (stats.isFile() && fileInfo) {
+        localeList.push({
+          lang: fileInfo[1],
+          country: fileInfo[2],
+          name: `${fileInfo[1]}-${fileInfo[2]}`,
+          paths: winPath(fullname),
+          antdLocale: getAntdLocale(fileInfo[0], fileInfo[1],antLocaleMap),
+          momentLocale: getMomentLocale(fileInfo[1], fileInfo[2],momentLocaleMap),
+        });
+      }
+    }
+  }
+  return localeList;
+}
 
 // data come from https://caniuse.com/#search=intl
 // you can find all browsers in https://github.com/browserslist/browserslist#browsers

@@ -13,6 +13,11 @@ let routes = [
     "component": require('../index.js').default
   },
   {
+    "path": "/temp/message",
+    "exact": true,
+    "component": require('../temp/message/index.js').default
+  },
+  {
     "component": () => React.createElement(require('/Users/jedi/.config/yarn/global/node_modules/umi-build-dev/lib/plugins/404/NotFound.js').default, { pagesPath: 'src/page', hasRoutesInConfig: false })
   }
 ];

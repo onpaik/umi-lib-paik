@@ -107,10 +107,9 @@ async function addIntl(...arg){
   if(ext ==='js' || ext ==='ts'){
     await rimraf.sync(`${absSrcPath}${floder}/${tfloder}`);
     const { code } = transformFileSync(path, getBabelConfig());
-    
     await writeFile(newPath,code);
     delete require.cache[newPath]
-    const content = require(newPath).default;
+    const content = await require(newPath).default;
     await rimraf.sync(`${absSrcPath}${floder}/${tfloder}`);
     data = transLate(content,support,data);
   }
@@ -122,28 +121,19 @@ async function addIntl(...arg){
   return data;
 }
 async function getTransLataData(...arg){
-  const [ singular, absSrcPath, absPagesPath,support] = arg;
+  const [ singular, absSrcPath,support] = arg;
   const msgFloder = getmessageFloder(singular);
   let data = {};
   await globby
-    .sync('**/*.{ts,js,json}', {
-      cwd: join(absSrcPath, msgFloder),
+    .sync(`**/${msgFloder}/*.{ts,js,json}`, {
+      cwd: absSrcPath,
     }).map(name => ({
       name,
-      path: join(absSrcPath, msgFloder, name)
+      path: join(absSrcPath, name)
     }))
-    .concat(
-      globby
-    .sync('**/*.{ts,js,json}', {
-      cwd: join(absPagesPath, msgFloder),
-      }).map(name => ({
-        name,
-        path: join(absPagesPath, msgFloder, name)
-      }))
-    ).mapSync(async file => {
+    .mapSync(async file => {
       const singal = await addIntl(file,singular,absSrcPath,support);
       data = merge(singal,data);
-      // console.log(data);
       return file;
     })
   generateFile(data,support,absSrcPath,singular);
@@ -193,7 +183,6 @@ export default function (api, opt={}) {
     getTransLataData(
       singular,
       absSrcPath,
-      absPagesPath,
       support,
     )
   });
