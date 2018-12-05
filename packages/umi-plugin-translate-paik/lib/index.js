@@ -136,6 +136,10 @@ function getLocaleFloder(singular) {
   return singular ? 'locale' : 'locales';
 }
 
+function getTempLocale(singular) {
+  return singular ? '.locale' : '.locales';
+}
+
 function noKey(obj) {
   return Object.keys(obj).length === 0;
 }
@@ -240,6 +244,8 @@ function _addIntl() {
         support,
         path,
         ext,
+        floder,
+        tfloder,
         newPath,
         data,
         _transformFileSync,
@@ -259,32 +265,34 @@ function _addIntl() {
             file = arg[0], singular = arg[1], absSrcPath = arg[2], support = arg[3];
             path = file.path;
             ext = (0, _path.extname)(path).replace('.', '');
-            newPath = path.replace(/src/, "src/".concat(getLocaleFloder(singular), "/.locale"));
+            floder = getLocaleFloder(singular);
+            tfloder = getTempLocale(singular);
+            newPath = path.replace(/src/, "src/".concat(floder, "/").concat(tfloder));
             data = {};
 
             if (!(ext === 'js' || ext === 'ts')) {
-              _context5.next = 17;
+              _context5.next = 19;
               break;
             }
 
-            _context5.next = 9;
-            return _rimraf.default.sync("".concat(absSrcPath, "locale/.locale"));
+            _context5.next = 11;
+            return _rimraf.default.sync("".concat(absSrcPath).concat(floder, "/").concat(tfloder));
 
-          case 9:
+          case 11:
             _transformFileSync = (0, _core.transformFileSync)(path, getBabelConfig()), code = _transformFileSync.code;
-            _context5.next = 12;
+            _context5.next = 14;
             return writeFile(newPath, code);
 
-          case 12:
+          case 14:
             delete require.cache[newPath];
             content = require(newPath).default;
-            _context5.next = 16;
-            return _rimraf.default.sync("".concat(absSrcPath, "locale/.locale"));
+            _context5.next = 18;
+            return _rimraf.default.sync("".concat(absSrcPath).concat(floder, "/").concat(tfloder));
 
-          case 16:
+          case 18:
             data = transLate(content, support, data);
 
-          case 17:
+          case 19:
             if (ext === 'json') {
               delete require.cache[path];
               _content = require(path);
@@ -293,7 +301,7 @@ function _addIntl() {
 
             return _context5.abrupt("return", data);
 
-          case 19:
+          case 21:
           case "end":
             return _context5.stop();
         }
@@ -382,7 +390,7 @@ function _getTransLataData() {
             }());
 
           case 6:
-            generateFile(data, support, absSrcPath);
+            generateFile(data, support, absSrcPath, singular);
             return _context7.abrupt("return", data);
 
           case 8:
@@ -402,10 +410,11 @@ function generateFile() {
 
   var data = arg[0],
       support = arg[1],
-      absSrcPath = arg[2];
+      absSrcPath = arg[2],
+      singular = arg[3];
   var langs = Object.values(support);
   langs.map(function (lang) {
-    var langPath = "".concat(absSrcPath, "/locale/").concat(lang, ".json");
+    var langPath = "".concat(absSrcPath, "/").concat(getLocaleFloder(singular), "/").concat(lang, ".json");
 
     if ((0, _fs.existsSync)(langPath)) {
       var orignData = require(langPath);
