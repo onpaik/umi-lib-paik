@@ -24,7 +24,7 @@ export default {
     [
       'umi-plugin-react',
       {
-        locale:false
+        locale:false // 禁用官方的locale
       }
     ],
     [
