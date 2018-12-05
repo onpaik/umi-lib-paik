@@ -1,6 +1,6 @@
 {
   "name": "umi-plugin-locale-translate-paik",
-  "version": "0.0.1",
+  "version": "1.2.7",
   "description": "A umi plugin for locale translate with plugin umi-plugin-locale-paik",
   "main": "./lib/index.js",
   "jsnext:main": "./es/index.js",
@@ -31,13 +31,13 @@
   "dependencies": {
     "@babel/core": "^7.2.0",
     "@babel/polyfill": "^7.0.0",
-    "mkdirp":"0.5.1",
     "@babel/preset-env": "^7.2.0",
-    "path":"^0.12.7",
-    "globby":"^8.0.1",
-    "node-opencc":"2.0.1",
-    "rimraf":"^2.6.2",
-    "deepmerge":"^3.0.0"
+    "deepmerge": "^3.0.0",
+    "globby": "^8.0.1",
+    "mkdirp": "0.5.1",
+    "node-opencc": "2.0.1",
+    "path": "^0.12.7",
+    "rimraf": "^2.6.2"
   },
   "publishConfig": {
     "access": "public",
