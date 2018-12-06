@@ -271,7 +271,7 @@
               data = {};
 
               if (!(ext === 'js' || ext === 'ts')) {
-                _context5.next = 19;
+                _context5.next = 21;
                 break;
               }
 
@@ -285,14 +285,18 @@
 
             case 14:
               delete require.cache[newPath];
-              content = require(newPath).default;
-              _context5.next = 18;
+              _context5.next = 17;
+              return require(newPath).default;
+
+            case 17:
+              content = _context5.sent;
+              _context5.next = 20;
               return _rimraf.default.sync("".concat(absSrcPath).concat(floder, "/").concat(tfloder));
 
-            case 18:
+            case 20:
               data = transLate(content, support, data);
 
-            case 19:
+            case 21:
               if (ext === 'json') {
                 delete require.cache[path];
                 _content = require(path);
@@ -301,7 +305,7 @@
 
               return _context5.abrupt("return", data);
 
-            case 21:
+            case 23:
             case "end":
               return _context5.stop();
           }
@@ -324,7 +328,6 @@
           _key4,
           singular,
           absSrcPath,
-          absPagesPath,
           support,
           msgFloder,
           data,
@@ -338,25 +341,18 @@
                 arg[_key4] = _args7[_key4];
               }
 
-              singular = arg[0], absSrcPath = arg[1], absPagesPath = arg[2], support = arg[3];
+              singular = arg[0], absSrcPath = arg[1], support = arg[2];
               msgFloder = getmessageFloder(singular);
               data = {};
               _context7.next = 6;
-              return _globby.default.sync('**/*.{ts,js,json}', {
-                cwd: (0, _path.join)(absSrcPath, msgFloder)
+              return _globby.default.sync("**/".concat(msgFloder, "/*.{ts,js,json}"), {
+                cwd: absSrcPath
               }).map(function (name) {
                 return {
                   name: name,
-                  path: (0, _path.join)(absSrcPath, msgFloder, name)
+                  path: (0, _path.join)(absSrcPath, name)
                 };
-              }).concat(_globby.default.sync('**/*.{ts,js,json}', {
-                cwd: (0, _path.join)(absPagesPath, msgFloder)
-              }).map(function (name) {
-                return {
-                  name: name,
-                  path: (0, _path.join)(absPagesPath, msgFloder, name)
-                };
-              })).mapSync(
+              }).mapSync(
               /*#__PURE__*/
               function () {
                 var _ref2 = _asyncToGenerator(
@@ -372,8 +368,7 @@
 
                         case 2:
                           singal = _context6.sent;
-                          data = merge(singal, data); // console.log(data);
-
+                          data = merge(singal, data);
                           return _context6.abrupt("return", file);
 
                         case 5:
@@ -450,7 +445,7 @@
     api.registerCommand('intl', {
       hide: true
     }, function (args) {
-      getTransLataData(singular, absSrcPath, absPagesPath, support);
+      getTransLataData(singular, absSrcPath, support);
     });
   }
 });

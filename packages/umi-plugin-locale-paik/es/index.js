@@ -5,6 +5,7 @@ define(["exports", "path", "fs", "umi-utils", "mustache", "globby", "lodash.grou
     value: true
   });
   _exports.getLocaleFileList = getLocaleFileList;
+  _exports.getLocaleFileListNew = getLocaleFileListNew;
   _exports.isNeedPolyfill = isNeedPolyfill;
   _exports.default = _default;
   _mustache = _interopRequireDefault(_mustache);
@@ -111,6 +112,43 @@ define(["exports", "path", "fs", "umi-utils", "mustache", "globby", "lodash.grou
         momentLocale: getMomentLocale(fileInfo[0], fileInfo[1], momentLocaleMap)
       };
     });
+  } // export for test
+
+
+  function getLocaleFileListNew() {
+    for (var _len2 = arguments.length, arg = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+      arg[_key2] = arguments[_key2];
+    }
+
+    var absSrcPath = arg[0],
+        singular = arg[1],
+        momentLocaleMap = arg[2],
+        antLocaleMap = arg[3];
+    var localeList = [];
+    var localePath = (0, _path.join)(absSrcPath, singular ? 'locale' : 'locales');
+
+    if ((0, _fs.existsSync)(localePath)) {
+      var localePaths = readdirSync(localePath);
+
+      for (var i = 0; i < localePaths.length; i++) {
+        var fullname = (0, _path.join)(localePath, localePaths[i]);
+        var stats = statSync(fullname);
+        var fileInfo = /^([a-z]{2})-([A-Z]{2})\.(js|ts|json)$/.exec(localePaths[i]);
+
+        if (stats.isFile() && fileInfo) {
+          localeList.push({
+            lang: fileInfo[1],
+            country: fileInfo[2],
+            name: "".concat(fileInfo[1], "-").concat(fileInfo[2]),
+            paths: (0, _umiUtils.winPath)(fullname),
+            antdLocale: getAntdLocale(fileInfo[0], fileInfo[1], antLocaleMap),
+            momentLocale: getMomentLocale(fileInfo[1], fileInfo[2], momentLocaleMap)
+          });
+        }
+      }
+    }
+
+    return localeList;
   } // data come from https://caniuse.com/#search=intl
   // you can find all browsers in https://github.com/browserslist/browserslist#browsers
 
