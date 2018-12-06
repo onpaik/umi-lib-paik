@@ -170,7 +170,4 @@ export default () => {
 };
 ```
 
-![zh-CN](https://github.com/onpaik/umi-lib-paik/tree/master/packages/umi-plugin-translate-paik/assets/zh-CN.png)
-![zh-TW](https://github.com/onpaik/umi-lib-paik/tree/master/packages/umi-plugin-translate-paik/assets/zh-TW.png)
-![zh-HK](https://github.com/onpaik/umi-lib-paik/tree/master/packages/umi-plugin-translate-paik/assets/zh-HK.png)
-![en-US](https://github.com/onpaik/umi-lib-paik/tree/master/packages/umi-plugin-translate-paik/assets/en-US.png)
+[demo](https://onzmz.com/locale-translate-demo)
