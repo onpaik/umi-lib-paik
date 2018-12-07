@@ -20,6 +20,8 @@ define(["exports", "@babel/polyfill", "path", "@babel/core", "fs", "mkdirp", "gl
 
   function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+  var log = console.log;
+
   var merge = require('deepmerge');
 
   Object.assign(Array.prototype, {
@@ -304,6 +306,11 @@ define(["exports", "@babel/polyfill", "path", "@babel/core", "fs", "mkdirp", "gl
     return _addIntl.apply(this, arguments);
   }
 
+  function logInfo(type, text) {
+    var date = new Date().toLocaleString();
+    log(_chalk.default.green("".concat(text, "[").concat(_chalk.default.yellow(date), "]")));
+  }
+
   function getTransLataData() {
     return _getTransLataData.apply(this, arguments);
   }
@@ -333,9 +340,7 @@ define(["exports", "@babel/polyfill", "path", "@babel/core", "fs", "mkdirp", "gl
               singular = arg[0], absSrcPath = arg[1], support = arg[2];
               msgFloder = getmessageFloder(singular);
               data = {};
-
-              _chalk.default.blue("文件转换开始");
-
+              logInfo('red', '文件转换开始');
               _context7.next = 7;
               return _globby.default.sync("**/".concat(msgFloder, "/*.{ts,js,json}"), {
                 cwd: absSrcPath
@@ -377,12 +382,9 @@ define(["exports", "@babel/polyfill", "path", "@babel/core", "fs", "mkdirp", "gl
               }());
 
             case 7:
-              _chalk.default.blue("收集国际化信息结束");
-
+              logInfo('green', '收集国际化信息结束');
               generateFile(data, support, absSrcPath, singular);
-
-              _chalk.default.green("~~~~~恭喜你，文件写入成功~~~~~~");
-
+              logInfo('green', '恭喜你，文件写入成功');
               return _context7.abrupt("return", data);
 
             case 11:
@@ -406,8 +408,7 @@ define(["exports", "@babel/polyfill", "path", "@babel/core", "fs", "mkdirp", "gl
         singular = arg[3];
     var langs = Object.values(support);
     langs.map(function (lang) {
-      _chalk.default.blue("...\u5F00\u59CB\u5199\u5165".concat(lang, "\u6587\u4EF6"));
-
+      logInfo('red', "\u5F00\u59CB\u5199\u5165".concat(_chalk.default.magenta(lang), "\u6587\u4EF6"));
       var langPath = "".concat(absSrcPath, "/").concat(getLocaleFloder(singular), "/").concat(lang, ".json");
 
       if ((0, _fs.existsSync)(langPath)) {
@@ -418,7 +419,7 @@ define(["exports", "@babel/polyfill", "path", "@babel/core", "fs", "mkdirp", "gl
         (0, _fs.writeFileSync)(langPath, JSON.stringify(data[lang], null, '\t'));
       }
 
-      _chalk.default.blue("...".concat(lang, "\u6587\u4EF6\u66F4\u65B0\u7ED3\u675F"));
+      logInfo('green', "".concat(_chalk.default.magenta(lang), "\u6587\u4EF6\u66F4\u65B0\u7ED3\u675F"));
     });
   }
 

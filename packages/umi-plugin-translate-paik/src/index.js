@@ -11,6 +11,7 @@ import {
 } from 'node-opencc';
 import chalk from 'chalk';
 
+const log = console.log;
 const merge = require('deepmerge')
 
 Object.assign(Array.prototype, {
@@ -121,11 +122,15 @@ async function addIntl(...arg){
   }
   return data;
 }
+function logInfo(type,text){
+  const date = new Date().toLocaleString();
+  log(chalk.green(`${text}[${chalk.yellow(date)}]`));
+}
 async function getTransLataData(...arg){
   const [ singular, absSrcPath,support] = arg;
   const msgFloder = getmessageFloder(singular);
   let data = {};
-  chalk.blue("文件转换开始");
+  logInfo('red','文件转换开始')
   await globby
     .sync(`**/${msgFloder}/*.{ts,js,json}`, {
       cwd: absSrcPath,
@@ -138,16 +143,16 @@ async function getTransLataData(...arg){
       data = merge(singal,data);
       return file;
     })
-  chalk.blue("收集国际化信息结束");
+  logInfo('green','收集国际化信息结束')
   generateFile(data,support,absSrcPath,singular);
-  chalk.green("~~~~~恭喜你，文件写入成功~~~~~~");
+  logInfo('green','恭喜你，文件写入成功')
   return data;
 }
 function generateFile(...arg){
   const [ data, support,absSrcPath,singular ] = arg;
   const langs = Object.values(support);
   langs.map(lang =>{
-    chalk.blue(`...开始写入${lang}文件`);
+    logInfo('red',`开始写入${chalk.magenta(lang)}文件`)
     const langPath = `${absSrcPath}/${getLocaleFloder(singular)}/${lang}.json`;
     if(existsSync(langPath)){
       const orignData = require(langPath);
@@ -158,7 +163,7 @@ function generateFile(...arg){
     }else{
       writeFileSync(langPath,JSON.stringify(data[lang], null, '\t'))
     }
-    chalk.blue(`...${lang}文件更新结束`);
+    logInfo('green',`${chalk.magenta(lang)}文件更新结束`)
   })
 }
 export default function (api, opt={}) {
