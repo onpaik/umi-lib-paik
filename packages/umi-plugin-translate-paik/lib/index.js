@@ -21,6 +21,8 @@ var _rimraf = _interopRequireDefault(require("rimraf"));
 
 var _nodeOpencc = require("node-opencc");
 
+var _chalk = _interopRequireDefault(require("chalk"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
@@ -344,7 +346,9 @@ function _getTransLataData() {
             singular = arg[0], absSrcPath = arg[1], support = arg[2];
             msgFloder = getmessageFloder(singular);
             data = {};
-            console.log("%c文件转换开始", "color:red");
+
+            _chalk.default.blue("文件转换开始");
+
             _context7.next = 7;
             return _globby.default.sync("**/".concat(msgFloder, "/*.{ts,js,json}"), {
               cwd: absSrcPath
@@ -386,9 +390,12 @@ function _getTransLataData() {
             }());
 
           case 7:
-            console.log("%c收集国际化信息结束", "color:red");
+            _chalk.default.blue("收集国际化信息结束");
+
             generateFile(data, support, absSrcPath, singular);
-            console.log("%c~~~~~恭喜你，文件写入成功~~~~~~", "color:green");
+
+            _chalk.default.green("~~~~~恭喜你，文件写入成功~~~~~~");
+
             return _context7.abrupt("return", data);
 
           case 11:
@@ -412,7 +419,8 @@ function generateFile() {
       singular = arg[3];
   var langs = Object.values(support);
   langs.map(function (lang) {
-    console.log("%c...\u5F00\u59CB\u5199\u5165".concat(lang, "\u6587\u4EF6"), "color:red");
+    _chalk.default.blue("...\u5F00\u59CB\u5199\u5165".concat(lang, "\u6587\u4EF6"));
+
     var langPath = "".concat(absSrcPath, "/").concat(getLocaleFloder(singular), "/").concat(lang, ".json");
 
     if ((0, _fs.existsSync)(langPath)) {
@@ -423,7 +431,7 @@ function generateFile() {
       (0, _fs.writeFileSync)(langPath, JSON.stringify(data[lang], null, '\t'));
     }
 
-    console.log("%c...".concat(lang, "\u6587\u4EF6\u66F4\u65B0\u7ED3\u675F"), "color:green");
+    _chalk.default.blue("...".concat(lang, "\u6587\u4EF6\u66F4\u65B0\u7ED3\u675F"));
   });
 }
 

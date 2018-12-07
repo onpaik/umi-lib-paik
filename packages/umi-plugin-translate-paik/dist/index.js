@@ -1,16 +1,16 @@
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(["exports", "@babel/polyfill", "path", "@babel/core", "fs", "mkdirp", "globby", "rimraf", "node-opencc"], factory);
+    define(["exports", "@babel/polyfill", "path", "@babel/core", "fs", "mkdirp", "globby", "rimraf", "node-opencc", "chalk"], factory);
   } else if (typeof exports !== "undefined") {
-    factory(exports, require("@babel/polyfill"), require("path"), require("@babel/core"), require("fs"), require("mkdirp"), require("globby"), require("rimraf"), require("node-opencc"));
+    factory(exports, require("@babel/polyfill"), require("path"), require("@babel/core"), require("fs"), require("mkdirp"), require("globby"), require("rimraf"), require("node-opencc"), require("chalk"));
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global.polyfill, global.path, global.core, global.fs, global.mkdirp, global.globby, global.rimraf, global.nodeOpencc);
+    factory(mod.exports, global.polyfill, global.path, global.core, global.fs, global.mkdirp, global.globby, global.rimraf, global.nodeOpencc, global.chalk);
     global.index = mod.exports;
   }
-})(this, function (_exports, _polyfill, _path, _core, _fs, _mkdirp, _globby, _rimraf, _nodeOpencc) {
+})(this, function (_exports, _polyfill, _path, _core, _fs, _mkdirp, _globby, _rimraf, _nodeOpencc, _chalk) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -20,6 +20,7 @@
   _mkdirp = _interopRequireDefault(_mkdirp);
   _globby = _interopRequireDefault(_globby);
   _rimraf = _interopRequireDefault(_rimraf);
+  _chalk = _interopRequireDefault(_chalk);
 
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -344,7 +345,9 @@
               singular = arg[0], absSrcPath = arg[1], support = arg[2];
               msgFloder = getmessageFloder(singular);
               data = {};
-              console.log("%c文件转换开始", "color:red");
+
+              _chalk.default.blue("文件转换开始");
+
               _context7.next = 7;
               return _globby.default.sync("**/".concat(msgFloder, "/*.{ts,js,json}"), {
                 cwd: absSrcPath
@@ -386,9 +389,12 @@
               }());
 
             case 7:
-              console.log("%c收集国际化信息结束", "color:red");
+              _chalk.default.blue("收集国际化信息结束");
+
               generateFile(data, support, absSrcPath, singular);
-              console.log("%c~~~~~恭喜你，文件写入成功~~~~~~", "color:green");
+
+              _chalk.default.green("~~~~~恭喜你，文件写入成功~~~~~~");
+
               return _context7.abrupt("return", data);
 
             case 11:
@@ -412,7 +418,8 @@
         singular = arg[3];
     var langs = Object.values(support);
     langs.map(function (lang) {
-      console.log("%c...\u5F00\u59CB\u5199\u5165".concat(lang, "\u6587\u4EF6"), "color:red");
+      _chalk.default.blue("...\u5F00\u59CB\u5199\u5165".concat(lang, "\u6587\u4EF6"));
+
       var langPath = "".concat(absSrcPath, "/").concat(getLocaleFloder(singular), "/").concat(lang, ".json");
 
       if ((0, _fs.existsSync)(langPath)) {
@@ -423,7 +430,7 @@
         (0, _fs.writeFileSync)(langPath, JSON.stringify(data[lang], null, '\t'));
       }
 
-      console.log("%c...".concat(lang, "\u6587\u4EF6\u66F4\u65B0\u7ED3\u675F"), "color:green");
+      _chalk.default.blue("...".concat(lang, "\u6587\u4EF6\u66F4\u65B0\u7ED3\u675F"));
     });
   }
 
