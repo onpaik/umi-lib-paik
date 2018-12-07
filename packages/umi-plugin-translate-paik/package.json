@@ -1,6 +1,6 @@
 {
   "name": "umi-plugin-translate-paik",
-  "version": "1.2.10",
+  "version": "1.2.11",
   "description": "A umi plugin for locale translate with plugin umi-plugin-locale-paik",
   "main": "./lib/index.js",
   "jsnext:main": "./es/index.js",
