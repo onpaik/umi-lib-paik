@@ -120,54 +120,38 @@ global.json
 index.jsx
 
 ```javascript
+/**
+ * title: locale-translate-demo
+ */
 import { FormattedMessage, setLocale, getLocale } from 'umi/locale';
-import globalMsg from './message/global.json'
-// import globalMsg from './message/global.js'
+import { Button } from 'antd';
+import globalMsg from './messages/index.js';
+// import globalMsg from './message/global.json'
 
 export default () => {
-  const locale =  getLocale();
-  const style = {
-    backgroundColor: 'red',
-  }
+  const locale = getLocale();
+  const getType = target => (target === locale ? 'primary' : '');
+  const click = lang => setLocale(lang);
   return (
     <div>
-      <FormattedMessage {...globalMsg.global } values={{title:'测试'}}/>
-      <br></br>
-      <button
-        style={locale === 'zh-CN' ? style : {}}
-        onClick={() => {
-          setLocale('zh-CN');
-        }}
-      >
+      <FormattedMessage {...globalMsg.global} values={{ title: '测试' }} />
+      <br />
+      <Button onClick={() => click('zh-CN')} type={getType('zh-CN')}>
         zh-CN
-      </button>
-      <button
-        style={locale === 'zh-TW' ? style : {}}
-        onClick={() => {
-          setLocale('zh-TW');
-        }}
-      >
+      </Button>
+      <Button onClick={() => click('zh-TW')} type={getType('zh-TW')}>
         zh-TW
-      </button>
-      <button
-        style={locale === 'zh-HK' ? style : {}}
-        onClick={() => {
-          setLocale('zh-HK');
-        }}
-      >
+      </Button>
+      <Button onClick={() => click('zh-HK')} type={getType('zh-HK')}>
         zh-HK
-      </button>
-      <button
-        style={locale === 'en-US' ? style : {}}
-        onClick={() => {
-          setLocale('en-US');
-        }}
-      >
+      </Button>
+      <Button onClick={() => click('en-US')} type={getType('en-US')}>
         en-US
-      </button>
+      </Button>
     </div>
   );
 };
+
 ```
 
 [demo](https://onzmz.com/locale-translate-demo)
