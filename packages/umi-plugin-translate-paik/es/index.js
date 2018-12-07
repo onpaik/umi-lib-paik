@@ -332,7 +332,8 @@ define(["exports", "@babel/polyfill", "path", "@babel/core", "fs", "mkdirp", "gl
               singular = arg[0], absSrcPath = arg[1], support = arg[2];
               msgFloder = getmessageFloder(singular);
               data = {};
-              _context7.next = 6;
+              console.log("%c文件转换开始", "color:red");
+              _context7.next = 7;
               return _globby.default.sync("**/".concat(msgFloder, "/*.{ts,js,json}"), {
                 cwd: absSrcPath
               }).map(function (name) {
@@ -372,11 +373,13 @@ define(["exports", "@babel/polyfill", "path", "@babel/core", "fs", "mkdirp", "gl
                 };
               }());
 
-            case 6:
+            case 7:
+              console.log("%c收集国际化信息结束", "color:red");
               generateFile(data, support, absSrcPath, singular);
+              console.log("%c~~~~~恭喜你，文件写入成功~~~~~~", "color:green");
               return _context7.abrupt("return", data);
 
-            case 8:
+            case 11:
             case "end":
               return _context7.stop();
           }
@@ -397,6 +400,7 @@ define(["exports", "@babel/polyfill", "path", "@babel/core", "fs", "mkdirp", "gl
         singular = arg[3];
     var langs = Object.values(support);
     langs.map(function (lang) {
+      console.log("%c...\u5F00\u59CB\u5199\u5165".concat(lang, "\u6587\u4EF6"), "color:red");
       var langPath = "".concat(absSrcPath, "/").concat(getLocaleFloder(singular), "/").concat(lang, ".json");
 
       if ((0, _fs.existsSync)(langPath)) {
@@ -406,6 +410,8 @@ define(["exports", "@babel/polyfill", "path", "@babel/core", "fs", "mkdirp", "gl
       } else {
         (0, _fs.writeFileSync)(langPath, JSON.stringify(data[lang], null, '\t'));
       }
+
+      console.log("%c...".concat(lang, "\u6587\u4EF6\u66F4\u65B0\u7ED3\u675F"), "color:green");
     });
   }
 
