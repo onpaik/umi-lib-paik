@@ -1,0 +1,42 @@
+{
+  "name": "umi-lib-paik",
+  "version": "0.0.1",
+  "description": "A lib for support UMI",
+  "main": "./lib/index.js",
+  "jsnext:main": "./es/index.js",
+  "module": "./es/index.js",
+  "authors": [
+    "unpaikon"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/onpaik/umi-lib-paik/tree/master/packages/umi-lib-paik"
+  },
+  "homepage": "https://github.com/onpaik/umi-lib-paik/tree/master/packages/umi-lib-paik",
+  "bugs": {
+    "url": "https://github.com/onpaik/umi-lib-paik/issues"
+  },
+  "license": "MIT",
+  "files": [
+    "lib",
+    "src"
+  ],
+  "keywords": [
+    "umi",
+    "paik",
+    "locale",
+    "intl",
+    "translate",
+    "umi lib",
+    "react"
+  ],
+  "dependencies": {
+    "react":"^16.6.3",
+    "react-intl":"^2.7.2",
+    "hoist-non-react-statics":"^3.2.1"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
+}
