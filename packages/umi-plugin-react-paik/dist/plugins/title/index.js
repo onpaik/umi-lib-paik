@@ -70,7 +70,7 @@
 
       if (option && (!route.routes || !route.routes.length) && route.title) {
         // only open this plugin when option exist
-        route.Routes = _toConsumableArray(route.Routes || []).concat([(0, _path.relative)(paths.cwd, (0, _path.join)(__dirname, 'TitleWrapper.jsx'))]);
+        route.Routes = [].concat(_toConsumableArray(route.Routes || []), [(0, _path.relative)(paths.cwd, (0, _path.join)(__dirname, 'TitleWrapper.jsx'))]);
       }
     });
   };

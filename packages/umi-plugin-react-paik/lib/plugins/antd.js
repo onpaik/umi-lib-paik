@@ -27,7 +27,7 @@ function _default(api) {
   var cwd = api.cwd,
       compatDirname = api.compatDirname;
   api.modifyAFWebpackOpts(function (opts) {
-    opts.babel.plugins = _toConsumableArray(opts.babel.plugins || []).concat([importPlugin('antd'), importPlugin('antd-mobile'), [require.resolve('babel-plugin-import'), {
+    opts.babel.plugins = [].concat(_toConsumableArray(opts.babel.plugins || []), [importPlugin('antd'), importPlugin('antd-mobile'), [require.resolve('babel-plugin-import'), {
       libraryName: 'ant-design-pro',
       libraryDirectory: 'lib',
       style: true,
