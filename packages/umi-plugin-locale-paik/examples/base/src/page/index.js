@@ -1,8 +1,9 @@
 import { FormattedMessage, setLocale, getLocale } from 'umi/locale';
+import withIntl from '../shared/utils/withIntl';
 import globalMsg from './message/global.json'
 // import globalMsg from './message/global.js'
 
-export default () => {
+const temp = () => {
   const locale =  getLocale();
   const style = {
     backgroundColor: 'red',
@@ -46,3 +47,6 @@ export default () => {
     </div>
   );
 };
+
+export default withIntl(temp);
+// export default temp;

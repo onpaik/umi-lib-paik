@@ -1,3 +1,5 @@
+// import { writeFileSync } from 'fs';
+
 export default {
   plugins: [
     [
@@ -22,5 +24,13 @@ export default {
       }
     ]
   ],
+  define: {
+    __HOST_CND__: '/',
+  },
   singular: true,
+  chainWebpack(config, { webpack }) {
+    config.resolve.modules.add('src');
+    config.resolve.modules.add('public');
+    // writeFileSync(`${__dirname.replace(/config/, 'temp.js')}`, config);
+  }
 };

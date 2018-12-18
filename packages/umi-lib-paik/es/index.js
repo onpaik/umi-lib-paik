@@ -1,4 +1,4 @@
-define(["exports", "./withIntl/"], function (_exports, _withIntl) {
+define(["exports", "./withIntl"], function (_exports, _withIntl) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {

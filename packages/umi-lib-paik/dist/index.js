@@ -1,8 +1,8 @@
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(["exports", "./withIntl/"], factory);
+    define(["exports", "./withIntl"], factory);
   } else if (typeof exports !== "undefined") {
-    factory(exports, require("./withIntl/"));
+    factory(exports, require("./withIntl"));
   } else {
     var mod = {
       exports: {}

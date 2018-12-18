@@ -11,7 +11,7 @@ Object.defineProperty(exports, "withIntl", {
 });
 exports.default = void 0;
 
-var _withIntl = _interopRequireDefault(require("./withIntl/"));
+var _withIntl = _interopRequireDefault(require("./withIntl"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

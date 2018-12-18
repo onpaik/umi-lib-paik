@@ -21,7 +21,11 @@ function createIntlContext(_ref) {
     locale: locale,
     messages: messages
   });
-  intl = intlProvider.getChildContext().intl;
+
+  var _intlProvider$getChil = intlProvider.getChildContext(),
+      _intl = _intlProvider$getChil.intl;
+
+  intl = _intl;
   return intl;
 }
 
@@ -30,11 +34,9 @@ function getIntlContext() {
 }
 
 function formatMessage() {
-  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-    args[_key] = arguments[_key];
-  }
+  var _intl2;
 
-  return intl.formatMessage.apply(intl, args);
+  return (_intl2 = intl).formatMessage.apply(_intl2, arguments);
 }
 
 var _default = {

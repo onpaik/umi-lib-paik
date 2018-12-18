@@ -4,4 +4,7 @@
 /packages/umi-plugin*
 /packages/eslint-*
 /packages/stylelint-*
+/packages/**/es
+/packages/**/lib
+/packages/**/dist
 # /scripts

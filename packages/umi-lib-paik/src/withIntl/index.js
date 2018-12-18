@@ -1,24 +1,19 @@
 import React from 'react';
 import { IntlProvider } from 'react-intl';
-import fetch from 'isomorphic-fetch';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import invariant from 'invariant';
-import withInjectIntl from './withInjectIntl';
+import withInjectIntl from './injectIntl';
 import getDisplayName from './getDisplayName';
 import { createIntlContext } from './intlHelper';
 
-const fetchIntl = (locale, page, host) =>
-  fetch(`${host}lang/${locale}/${page}.json?_timestamp=${Date.now()}`, {
-    credentials: 'include',
-  }).then(res => res.json());
+const fetchIntl = (locale, page) => import(`lang/${locale}/${page}.json`);
 
 export default function withIntl(
   locale,
   page,
-  host,
   options = {
     withRef: false,
-  }
+  },
 ) {
   const { withRef } = options;
 
@@ -28,38 +23,38 @@ export default function withIntl(
     class WithIntl extends React.Component {
       static displayName = `withIntl(${getDisplayName(Component)})`;
 
-      static fetchIntl() {
-        return fetchIntl(locale, page, host);
-      }
-
       constructor(props) {
         super(props);
 
-        let translations = null;
+        const translations = null;
         this.state = {
           translations,
         };
       }
 
-      componentDidMount() {
-        fetchIntl(locale, page, host)
-          .then(localeData => {
-            const translations = Object.assign(
-              {},
-              this.props.intl.messages,
-              localeData
-            );
+      async componentDidMount() {
+        const localeData = await fetchIntl(locale, page);
+        if (!localeData) {
+          this.setState({
+            translations: null,
+          });
+          /* eslint-disable-next-line */
+          console.error(`there is no ${page}.json in floder lang/${locale}/`);
+        } else {
+          const translations = Object.assign(
+            {},
+            this.props.intl.messages,
+            localeData,
+          );
+          createIntlContext({
+            locale,
+            messages: translations,
+          });
 
-            createIntlContext({
-              locale,
-              messages: translations,
-            });
-
-            this.setState({
-              translations,
-            });
-          })
-          .catch(err => console.error(err));
+          this.setState({
+            translations,
+          });
+        }
       }
 
       // getWrappedInstance调用时候返回我们的ref="wrappedInstance"
@@ -68,10 +63,11 @@ export default function withIntl(
           withRef,
           '[React] To access the wrapped instance, ' +
             'the `{withRef: true}` option must be set when calling: ' +
-            '`withIntl()`'
+            '`withIntl()`',
         );
         return this._wrappedInstance;
       }
+
       render() {
         const { translations } = this.state;
         if (!translations) {

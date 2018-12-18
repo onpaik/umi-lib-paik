@@ -1,8 +1,6 @@
-import withIntl from './withIntl/';
+import withIntl from './withIntl';
 
-export {
-  withIntl,
-}
+export { withIntl };
 export default {
   withIntl,
-}
+};

@@ -1,16 +1,16 @@
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(["exports", "react", "react-intl", "isomorphic-fetch", "hoist-non-react-statics", "invariant", "./withInjectIntl", "./getDisplayName", "./intlHelper"], factory);
+    define(["exports", "react", "react-intl", "hoist-non-react-statics", "invariant", "./injectIntl", "./getDisplayName", "./intlHelper"], factory);
   } else if (typeof exports !== "undefined") {
-    factory(exports, require("react"), require("react-intl"), require("isomorphic-fetch"), require("hoist-non-react-statics"), require("invariant"), require("./withInjectIntl"), require("./getDisplayName"), require("./intlHelper"));
+    factory(exports, require("react"), require("react-intl"), require("hoist-non-react-statics"), require("invariant"), require("./injectIntl"), require("./getDisplayName"), require("./intlHelper"));
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global.react, global.reactIntl, global.isomorphicFetch, global.hoistNonReactStatics, global.invariant, global.withInjectIntl, global.getDisplayName, global.intlHelper);
+    factory(mod.exports, global.react, global.reactIntl, global.hoistNonReactStatics, global.invariant, global.injectIntl, global.getDisplayName, global.intlHelper);
     global.index = mod.exports;
   }
-})(this, function (_exports, _react, _reactIntl, _isomorphicFetch, _hoistNonReactStatics, _invariant, _withInjectIntl, _getDisplayName, _intlHelper) {
+})(this, function (_exports, _react, _reactIntl, _hoistNonReactStatics, _invariant, _injectIntl, _getDisplayName, _intlHelper) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -18,10 +18,9 @@
   });
   _exports.default = withIntl;
   _react = _interopRequireDefault(_react);
-  _isomorphicFetch = _interopRequireDefault(_isomorphicFetch);
   _hoistNonReactStatics = _interopRequireDefault(_hoistNonReactStatics);
   _invariant = _interopRequireDefault(_invariant);
-  _withInjectIntl = _interopRequireDefault(_withInjectIntl);
+  _injectIntl = _interopRequireDefault(_injectIntl);
   _getDisplayName = _interopRequireDefault(_getDisplayName);
 
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -30,7 +29,15 @@
 
   function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
+  function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+  function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
   function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+  function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+  function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
   function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
@@ -38,43 +45,28 @@
 
   function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-  function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-  function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
   function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
   function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
   function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-  var _fetchIntl = function fetchIntl(locale, page, host) {
-    return (0, _isomorphicFetch.default)("".concat(host, "lang/").concat(locale, "/").concat(page, ".json?_timestamp=").concat(Date.now()), {
-      credentials: 'include'
-    }).then(function (res) {
-      return res.json();
-    });
+  var fetchIntl = function fetchIntl(locale, page) {
+    return import("lang/".concat(locale, "/").concat(page, ".json"));
   };
 
-  function withIntl(locale, page, host) {
-    var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {
+  function withIntl(locale, page) {
+    var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {
       withRef: false
     };
     var withRef = options.withRef;
     return function (WrappedComponent) {
-      var Component = (0, _withInjectIntl.default)(WrappedComponent, options);
+      var Component = (0, _injectIntl.default)(WrappedComponent, options);
 
       var WithIntl =
       /*#__PURE__*/
       function (_React$Component) {
         _inherits(WithIntl, _React$Component);
-
-        _createClass(WithIntl, null, [{
-          key: "fetchIntl",
-          value: function fetchIntl() {
-            return _fetchIntl(locale, page, host);
-          }
-        }]);
 
         function WithIntl(props) {
           var _this;
@@ -91,23 +83,51 @@
 
         _createClass(WithIntl, [{
           key: "componentDidMount",
-          value: function componentDidMount() {
-            var _this2 = this;
+          value: function () {
+            var _componentDidMount = _asyncToGenerator(
+            /*#__PURE__*/
+            regeneratorRuntime.mark(function _callee() {
+              var localeData, translations;
+              return regeneratorRuntime.wrap(function _callee$(_context) {
+                while (1) {
+                  switch (_context.prev = _context.next) {
+                    case 0:
+                      _context.next = 2;
+                      return fetchIntl(locale, page);
 
-            _fetchIntl(locale, page, host).then(function (localeData) {
-              var translations = Object.assign({}, _this2.props.intl.messages, localeData);
-              (0, _intlHelper.createIntlContext)({
-                locale: locale,
-                messages: translations
-              });
+                    case 2:
+                      localeData = _context.sent;
 
-              _this2.setState({
-                translations: translations
-              });
-            }).catch(function (err) {
-              return console.error(err);
-            });
-          } // getWrappedInstance调用时候返回我们的ref="wrappedInstance"
+                      if (!localeData) {
+                        this.setState({
+                          translations: null
+                        });
+                        /* eslint-disable-next-line */
+
+                        console.error("there is no ".concat(page, ".json in floder lang/").concat(locale, "/"));
+                      } else {
+                        translations = Object.assign({}, this.props.intl.messages, localeData);
+                        (0, _intlHelper.createIntlContext)({
+                          locale: locale,
+                          messages: translations
+                        });
+                        this.setState({
+                          translations: translations
+                        });
+                      }
+
+                    case 4:
+                    case "end":
+                      return _context.stop();
+                  }
+                }
+              }, _callee, this);
+            }));
+
+            return function componentDidMount() {
+              return _componentDidMount.apply(this, arguments);
+            };
+          }() // getWrappedInstance调用时候返回我们的ref="wrappedInstance"
 
         }, {
           key: "getWrappedInstance",
@@ -118,7 +138,7 @@
         }, {
           key: "render",
           value: function render() {
-            var _this3 = this;
+            var _this2 = this;
 
             var translations = this.state.translations;
 
@@ -131,7 +151,7 @@
               messages: translations
             }, _react.default.createElement(Component, _extends({}, this.props, {
               ref: function ref(_ref) {
-                _this3._wrappedInstance = withRef ? _ref : null;
+                _this2._wrappedInstance = withRef ? _ref : null;
               }
             })));
           }
@@ -143,7 +163,7 @@
       _defineProperty(WithIntl, "displayName", "withIntl(".concat((0, _getDisplayName.default)(Component), ")"));
 
       (0, _hoistNonReactStatics.default)(WithIntl, Component);
-      return (0, _withInjectIntl.default)(WithIntl, options);
+      return (0, _injectIntl.default)(WithIntl, options);
     };
   }
 });

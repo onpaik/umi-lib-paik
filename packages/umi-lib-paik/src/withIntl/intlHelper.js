@@ -4,7 +4,8 @@ let intl = null;
 
 export function createIntlContext({ locale = 'zh-CN', messages = {} }) {
   const intlProvider = new IntlProvider({ locale, messages });
-  intl = intlProvider.getChildContext().intl;
+  const { intl: _intl } = intlProvider.getChildContext();
+  intl = _intl;
   return intl;
 }
 
@@ -13,7 +14,7 @@ export function getIntlContext() {
 }
 
 export function formatMessage(...args) {
-  return intl.formatMessage.apply(intl, args);
+  return intl.formatMessage(...args);
 }
 
 export default {
