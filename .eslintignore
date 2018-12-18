@@ -1,5 +1,7 @@
 /dist
 /es
 /lib
-/packages
+/packages/umi-plugin*
+/packages/eslint-*
+/packages/stylelint-*
 # /scripts
