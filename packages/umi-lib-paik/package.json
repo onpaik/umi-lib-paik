@@ -1,6 +1,6 @@
 {
   "name": "umi-lib-paik",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A lib for support UMI",
   "main": "./lib/index.js",
   "jsnext:main": "./es/index.js",
@@ -31,10 +31,10 @@
     "react"
   ],
   "dependencies": {
-    "react":"^16.6.3",
-    "react-intl":"^2.7.2",
-    "hoist-non-react-statics":"^3.2.1",
-    "invariant":"^2.2.4"
+    "hoist-non-react-statics": "^3.2.1",
+    "invariant": "^2.2.4",
+    "react": "^16.6.3",
+    "react-intl": "^2.7.2"
   },
   "publishConfig": {
     "access": "public",
