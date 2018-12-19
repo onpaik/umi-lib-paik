@@ -234,11 +234,11 @@ export default function(api, options = {}) {
   };
   Object.keys(plugins).forEach(key => {
     if(options[key]){
-      // api.registerPlugin({
-      //   id: `umi-plugin-locale-paik:${key}`,
-      //   apply: plugins[key](),
-      //   opts: getOpts(key,options)
-      // });
+      api.registerPlugin({
+        id: `umi-plugin-locale-paik:${key}`,
+        apply: plugins[key](),
+        opts: getOpts(key,options)
+      });
     }
   });
   api.modifyAFWebpackOpts(memo => {

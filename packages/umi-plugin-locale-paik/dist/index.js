@@ -279,11 +279,12 @@
       }
     };
     Object.keys(plugins).forEach(function (key) {
-      if (options[key]) {// api.registerPlugin({
-        //   id: `umi-plugin-locale-paik:${key}`,
-        //   apply: plugins[key](),
-        //   opts: getOpts(key,options)
-        // });
+      if (options[key]) {
+        api.registerPlugin({
+          id: "umi-plugin-locale-paik:".concat(key),
+          apply: plugins[key](),
+          opts: getOpts(key, options)
+        });
       }
     });
     api.modifyAFWebpackOpts(function (memo) {
