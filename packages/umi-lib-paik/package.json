@@ -1,6 +1,6 @@
 {
   "name": "umi-lib-paik",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A lib for support UMI",
   "main": "./lib/index.js",
   "jsnext:main": "./es/index.js",
