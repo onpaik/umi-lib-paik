@@ -11,22 +11,27 @@ export default {
         antLocaleMap:{ en:'en_US','zh':'zh_CN' },
         localeMap:{ zh:'zh-CN',en:'en-US'},
         default: 'zh',
-      },
-    ],
-    [
-      '../../../umi-plugin-translate-paik/src/index',{
-        support:{
+        translate: true,
+        dynamicIntl: true,
+        transLateSupport:{
           enUS:'en-US',
           zhCN:'zh-CN',
           zhTW:'zh-TW',
           zhHK:'zh-HK',
         }
-      }
-    ]
+      },
+    ],
+    // [
+    //   '../../../umi-plugin-translate-paik/src/index',{
+    //     support:{
+    //       enUS:'en-US',
+    //       zhCN:'zh-CN',
+    //       zhTW:'zh-TW',
+    //       zhHK:'zh-HK',
+    //     }
+    //   }
+    // ]
   ],
-  define: {
-    __HOST_CND__: '/',
-  },
   singular: true,
   chainWebpack(config, { webpack }) {
     config.resolve.modules.add('src');

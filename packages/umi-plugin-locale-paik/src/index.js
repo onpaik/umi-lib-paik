@@ -145,6 +145,18 @@ export function isNeedPolyfill(targets = {}) {
   );
 }
 
+function getOpts(key, options){
+  if(key === 'translate'){
+    const { transLateSupport } = options;
+    return {
+      support:{
+        ...(transLateSupport || {})
+      }
+    }
+  }
+  return{}
+}
+
 export default function(api, options = {}) {
   const { config, paths } = api;
   const { targets } = config;
@@ -216,8 +228,22 @@ export default function(api, options = {}) {
     return wrapperPath;
   });
 
+  const plugins = {
+    // translate
+    translate: () => require('./translate').default,
+  };
+  Object.keys(plugins).forEach(key => {
+    if(options[key]){
+      // api.registerPlugin({
+      //   id: `umi-plugin-locale-paik:${key}`,
+      //   apply: plugins[key](),
+      //   opts: getOpts(key,options)
+      // });
+    }
+  });
   api.modifyAFWebpackOpts(memo => {
-    return {
+    const { dynamicIntl } = options;
+    const opt = {
       ...memo,
       alias: {
         ...(memo.alias || {}),
@@ -225,5 +251,9 @@ export default function(api, options = {}) {
         'react-intl': dirname(require.resolve('react-intl/package.json')),
       },
     };
+    if(dynamicIntl){
+      opt.alias['umi/withIntl'] = join(__dirname, './withIntl/index.js');
+    }
+    return opt;
   });
 }
