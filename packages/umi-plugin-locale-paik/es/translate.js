@@ -1,36 +1,31 @@
-define(["exports", "@babel/polyfill", "path", "@babel/core", "fs", "mkdirp", "globby", "rimraf", "node-opencc", "chalk"], function (_exports, _polyfill, _path, _core, _fs, _mkdirp, _globby, _rimraf, _nodeOpencc, _chalk) {
+define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/helpers/objectSpread", "@babel/runtime/regenerator", "@babel/runtime/helpers/asyncToGenerator", "@babel/polyfill", "path", "@babel/core", "fs", "mkdirp", "globby", "rimraf", "node-opencc", "chalk"], function (_exports, _defineProperty2, _objectSpread4, _regenerator, _asyncToGenerator2, _polyfill, _path, _core, _fs, _mkdirp, _globby, _rimraf, _nodeOpencc, _chalk) {
   "use strict";
+
+  var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
   _exports.default = _default;
+  _defineProperty2 = _interopRequireDefault(_defineProperty2);
+  _objectSpread4 = _interopRequireDefault(_objectSpread4);
+  _regenerator = _interopRequireDefault(_regenerator);
+  _asyncToGenerator2 = _interopRequireDefault(_asyncToGenerator2);
   _mkdirp = _interopRequireDefault(_mkdirp);
   _globby = _interopRequireDefault(_globby);
   _rimraf = _interopRequireDefault(_rimraf);
   _chalk = _interopRequireDefault(_chalk);
-
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-  function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-  function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-  function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-  function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
   var log = console.log;
 
   var merge = require('deepmerge');
 
   Object.assign(Array.prototype, {
     foreachSync: function () {
-      var _foreachSync = _asyncToGenerator(
+      var _foreachSync = (0, _asyncToGenerator2.default)(
       /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee(cb) {
+      _regenerator.default.mark(function _callee(cb) {
         var index;
-        return regeneratorRuntime.wrap(function _callee$(_context) {
+        return _regenerator.default.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
@@ -63,12 +58,12 @@ define(["exports", "@babel/polyfill", "path", "@babel/core", "fs", "mkdirp", "gl
       };
     }(),
     mapSync: function () {
-      var _mapSync = _asyncToGenerator(
+      var _mapSync = (0, _asyncToGenerator2.default)(
       /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee3(cb) {
+      _regenerator.default.mark(function _callee3(cb) {
         var _this = this;
 
-        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+        return _regenerator.default.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
@@ -76,10 +71,10 @@ define(["exports", "@babel/polyfill", "path", "@babel/core", "fs", "mkdirp", "gl
                 return Promise.all(this.map(
                 /*#__PURE__*/
                 function () {
-                  var _ref = _asyncToGenerator(
+                  var _ref = (0, _asyncToGenerator2.default)(
                   /*#__PURE__*/
-                  regeneratorRuntime.mark(function _callee2(obj, index) {
-                    return regeneratorRuntime.wrap(function _callee2$(_context2) {
+                  _regenerator.default.mark(function _callee2(obj, index) {
+                    return _regenerator.default.wrap(function _callee2$(_context2) {
                       while (1) {
                         switch (_context2.prev = _context2.next) {
                           case 0:
@@ -151,11 +146,11 @@ define(["exports", "@babel/polyfill", "path", "@babel/core", "fs", "mkdirp", "gl
   }
 
   function _writeFile() {
-    _writeFile = _asyncToGenerator(
+    _writeFile = (0, _asyncToGenerator2.default)(
     /*#__PURE__*/
-    regeneratorRuntime.mark(function _callee4(destPath, code) {
+    _regenerator.default.mark(function _callee4(destPath, code) {
       var dir;
-      return regeneratorRuntime.wrap(function _callee4$(_context4) {
+      return _regenerator.default.wrap(function _callee4$(_context4) {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
@@ -208,7 +203,7 @@ define(["exports", "@babel/polyfill", "path", "@babel/core", "fs", "mkdirp", "gl
 
       _localeKey.map(function (l) {
         var lang = support[l];
-        data = _objectSpread({}, data, _data, _defineProperty({}, lang, _objectSpread({}, data[lang], _defineProperty({}, id, useTranslate(l, content[temp])))));
+        data = (0, _objectSpread4.default)({}, data, _data, (0, _defineProperty2.default)({}, lang, (0, _objectSpread4.default)({}, data[lang], (0, _defineProperty2.default)({}, id, useTranslate(l, content[temp])))));
         return l;
       });
 
@@ -223,9 +218,9 @@ define(["exports", "@babel/polyfill", "path", "@babel/core", "fs", "mkdirp", "gl
   }
 
   function _addIntl() {
-    _addIntl = _asyncToGenerator(
+    _addIntl = (0, _asyncToGenerator2.default)(
     /*#__PURE__*/
-    regeneratorRuntime.mark(function _callee5() {
+    _regenerator.default.mark(function _callee5() {
       var _len2,
           arg,
           _key3,
@@ -245,7 +240,7 @@ define(["exports", "@babel/polyfill", "path", "@babel/core", "fs", "mkdirp", "gl
           _content,
           _args5 = arguments;
 
-      return regeneratorRuntime.wrap(function _callee5$(_context5) {
+      return _regenerator.default.wrap(function _callee5$(_context5) {
         while (1) {
           switch (_context5.prev = _context5.next) {
             case 0:
@@ -316,9 +311,9 @@ define(["exports", "@babel/polyfill", "path", "@babel/core", "fs", "mkdirp", "gl
   }
 
   function _getTransLataData() {
-    _getTransLataData = _asyncToGenerator(
+    _getTransLataData = (0, _asyncToGenerator2.default)(
     /*#__PURE__*/
-    regeneratorRuntime.mark(function _callee7() {
+    _regenerator.default.mark(function _callee7() {
       var _len3,
           arg,
           _key4,
@@ -329,7 +324,7 @@ define(["exports", "@babel/polyfill", "path", "@babel/core", "fs", "mkdirp", "gl
           data,
           _args7 = arguments;
 
-      return regeneratorRuntime.wrap(function _callee7$(_context7) {
+      return _regenerator.default.wrap(function _callee7$(_context7) {
         while (1) {
           switch (_context7.prev = _context7.next) {
             case 0:
@@ -352,11 +347,11 @@ define(["exports", "@babel/polyfill", "path", "@babel/core", "fs", "mkdirp", "gl
               }).mapSync(
               /*#__PURE__*/
               function () {
-                var _ref2 = _asyncToGenerator(
+                var _ref2 = (0, _asyncToGenerator2.default)(
                 /*#__PURE__*/
-                regeneratorRuntime.mark(function _callee6(file) {
+                _regenerator.default.mark(function _callee6(file) {
                   var singal;
-                  return regeneratorRuntime.wrap(function _callee6$(_context6) {
+                  return _regenerator.default.wrap(function _callee6$(_context6) {
                     while (1) {
                       switch (_context6.prev = _context6.next) {
                         case 0:
@@ -414,7 +409,7 @@ define(["exports", "@babel/polyfill", "path", "@babel/core", "fs", "mkdirp", "gl
       if ((0, _fs.existsSync)(langPath)) {
         var orignData = require(langPath);
 
-        (0, _fs.writeFileSync)(langPath, JSON.stringify(_objectSpread({}, orignData, data[lang]), null, '\t'));
+        (0, _fs.writeFileSync)(langPath, JSON.stringify((0, _objectSpread4.default)({}, orignData, data[lang]), null, '\t'));
       } else {
         (0, _fs.writeFileSync)(langPath, JSON.stringify(data[lang], null, '\t'));
       }
@@ -435,9 +430,7 @@ define(["exports", "@babel/polyfill", "path", "@babel/core", "fs", "mkdirp", "gl
         paths = api.paths;
     var singular = config.singular;
     var absSrcPath = paths.absSrcPath;
-
-    var support = _objectSpread({}, defaultSupport, opt.support);
-
+    var support = (0, _objectSpread4.default)({}, defaultSupport, opt.support);
     api.addPageWatcher((0, _path.join)(absSrcPath, getmessageFloder(singular)));
     api.onOptionChange(function (newOpts) {
       opt = newOpts;

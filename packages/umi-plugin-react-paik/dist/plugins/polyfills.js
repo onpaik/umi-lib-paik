@@ -13,6 +13,8 @@
 })(this, function (_exports, _umiPluginPolyfills) {
   "use strict";
 
+  var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
@@ -23,6 +25,4 @@
     }
   });
   _umiPluginPolyfills = _interopRequireDefault(_umiPluginPolyfills);
-
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 });

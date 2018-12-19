@@ -1,27 +1,24 @@
-define(["exports", "fs", "path", "./generateWebManifest"], function (_exports, _fs, _path, _generateWebManifest) {
+define(["exports", "@babel/runtime/helpers/classCallCheck", "@babel/runtime/helpers/createClass", "fs", "path", "./generateWebManifest"], function (_exports, _classCallCheck2, _createClass2, _fs, _path, _generateWebManifest) {
   "use strict";
+
+  var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
   _exports.default = void 0;
-
-  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-  function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-  function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+  _classCallCheck2 = _interopRequireDefault(_classCallCheck2);
+  _createClass2 = _interopRequireDefault(_createClass2);
 
   var WebManifestPlugin =
   /*#__PURE__*/
   function () {
     function WebManifestPlugin(options) {
-      _classCallCheck(this, WebManifestPlugin);
-
+      (0, _classCallCheck2.default)(this, WebManifestPlugin);
       this.options = options;
     }
 
-    _createClass(WebManifestPlugin, [{
+    (0, _createClass2.default)(WebManifestPlugin, [{
       key: "apply",
       value: function apply(compiler) {
         var _this$options = this.options,
@@ -73,7 +70,6 @@ define(["exports", "fs", "path", "./generateWebManifest"], function (_exports, _
         });
       }
     }]);
-
     return WebManifestPlugin;
   }();
 

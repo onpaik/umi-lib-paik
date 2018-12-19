@@ -1,8 +1,8 @@
 "use strict";
 
-var _isReactComponent = _interopRequireDefault(require("./isReactComponent"));
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _isReactComponent = _interopRequireDefault(require("./isReactComponent"));
 
 describe('isReactComponent', function () {
   test('normal', function () {

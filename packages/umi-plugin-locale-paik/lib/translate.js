@@ -1,9 +1,19 @@
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = _default;
+
+var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
+
+var _objectSpread4 = _interopRequireDefault(require("@babel/runtime/helpers/objectSpread"));
+
+var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
+
+var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
 
 require("@babel/polyfill");
 
@@ -23,27 +33,17 @@ var _nodeOpencc = require("node-opencc");
 
 var _chalk = _interopRequireDefault(require("chalk"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
 var log = console.log;
 
 var merge = require('deepmerge');
 
 Object.assign(Array.prototype, {
   foreachSync: function () {
-    var _foreachSync = _asyncToGenerator(
+    var _foreachSync = (0, _asyncToGenerator2.default)(
     /*#__PURE__*/
-    regeneratorRuntime.mark(function _callee(cb) {
+    _regenerator.default.mark(function _callee(cb) {
       var index;
-      return regeneratorRuntime.wrap(function _callee$(_context) {
+      return _regenerator.default.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
@@ -76,12 +76,12 @@ Object.assign(Array.prototype, {
     };
   }(),
   mapSync: function () {
-    var _mapSync = _asyncToGenerator(
+    var _mapSync = (0, _asyncToGenerator2.default)(
     /*#__PURE__*/
-    regeneratorRuntime.mark(function _callee3(cb) {
+    _regenerator.default.mark(function _callee3(cb) {
       var _this = this;
 
-      return regeneratorRuntime.wrap(function _callee3$(_context3) {
+      return _regenerator.default.wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
@@ -89,10 +89,10 @@ Object.assign(Array.prototype, {
               return Promise.all(this.map(
               /*#__PURE__*/
               function () {
-                var _ref = _asyncToGenerator(
+                var _ref = (0, _asyncToGenerator2.default)(
                 /*#__PURE__*/
-                regeneratorRuntime.mark(function _callee2(obj, index) {
-                  return regeneratorRuntime.wrap(function _callee2$(_context2) {
+                _regenerator.default.mark(function _callee2(obj, index) {
+                  return _regenerator.default.wrap(function _callee2$(_context2) {
                     while (1) {
                       switch (_context2.prev = _context2.next) {
                         case 0:
@@ -164,11 +164,11 @@ function writeFile(_x5, _x6) {
 }
 
 function _writeFile() {
-  _writeFile = _asyncToGenerator(
+  _writeFile = (0, _asyncToGenerator2.default)(
   /*#__PURE__*/
-  regeneratorRuntime.mark(function _callee4(destPath, code) {
+  _regenerator.default.mark(function _callee4(destPath, code) {
     var dir;
-    return regeneratorRuntime.wrap(function _callee4$(_context4) {
+    return _regenerator.default.wrap(function _callee4$(_context4) {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
@@ -221,7 +221,7 @@ function transLate() {
 
     _localeKey.map(function (l) {
       var lang = support[l];
-      data = _objectSpread({}, data, _data, _defineProperty({}, lang, _objectSpread({}, data[lang], _defineProperty({}, id, useTranslate(l, content[temp])))));
+      data = (0, _objectSpread4.default)({}, data, _data, (0, _defineProperty2.default)({}, lang, (0, _objectSpread4.default)({}, data[lang], (0, _defineProperty2.default)({}, id, useTranslate(l, content[temp])))));
       return l;
     });
 
@@ -236,9 +236,9 @@ function addIntl() {
 }
 
 function _addIntl() {
-  _addIntl = _asyncToGenerator(
+  _addIntl = (0, _asyncToGenerator2.default)(
   /*#__PURE__*/
-  regeneratorRuntime.mark(function _callee5() {
+  _regenerator.default.mark(function _callee5() {
     var _len2,
         arg,
         _key3,
@@ -258,7 +258,7 @@ function _addIntl() {
         _content,
         _args5 = arguments;
 
-    return regeneratorRuntime.wrap(function _callee5$(_context5) {
+    return _regenerator.default.wrap(function _callee5$(_context5) {
       while (1) {
         switch (_context5.prev = _context5.next) {
           case 0:
@@ -329,9 +329,9 @@ function getTransLataData() {
 }
 
 function _getTransLataData() {
-  _getTransLataData = _asyncToGenerator(
+  _getTransLataData = (0, _asyncToGenerator2.default)(
   /*#__PURE__*/
-  regeneratorRuntime.mark(function _callee7() {
+  _regenerator.default.mark(function _callee7() {
     var _len3,
         arg,
         _key4,
@@ -342,7 +342,7 @@ function _getTransLataData() {
         data,
         _args7 = arguments;
 
-    return regeneratorRuntime.wrap(function _callee7$(_context7) {
+    return _regenerator.default.wrap(function _callee7$(_context7) {
       while (1) {
         switch (_context7.prev = _context7.next) {
           case 0:
@@ -365,11 +365,11 @@ function _getTransLataData() {
             }).mapSync(
             /*#__PURE__*/
             function () {
-              var _ref2 = _asyncToGenerator(
+              var _ref2 = (0, _asyncToGenerator2.default)(
               /*#__PURE__*/
-              regeneratorRuntime.mark(function _callee6(file) {
+              _regenerator.default.mark(function _callee6(file) {
                 var singal;
-                return regeneratorRuntime.wrap(function _callee6$(_context6) {
+                return _regenerator.default.wrap(function _callee6$(_context6) {
                   while (1) {
                     switch (_context6.prev = _context6.next) {
                       case 0:
@@ -427,7 +427,7 @@ function generateFile() {
     if ((0, _fs.existsSync)(langPath)) {
       var orignData = require(langPath);
 
-      (0, _fs.writeFileSync)(langPath, JSON.stringify(_objectSpread({}, orignData, data[lang]), null, '\t'));
+      (0, _fs.writeFileSync)(langPath, JSON.stringify((0, _objectSpread4.default)({}, orignData, data[lang]), null, '\t'));
     } else {
       (0, _fs.writeFileSync)(langPath, JSON.stringify(data[lang], null, '\t'));
     }
@@ -448,9 +448,7 @@ function _default(api) {
       paths = api.paths;
   var singular = config.singular;
   var absSrcPath = paths.absSrcPath;
-
-  var support = _objectSpread({}, defaultSupport, opt.support);
-
+  var support = (0, _objectSpread4.default)({}, defaultSupport, opt.support);
   api.addPageWatcher((0, _path.join)(absSrcPath, getmessageFloder(singular)));
   api.onOptionChange(function (newOpts) {
     opt = newOpts;

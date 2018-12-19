@@ -1,19 +1,17 @@
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = _default;
 
+var _objectSpread2 = _interopRequireDefault(require("@babel/runtime/helpers/objectSpread"));
+
 var _isPlainObject = _interopRequireDefault(require("is-plain-object"));
 
 var _lodash = _interopRequireDefault(require("lodash.isequal"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function toObject(o) {
   if (!(0, _isPlainObject.default)(o)) {
@@ -121,13 +119,13 @@ function _default(api, option) {
       var opts = option[key];
 
       if (key === 'locale') {
-        opts = _objectSpread({
+        opts = (0, _objectSpread2.default)({
           antd: option.antd
         }, opts);
       }
 
       if (key === 'dva') {
-        opts = _objectSpread({}, toObject(opts), {
+        opts = (0, _objectSpread2.default)({}, toObject(opts), {
           dynamicImport: option.dynamicImport
         });
       }

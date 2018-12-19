@@ -1,18 +1,15 @@
-define(["exports", "is-plain-object", "lodash.isequal"], function (_exports, _isPlainObject, _lodash) {
+define(["exports", "@babel/runtime/helpers/objectSpread", "is-plain-object", "lodash.isequal"], function (_exports, _objectSpread2, _isPlainObject, _lodash) {
   "use strict";
+
+  var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
   _exports.default = _default;
+  _objectSpread2 = _interopRequireDefault(_objectSpread2);
   _isPlainObject = _interopRequireDefault(_isPlainObject);
   _lodash = _interopRequireDefault(_lodash);
-
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-  function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-  function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
   function toObject(o) {
     if (!(0, _isPlainObject.default)(o)) {
@@ -120,13 +117,13 @@ define(["exports", "is-plain-object", "lodash.isequal"], function (_exports, _is
         var opts = option[key];
 
         if (key === 'locale') {
-          opts = _objectSpread({
+          opts = (0, _objectSpread2.default)({
             antd: option.antd
           }, opts);
         }
 
         if (key === 'dva') {
-          opts = _objectSpread({}, toObject(opts), {
+          opts = (0, _objectSpread2.default)({}, toObject(opts), {
             dynamicImport: option.dynamicImport
           });
         }

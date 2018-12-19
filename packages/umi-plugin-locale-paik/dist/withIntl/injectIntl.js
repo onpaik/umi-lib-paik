@@ -13,13 +13,13 @@
 })(this, function (_exports, _reactIntl, _hoistNonReactStatics) {
   "use strict";
 
+  var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
   _exports.default = withInjectIntl;
   _hoistNonReactStatics = _interopRequireDefault(_hoistNonReactStatics);
-
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
   function withInjectIntl(WrappedComponent, options) {
     var Component = (0, _reactIntl.injectIntl)(WrappedComponent, options);

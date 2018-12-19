@@ -13,6 +13,8 @@
 })(this, function (_exports, _withIntl) {
   "use strict";
 
+  var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
@@ -24,9 +26,6 @@
   });
   _exports.default = void 0;
   _withIntl = _interopRequireDefault(_withIntl);
-
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
   var _default = {
     withIntl: _withIntl.default
   };

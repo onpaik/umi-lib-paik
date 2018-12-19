@@ -38,6 +38,7 @@ const getBabelConfig = modType => ({
     require.resolve('@babel/plugin-proposal-do-expressions'),
     require.resolve('@babel/plugin-proposal-class-properties'),
     require.resolve('@babel/plugin-syntax-dynamic-import'),
+    require.resolve('@babel/plugin-transform-runtime'),
     ...(modType === 'es'
       ? [require.resolve('@babel/plugin-transform-modules-amd')]
       : []),

@@ -1,5 +1,7 @@
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -7,6 +9,10 @@ exports.getLocaleFileList = getLocaleFileList;
 exports.getLocaleFileListNew = getLocaleFileListNew;
 exports.isNeedPolyfill = isNeedPolyfill;
 exports.default = _default;
+
+var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
+
+var _objectSpread2 = _interopRequireDefault(require("@babel/runtime/helpers/objectSpread"));
 
 var _path = require("path");
 
@@ -19,20 +25,6 @@ var _mustache = _interopRequireDefault(require("mustache"));
 var _globby = _interopRequireDefault(require("globby"));
 
 var _lodash = _interopRequireDefault(require("lodash.groupby"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
-
-function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var momentLocation = require.resolve('moment/locale/zh-cn').replace(/zh-cn\.js$/, '');
 
@@ -191,7 +183,7 @@ function getOpts(key, options) {
   if (key === 'translate') {
     var transLateSupport = options.transLateSupport;
     return {
-      support: _objectSpread({}, transLateSupport || {})
+      support: (0, _objectSpread2.default)({}, transLateSupport || {})
     };
   }
 
@@ -224,7 +216,7 @@ function _default(api) {
     var wrapperTpl = (0, _fs.readFileSync)((0, _path.join)(__dirname, './template/wrapper.jsx.tpl'), 'utf-8');
 
     var _defaultLocale$split = defaultLocale.split('-'),
-        _defaultLocale$split2 = _slicedToArray(_defaultLocale$split, 2),
+        _defaultLocale$split2 = (0, _slicedToArray2.default)(_defaultLocale$split, 2),
         lang = _defaultLocale$split2[0],
         country = _defaultLocale$split2[1];
 
@@ -237,7 +229,7 @@ function _default(api) {
         var findLocale = localeFileList.find(function (o) {
           return o.name === localeMap[lang];
         });
-        return _objectSpread({}, findLocale, {
+        return (0, _objectSpread2.default)({}, findLocale, {
           name: lang
         });
       });
@@ -286,9 +278,8 @@ function _default(api) {
   api.modifyAFWebpackOpts(function (memo) {
     var _options = options,
         dynamicIntl = _options.dynamicIntl;
-
-    var opt = _objectSpread({}, memo, {
-      alias: _objectSpread({}, memo.alias || {}, {
+    var opt = (0, _objectSpread2.default)({}, memo, {
+      alias: (0, _objectSpread2.default)({}, memo.alias || {}, {
         'umi/locale': (0, _path.join)(__dirname, './locale.js'),
         'react-intl': (0, _path.dirname)(require.resolve('react-intl/package.json'))
       })

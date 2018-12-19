@@ -1,17 +1,14 @@
-define(["exports", "path", "../utils/isReactComponent"], function (_exports, _path, _isReactComponent) {
+define(["exports", "@babel/runtime/helpers/objectSpread", "path", "../utils/isReactComponent"], function (_exports, _objectSpread2, _path, _isReactComponent) {
   "use strict";
+
+  var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
   _exports.default = _default;
+  _objectSpread2 = _interopRequireDefault(_objectSpread2);
   _isReactComponent = _interopRequireDefault(_isReactComponent);
-
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-  function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-  function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
   function _default(api, options) {
     var paths = api.paths,
@@ -22,7 +19,7 @@ define(["exports", "path", "../utils/isReactComponent"], function (_exports, _pa
     }
 
     api.modifyAFWebpackOpts(function (opts) {
-      return _objectSpread({}, opts, {
+      return (0, _objectSpread2.default)({}, opts, {
         disableDynamicImport: false
       });
     });

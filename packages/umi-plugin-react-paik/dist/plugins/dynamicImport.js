@@ -1,29 +1,26 @@
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(["exports", "path", "../utils/isReactComponent"], factory);
+    define(["exports", "@babel/runtime/helpers/objectSpread", "path", "../utils/isReactComponent"], factory);
   } else if (typeof exports !== "undefined") {
-    factory(exports, require("path"), require("../utils/isReactComponent"));
+    factory(exports, require("@babel/runtime/helpers/objectSpread"), require("path"), require("../utils/isReactComponent"));
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global.path, global.isReactComponent);
+    factory(mod.exports, global.objectSpread, global.path, global.isReactComponent);
     global.dynamicImport = mod.exports;
   }
-})(this, function (_exports, _path, _isReactComponent) {
+})(this, function (_exports, _objectSpread2, _path, _isReactComponent) {
   "use strict";
+
+  var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
   _exports.default = _default;
+  _objectSpread2 = _interopRequireDefault(_objectSpread2);
   _isReactComponent = _interopRequireDefault(_isReactComponent);
-
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-  function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-  function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
   function _default(api, options) {
     var paths = api.paths,
@@ -34,7 +31,7 @@
     }
 
     api.modifyAFWebpackOpts(function (opts) {
-      return _objectSpread({}, opts, {
+      return (0, _objectSpread2.default)({}, opts, {
         disableDynamicImport: false
       });
     });

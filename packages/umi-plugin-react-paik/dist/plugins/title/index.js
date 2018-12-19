@@ -1,41 +1,30 @@
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(["exports", "fs", "path", "assert", "mustache"], factory);
+    define(["exports", "@babel/runtime/helpers/typeof", "@babel/runtime/helpers/toConsumableArray", "@babel/runtime/helpers/objectSpread", "fs", "path", "assert", "mustache"], factory);
   } else if (typeof exports !== "undefined") {
-    factory(exports, require("fs"), require("path"), require("assert"), require("mustache"));
+    factory(exports, require("@babel/runtime/helpers/typeof"), require("@babel/runtime/helpers/toConsumableArray"), require("@babel/runtime/helpers/objectSpread"), require("fs"), require("path"), require("assert"), require("mustache"));
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global.fs, global.path, global.assert, global.mustache);
+    factory(mod.exports, global._typeof, global.toConsumableArray, global.objectSpread, global.fs, global.path, global.assert, global.mustache);
     global.index = mod.exports;
   }
-})(this, function (_exports, _fs, _path, _assert, _mustache) {
+})(this, function (_exports, _typeof2, _toConsumableArray2, _objectSpread2, _fs, _path, _assert, _mustache) {
   "use strict";
+
+  var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
   _exports.modifyRoutes = modifyRoutes;
   _exports.default = void 0;
+  _typeof2 = _interopRequireDefault(_typeof2);
+  _toConsumableArray2 = _interopRequireDefault(_toConsumableArray2);
+  _objectSpread2 = _interopRequireDefault(_objectSpread2);
   _assert = _interopRequireDefault(_assert);
   _mustache = _interopRequireDefault(_mustache);
-
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-  function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-  function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
-
-  function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
-
-  function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
-
-  function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
-
-  function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-  function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
   var _default = function _default(api, option) {
     var paths = api.paths,
@@ -55,7 +44,7 @@
         var _parseOption = parseOption(option),
             defaultTitle = _parseOption.defaultTitle;
 
-        return _objectSpread({}, memo, {
+        return (0, _objectSpread2.default)({}, memo, {
           title: config.exportStatic ? route._title : defaultTitle
         });
       }
@@ -70,7 +59,7 @@
 
       if (option && (!route.routes || !route.routes.length) && route.title) {
         // only open this plugin when option exist
-        route.Routes = [].concat(_toConsumableArray(route.Routes || []), [(0, _path.relative)(paths.cwd, (0, _path.join)(__dirname, 'TitleWrapper.jsx'))]);
+        route.Routes = [].concat((0, _toConsumableArray2.default)(route.Routes || []), [(0, _path.relative)(paths.cwd, (0, _path.join)(__dirname, 'TitleWrapper.jsx'))]);
       }
     });
   };
@@ -94,7 +83,7 @@
     var format = '{parent}{separator}{current}';
     var separator = ' - ';
 
-    if (_typeof(option) === 'object') {
+    if ((0, _typeof2.default)(option) === 'object') {
       defaultTitle = option.defaultTitle;
       (0, _assert.default)(defaultTitle, 'defaultTitle in title option is required.');
       format = option.format || format;

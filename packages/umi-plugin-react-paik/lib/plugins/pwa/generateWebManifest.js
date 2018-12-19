@@ -1,5 +1,7 @@
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -7,15 +9,13 @@ exports.prependPublicPath = prependPublicPath;
 exports.default = generateWebManifest;
 exports.DEFAULT_MANIFEST_FILENAME = exports.PWACOMPAT_PATH = void 0;
 
+var _objectSpread2 = _interopRequireDefault(require("@babel/runtime/helpers/objectSpread"));
+
 var _fs = require("fs");
 
 var _path = require("path");
 
 var _url = require("url");
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var PWACOMPAT_PATH = 'pwacompat.min.js';
 exports.PWACOMPAT_PATH = PWACOMPAT_PATH;
@@ -40,7 +40,7 @@ function generateWebManifest(api, options) {
     srcPath: (0, _path.join)(absSrcPath, DEFAULT_MANIFEST_FILENAME)
   };
 
-  var _defaultWebManifestOp = _objectSpread({}, defaultWebManifestOptions, options),
+  var _defaultWebManifestOp = (0, _objectSpread2.default)({}, defaultWebManifestOptions, options),
       srcPath = _defaultWebManifestOp.srcPath;
 
   var manifestFilename = (0, _path.basename)(srcPath);

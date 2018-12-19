@@ -1,17 +1,19 @@
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(["exports", "fs", "path", "url"], factory);
+    define(["exports", "@babel/runtime/helpers/objectSpread", "fs", "path", "url"], factory);
   } else if (typeof exports !== "undefined") {
-    factory(exports, require("fs"), require("path"), require("url"));
+    factory(exports, require("@babel/runtime/helpers/objectSpread"), require("fs"), require("path"), require("url"));
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global.fs, global.path, global.url);
+    factory(mod.exports, global.objectSpread, global.fs, global.path, global.url);
     global.generateWebManifest = mod.exports;
   }
-})(this, function (_exports, _fs, _path, _url) {
+})(this, function (_exports, _objectSpread2, _fs, _path, _url) {
   "use strict";
+
+  var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
@@ -19,11 +21,7 @@
   _exports.prependPublicPath = prependPublicPath;
   _exports.default = generateWebManifest;
   _exports.DEFAULT_MANIFEST_FILENAME = _exports.PWACOMPAT_PATH = void 0;
-
-  function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-  function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+  _objectSpread2 = _interopRequireDefault(_objectSpread2);
   var PWACOMPAT_PATH = 'pwacompat.min.js';
   _exports.PWACOMPAT_PATH = PWACOMPAT_PATH;
   var DEFAULT_MANIFEST_FILENAME = 'manifest.json';
@@ -47,7 +45,7 @@
       srcPath: (0, _path.join)(absSrcPath, DEFAULT_MANIFEST_FILENAME)
     };
 
-    var _defaultWebManifestOp = _objectSpread({}, defaultWebManifestOptions, options),
+    var _defaultWebManifestOp = (0, _objectSpread2.default)({}, defaultWebManifestOptions, options),
         srcPath = _defaultWebManifestOp.srcPath;
 
     var manifestFilename = (0, _path.basename)(srcPath);

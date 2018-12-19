@@ -1,6 +1,8 @@
 define(["exports", "umi-plugin-dll"], function (_exports, _umiPluginDll) {
   "use strict";
 
+  var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
@@ -11,6 +13,4 @@ define(["exports", "umi-plugin-dll"], function (_exports, _umiPluginDll) {
     }
   });
   _umiPluginDll = _interopRequireDefault(_umiPluginDll);
-
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 });

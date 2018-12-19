@@ -1,30 +1,25 @@
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(["exports", "path"], factory);
+    define(["exports", "@babel/runtime/helpers/toConsumableArray", "path"], factory);
   } else if (typeof exports !== "undefined") {
-    factory(exports, require("path"));
+    factory(exports, require("@babel/runtime/helpers/toConsumableArray"), require("path"));
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global.path);
+    factory(mod.exports, global.toConsumableArray, global.path);
     global.antd = mod.exports;
   }
-})(this, function (_exports, _path) {
+})(this, function (_exports, _toConsumableArray2, _path) {
   "use strict";
+
+  var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
   _exports.default = _default;
-
-  function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
-
-  function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
-
-  function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
-
-  function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+  _toConsumableArray2 = _interopRequireDefault(_toConsumableArray2);
 
   function importPlugin(key) {
     return [require.resolve('babel-plugin-import'), {
@@ -38,7 +33,7 @@
     var cwd = api.cwd,
         compatDirname = api.compatDirname;
     api.modifyAFWebpackOpts(function (opts) {
-      opts.babel.plugins = [].concat(_toConsumableArray(opts.babel.plugins || []), [importPlugin('antd'), importPlugin('antd-mobile'), [require.resolve('babel-plugin-import'), {
+      opts.babel.plugins = [].concat((0, _toConsumableArray2.default)(opts.babel.plugins || []), [importPlugin('antd'), importPlugin('antd-mobile'), [require.resolve('babel-plugin-import'), {
         libraryName: 'ant-design-pro',
         libraryDirectory: 'lib',
         style: true,

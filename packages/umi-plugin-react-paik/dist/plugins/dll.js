@@ -13,6 +13,8 @@
 })(this, function (_exports, _umiPluginDll) {
   "use strict";
 
+  var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
@@ -23,6 +25,4 @@
     }
   });
   _umiPluginDll = _interopRequireDefault(_umiPluginDll);
-
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 });
