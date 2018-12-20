@@ -221,6 +221,7 @@ export default withIntl('TransLate')(transLate);
  `withIntl('TransLate')(transLate)` 代表 `transLate`组件会使用`public/lang/**/TransLate.json`里面的国际化数据
 
 ## demo
+[umi-locale-demo](https://github.com/onpaik/umi-locale-demo)
 
 ## TODO
 从`messags`提取国际化数据到`public/lang`
