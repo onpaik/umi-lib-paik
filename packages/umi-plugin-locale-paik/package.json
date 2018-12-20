@@ -6,7 +6,6 @@
   "jsnext:main": "./es/index.js",
   "module": "./es/index.js",
   "authors": [
-    "yutingzhao1991 <yutingzhao1991@sina.com> (https://github.com/yutingzhao1991)",
     "unpaikon"
   ],
   "repository": {
