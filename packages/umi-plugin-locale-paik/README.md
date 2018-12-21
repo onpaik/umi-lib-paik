@@ -9,7 +9,9 @@
 
 `v2.3.17`
 
-**`messages`不再遵循 `singular`规则，始终为`messages`, 单数形式将不再被识别，不能提取国际化数据**
+1. **`messages`不再遵循 `singular`规则，始终为`messages`, 单数形式将不再被识别，不能提取国际化数据**
+2. 增加了webpack配置，build模式下，public/lang下面的文件不进行编译，减少体积
+
 
 
 ## 使用
