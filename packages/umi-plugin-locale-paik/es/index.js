@@ -267,12 +267,14 @@ define(["exports", "@babel/runtime/helpers/toConsumableArray", "@babel/runtime/h
       }
     });
     api.modifyAFWebpackOpts(function (memo) {
+      var _memo$resolve;
+
       var _options = options,
           dynamicIntl = _options.dynamicIntl;
       var opt = (0, _objectSpread2.default)({}, memo, {
         resolve: (0, _objectSpread2.default)({}, memo.resolve, {
           // 增加 public
-          modules: [].concat((0, _toConsumableArray2.default)(memo.resolve.modules), ['public'])
+          modules: [].concat((0, _toConsumableArray2.default)((memo === null || memo === void 0 ? void 0 : (_memo$resolve = memo.resolve) === null || _memo$resolve === void 0 ? void 0 : _memo$resolve.modules) || []), ['public'])
         }),
         alias: (0, _objectSpread2.default)({}, memo.alias || {}, {
           'umi/locale': (0, _path.join)(__dirname, './locale.js'),

@@ -248,7 +248,7 @@ export default function(api, options = {}) {
       resolve:{
         ...memo.resolve,
         // 增加 public
-        modules:[...memo.resolve.modules, 'public']
+        modules:[...memo?.resolve?.modules || [], 'public']
       },
       alias: {
         ...(memo.alias || {}),
