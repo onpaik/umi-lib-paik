@@ -1,7 +1,5 @@
-// import withIntl from '../../../../../../umi-lib-paik/lib/withIntl/index.js';
+import withIntl from 'umi/withIntl';
 import { getFloder } from './getLocale';
 import { getLocale } from 'umi/locale';
 
-// console.log(withIntl);
-export default page => page;
-// withIntl(getFloder(getLocale()), page);
+export default page => withIntl(getFloder(getLocale()), page);

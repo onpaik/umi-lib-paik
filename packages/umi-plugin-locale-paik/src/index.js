@@ -245,11 +245,24 @@ export default function(api, options = {}) {
     const { dynamicIntl } = options;
     const opt = {
       ...memo,
+      resolve:{
+        ...memo.resolve,
+        // 增加 public
+        modules:[...memo.resolve.modules, 'public']
+      },
       alias: {
         ...(memo.alias || {}),
         'umi/locale': join(__dirname, './locale.js'),
         'react-intl': dirname(require.resolve('react-intl/package.json')),
       },
+      plugins:[
+        ...memo.plugins,
+        // build 模式，不编译public/lang 下面的文件
+        ...(process.env.NODE_ENV === 'production' ? [new IgnorePlugin(
+          /^\.\/js|json/, 
+          /public\/lang$/
+        )] : [])
+      ]
     };
     if(dynamicIntl){
       opt.alias['umi/withIntl'] = join(__dirname, './withIntl/index.js');

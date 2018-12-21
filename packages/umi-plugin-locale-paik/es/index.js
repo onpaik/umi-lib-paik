@@ -1,4 +1,4 @@
-define(["exports", "@babel/runtime/helpers/slicedToArray", "@babel/runtime/helpers/objectSpread", "path", "fs", "umi-utils", "mustache", "globby", "lodash.groupby"], function (_exports, _slicedToArray2, _objectSpread2, _path, _fs, _umiUtils, _mustache, _globby, _lodash) {
+define(["exports", "@babel/runtime/helpers/toConsumableArray", "@babel/runtime/helpers/slicedToArray", "@babel/runtime/helpers/objectSpread", "path", "fs", "umi-utils", "mustache", "globby", "lodash.groupby"], function (_exports, _toConsumableArray2, _slicedToArray2, _objectSpread2, _path, _fs, _umiUtils, _mustache, _globby, _lodash) {
   "use strict";
 
   var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -10,6 +10,7 @@ define(["exports", "@babel/runtime/helpers/slicedToArray", "@babel/runtime/helpe
   _exports.getLocaleFileListNew = getLocaleFileListNew;
   _exports.isNeedPolyfill = isNeedPolyfill;
   _exports.default = _default;
+  _toConsumableArray2 = _interopRequireDefault(_toConsumableArray2);
   _slicedToArray2 = _interopRequireDefault(_slicedToArray2);
   _objectSpread2 = _interopRequireDefault(_objectSpread2);
   _mustache = _interopRequireDefault(_mustache);
@@ -269,10 +270,15 @@ define(["exports", "@babel/runtime/helpers/slicedToArray", "@babel/runtime/helpe
       var _options = options,
           dynamicIntl = _options.dynamicIntl;
       var opt = (0, _objectSpread2.default)({}, memo, {
+        resolve: (0, _objectSpread2.default)({}, memo.resolve, {
+          // 增加 public
+          modules: [].concat((0, _toConsumableArray2.default)(memo.resolve.modules), ['public'])
+        }),
         alias: (0, _objectSpread2.default)({}, memo.alias || {}, {
           'umi/locale': (0, _path.join)(__dirname, './locale.js'),
           'react-intl': (0, _path.dirname)(require.resolve('react-intl/package.json'))
-        })
+        }),
+        plugins: [].concat((0, _toConsumableArray2.default)(memo.plugins), (0, _toConsumableArray2.default)(process.env.NODE_ENV === 'production' ? [new IgnorePlugin(/^\.\/js|json/, /public\/lang$/)] : []))
       });
 
       if (dynamicIntl) {

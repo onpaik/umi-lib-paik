@@ -10,6 +10,8 @@ exports.getLocaleFileListNew = getLocaleFileListNew;
 exports.isNeedPolyfill = isNeedPolyfill;
 exports.default = _default;
 
+var _toConsumableArray2 = _interopRequireDefault(require("@babel/runtime/helpers/toConsumableArray"));
+
 var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
 
 var _objectSpread2 = _interopRequireDefault(require("@babel/runtime/helpers/objectSpread"));
@@ -279,10 +281,15 @@ function _default(api) {
     var _options = options,
         dynamicIntl = _options.dynamicIntl;
     var opt = (0, _objectSpread2.default)({}, memo, {
+      resolve: (0, _objectSpread2.default)({}, memo.resolve, {
+        // 增加 public
+        modules: [].concat((0, _toConsumableArray2.default)(memo.resolve.modules), ['public'])
+      }),
       alias: (0, _objectSpread2.default)({}, memo.alias || {}, {
         'umi/locale': (0, _path.join)(__dirname, './locale.js'),
         'react-intl': (0, _path.dirname)(require.resolve('react-intl/package.json'))
-      })
+      }),
+      plugins: [].concat((0, _toConsumableArray2.default)(memo.plugins), (0, _toConsumableArray2.default)(process.env.NODE_ENV === 'production' ? [new IgnorePlugin(/^\.\/js|json/, /public\/lang$/)] : []))
     });
 
     if (dynamicIntl) {

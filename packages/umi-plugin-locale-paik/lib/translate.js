@@ -133,7 +133,7 @@ function getBabelConfig() {
 }
 
 function getmessageFloder(singular) {
-  return singular ? 'message' : 'messages';
+  return 'messages';
 }
 
 function getLocaleFloder(singular) {
@@ -321,7 +321,7 @@ function _addIntl() {
 
 function logInfo(type, text) {
   var date = new Date().toLocaleString();
-  log(_chalk.default.green("".concat(text, "[").concat(_chalk.default.yellow(date), "]")));
+  log(_chalk.default.green("".concat(text, "[").concat(_chalk.default.yellow(date), "]\n")));
 }
 
 function getTransLataData() {

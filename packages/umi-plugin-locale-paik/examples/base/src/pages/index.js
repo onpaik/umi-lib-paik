@@ -1,6 +1,6 @@
 import { FormattedMessage, setLocale, getLocale } from 'umi/locale';
 import withIntl from '../shared/utils/withIntl';
-import globalMsg from './message/global.json'
+import globalMsg from './messages/global.json'
 // import globalMsg from './message/global.js'
 
 const temp = () => {

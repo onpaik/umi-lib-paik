@@ -21,21 +21,9 @@ export default {
         }
       },
     ],
-    // [
-    //   '../../../umi-plugin-translate-paik/src/index',{
-    //     support:{
-    //       enUS:'en-US',
-    //       zhCN:'zh-CN',
-    //       zhTW:'zh-TW',
-    //       zhHK:'zh-HK',
-    //     }
-    //   }
-    // ]
   ],
-  singular: true,
   chainWebpack(config, { webpack }) {
     config.resolve.modules.add('src');
-    config.resolve.modules.add('public');
     // writeFileSync(`${__dirname.replace(/config/, 'temp.js')}`, config);
   }
 };

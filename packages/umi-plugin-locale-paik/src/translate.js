@@ -38,7 +38,7 @@ function  getBabelConfig(){
   }
 }
 function getmessageFloder(singular){
-  return singular ? 'message' : 'messages';
+  return 'messages';
 }
 function getLocaleFloder(singular){
   return singular ? 'locale' : 'locales';
@@ -124,7 +124,7 @@ async function addIntl(...arg){
 }
 function logInfo(type,text){
   const date = new Date().toLocaleString();
-  log(chalk.green(`${text}[${chalk.yellow(date)}]`));
+  log(chalk.green(`${text}[${chalk.yellow(date)}]\n`));
 }
 async function getTransLataData(...arg){
   const [ singular, absSrcPath,support] = arg;
