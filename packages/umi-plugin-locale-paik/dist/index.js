@@ -1,16 +1,16 @@
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(["exports", "@babel/runtime/helpers/toConsumableArray", "@babel/runtime/helpers/slicedToArray", "@babel/runtime/helpers/objectSpread", "path", "fs", "umi-utils", "mustache", "globby", "lodash.groupby"], factory);
+    define(["exports", "@babel/runtime/helpers/slicedToArray", "@babel/runtime/helpers/objectSpread", "path", "fs", "umi-utils", "mustache", "globby", "lodash.groupby"], factory);
   } else if (typeof exports !== "undefined") {
-    factory(exports, require("@babel/runtime/helpers/toConsumableArray"), require("@babel/runtime/helpers/slicedToArray"), require("@babel/runtime/helpers/objectSpread"), require("path"), require("fs"), require("umi-utils"), require("mustache"), require("globby"), require("lodash.groupby"));
+    factory(exports, require("@babel/runtime/helpers/slicedToArray"), require("@babel/runtime/helpers/objectSpread"), require("path"), require("fs"), require("umi-utils"), require("mustache"), require("globby"), require("lodash.groupby"));
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global.toConsumableArray, global.slicedToArray, global.objectSpread, global.path, global.fs, global.umiUtils, global.mustache, global.globby, global.lodash);
+    factory(mod.exports, global.slicedToArray, global.objectSpread, global.path, global.fs, global.umiUtils, global.mustache, global.globby, global.lodash);
     global.index = mod.exports;
   }
-})(this, function (_exports, _toConsumableArray2, _slicedToArray2, _objectSpread2, _path, _fs, _umiUtils, _mustache, _globby, _lodash) {
+})(this, function (_exports, _slicedToArray2, _objectSpread2, _path, _fs, _umiUtils, _mustache, _globby, _lodash) {
   "use strict";
 
   var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -22,7 +22,6 @@
   _exports.getLocaleFileListNew = getLocaleFileListNew;
   _exports.isNeedPolyfill = isNeedPolyfill;
   _exports.default = _default;
-  _toConsumableArray2 = _interopRequireDefault(_toConsumableArray2);
   _slicedToArray2 = _interopRequireDefault(_slicedToArray2);
   _objectSpread2 = _interopRequireDefault(_objectSpread2);
   _mustache = _interopRequireDefault(_mustache);
@@ -278,21 +277,23 @@
         });
       }
     });
-    api.modifyAFWebpackOpts(function (memo) {
-      var _memo$resolve;
+    api.chainWebpackConfig(function (webpackConfig) {
+      var webpack = require(api._resolveDeps('af-webpack/webpack'));
 
+      webpackConfig.resolve.modules.add('public');
+
+      if (process.env.NODE_ENV === 'production') {
+        webpackConfig.plugin('language').use(webpack.IgnorePlugin, [/^\.\/js|json/, /public\/lang$/]);
+      }
+    });
+    api.modifyAFWebpackOpts(function (memo) {
       var _options = options,
           dynamicIntl = _options.dynamicIntl;
       var opt = (0, _objectSpread2.default)({}, memo, {
-        resolve: (0, _objectSpread2.default)({}, memo.resolve, {
-          // 增加 public
-          modules: [].concat((0, _toConsumableArray2.default)((memo === null || memo === void 0 ? void 0 : (_memo$resolve = memo.resolve) === null || _memo$resolve === void 0 ? void 0 : _memo$resolve.modules) || []), ['public'])
-        }),
         alias: (0, _objectSpread2.default)({}, memo.alias || {}, {
           'umi/locale': (0, _path.join)(__dirname, './locale.js'),
           'react-intl': (0, _path.dirname)(require.resolve('react-intl/package.json'))
-        }),
-        plugins: [].concat((0, _toConsumableArray2.default)(memo.plugins), (0, _toConsumableArray2.default)(process.env.NODE_ENV === 'production' ? [new IgnorePlugin(/^\.\/js|json/, /public\/lang$/)] : []))
+        })
       });
 
       if (dynamicIntl) {

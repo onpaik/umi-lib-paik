@@ -10,8 +10,6 @@ exports.getLocaleFileListNew = getLocaleFileListNew;
 exports.isNeedPolyfill = isNeedPolyfill;
 exports.default = _default;
 
-var _toConsumableArray2 = _interopRequireDefault(require("@babel/runtime/helpers/toConsumableArray"));
-
 var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
 
 var _objectSpread2 = _interopRequireDefault(require("@babel/runtime/helpers/objectSpread"));
@@ -277,21 +275,23 @@ function _default(api) {
       });
     }
   });
-  api.modifyAFWebpackOpts(function (memo) {
-    var _memo$resolve;
+  api.chainWebpackConfig(function (webpackConfig) {
+    var webpack = require(api._resolveDeps('af-webpack/webpack'));
 
+    webpackConfig.resolve.modules.add('public');
+
+    if (process.env.NODE_ENV === 'production') {
+      webpackConfig.plugin('language').use(webpack.IgnorePlugin, [/^\.\/js|json/, /public\/lang$/]);
+    }
+  });
+  api.modifyAFWebpackOpts(function (memo) {
     var _options = options,
         dynamicIntl = _options.dynamicIntl;
     var opt = (0, _objectSpread2.default)({}, memo, {
-      resolve: (0, _objectSpread2.default)({}, memo.resolve, {
-        // 增加 public
-        modules: [].concat((0, _toConsumableArray2.default)((memo === null || memo === void 0 ? void 0 : (_memo$resolve = memo.resolve) === null || _memo$resolve === void 0 ? void 0 : _memo$resolve.modules) || []), ['public'])
-      }),
       alias: (0, _objectSpread2.default)({}, memo.alias || {}, {
         'umi/locale': (0, _path.join)(__dirname, './locale.js'),
         'react-intl': (0, _path.dirname)(require.resolve('react-intl/package.json'))
-      }),
-      plugins: [].concat((0, _toConsumableArray2.default)(memo.plugins), (0, _toConsumableArray2.default)(process.env.NODE_ENV === 'production' ? [new IgnorePlugin(/^\.\/js|json/, /public\/lang$/)] : []))
+      })
     });
 
     if (dynamicIntl) {
