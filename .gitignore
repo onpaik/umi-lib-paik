@@ -2,6 +2,7 @@
 /node_modules
 /packages/*/node_modules
 /packages/umi-plugin-locale-paik/examples/*/node_modules
+/packages/umi-plugin-translate-paik
 package-lock.json
 yarn-error.log
 *.tgz

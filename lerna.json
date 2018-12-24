@@ -8,7 +8,10 @@
   "registry":"https://registry.npmjs.org/",
   "command": {
 		"publish": {
-			"verifyAccess": false
+      "verifyAccess": false,
+      "ignoreChanges":[
+        "umi-plugin-translate-paik"
+      ]
 		}
 	}
 }
