@@ -294,9 +294,9 @@ function _default(api) {
       })
     });
 
-    if (dynamicIntl) {
-      opt.alias['umi/withIntl'] = (0, _path.join)(__dirname, './withIntl/index.js');
-    }
+    // if (dynamicIntl) {
+    //   opt.alias['umi/withIntl'] = (0, _path.join)(__dirname, './withIntl/index.js');
+    // }
 
     return opt;
   });
