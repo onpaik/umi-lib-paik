@@ -271,7 +271,7 @@
       });
 
       if (dynamicIntl && !_dev) {
-        opt.alias['umi/withIntl'] = (0, _path.join)(__dirname, '../withIntl/index.js');
+        opt.alias['umi/withIntl'] = (0, _path.join)(__dirname, './withIntl/index.js');
       }
 
       return opt;
