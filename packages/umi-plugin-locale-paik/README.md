@@ -22,7 +22,7 @@
 - 配置更改
 - `umi intl` 命令会根据配置提取国际化到public
 
-[v3.0.0 更新说明](https://github.com/onpaik/umi-lib-paik/tree/master/packages/umi-plugin-locale-paik/docs/v.3.0.0.md")
+[v3.0.0 更新说明](https://github.com/onpaik/umi-lib-paik/tree/master/packages/umi-plugin-locale-paik/docs/v.3.0.0.md)
 
 ## 使用
 
