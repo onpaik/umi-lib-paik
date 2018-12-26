@@ -241,7 +241,7 @@ export default function(api, options = {}) {
       },
     };
     if(dynamicIntl && !_dev){
-      opt.alias['umi/withIntl'] = join(__dirname, '../withIntl/index.js');
+      opt.alias['umi/withIntl'] = join(__dirname, './withIntl/index.js');
     }
     return opt;
   });
