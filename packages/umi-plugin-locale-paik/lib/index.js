@@ -6,7 +6,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.getLocaleFileList = getLocaleFileList;
-exports.getLocaleFileListNew = getLocaleFileListNew;
 exports.isNeedPolyfill = isNeedPolyfill;
 exports.default = _default;
 
@@ -30,7 +29,7 @@ var momentLocation = require.resolve('moment/locale/zh-cn').replace(/zh-cn\.js$/
 
 var antLocation = require.resolve('antd/lib/locale-provider/zh_CN').replace(/zh_CN\.js$/, '');
 
-function getMomentLocale(lang, country, momentLocaleMap) {
+function getMomentLocale(lang, country, momentMap) {
   if (country && (0, _fs.existsSync)((0, _path.join)(momentLocation, "".concat(lang, "-").concat(country.toLocaleLowerCase(), ".js")))) {
     return "".concat(lang, "-").concat(country.toLocaleLowerCase());
   }
@@ -39,20 +38,20 @@ function getMomentLocale(lang, country, momentLocaleMap) {
     return lang;
   }
 
-  if (momentLocaleMap && momentLocaleMap[lang] && (0, _fs.existsSync)((0, _path.join)(momentLocation, "".concat(momentLocaleMap[lang], ".js")))) {
-    return momentLocaleMap[lang];
+  if (momentMap && momentMap[lang] && (0, _fs.existsSync)((0, _path.join)(momentLocation, "".concat(momentMap[lang], ".js")))) {
+    return momentMap[lang];
   }
 
   return '';
 }
 
-function getAntdLocale(lang, country, antLocaleMap) {
+function getAntdLocale(lang, country, antdMap) {
   if (country && (0, _fs.existsSync)((0, _path.join)(antLocation, "".concat(lang, "_").concat(country, ".js")))) {
     return "".concat(lang, "_").concat(country);
   }
 
-  if (antLocaleMap && antLocaleMap[lang] && (0, _fs.existsSync)((0, _path.join)(antLocation, "".concat(antLocaleMap[lang], ".js")))) {
-    return antLocaleMap[lang];
+  if (antdMap && antdMap[lang] && (0, _fs.existsSync)((0, _path.join)(antLocation, "".concat(antdMap[lang], ".js")))) {
+    return antdMap[lang];
   }
 
   return '';
@@ -67,8 +66,8 @@ function getLocaleFileList() {
   var absSrcPath = arg[0],
       absPagesPath = arg[1],
       singular = arg[2],
-      momentLocaleMap = arg[3],
-      antLocaleMap = arg[4];
+      momentMap = arg[3],
+      antdMap = arg[4];
   var localeFileMath = /^([a-z]{2})-([A-Z]{2})\.(js|ts|json)$/;
   var localeFolder = singular ? 'locale' : 'locales';
 
@@ -108,47 +107,10 @@ function getLocaleFileList() {
       name: name,
       country: fileInfo[1],
       paths: newPaths,
-      antdLocale: getAntdLocale(fileInfo[0], fileInfo[1], antLocaleMap),
-      momentLocale: getMomentLocale(fileInfo[0], fileInfo[1], momentLocaleMap)
+      antdLocale: getAntdLocale(fileInfo[0], fileInfo[1], antdMap),
+      momentLocale: getMomentLocale(fileInfo[0], fileInfo[1], momentMap)
     };
   });
-} // export for test
-
-
-function getLocaleFileListNew() {
-  for (var _len2 = arguments.length, arg = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-    arg[_key2] = arguments[_key2];
-  }
-
-  var absSrcPath = arg[0],
-      singular = arg[1],
-      momentLocaleMap = arg[2],
-      antLocaleMap = arg[3];
-  var localeList = [];
-  var localePath = (0, _path.join)(absSrcPath, singular ? 'locale' : 'locales');
-
-  if ((0, _fs.existsSync)(localePath)) {
-    var localePaths = readdirSync(localePath);
-
-    for (var i = 0; i < localePaths.length; i++) {
-      var fullname = (0, _path.join)(localePath, localePaths[i]);
-      var stats = statSync(fullname);
-      var fileInfo = /^([a-z]{2})-([A-Z]{2})\.(js|ts|json)$/.exec(localePaths[i]);
-
-      if (stats.isFile() && fileInfo) {
-        localeList.push({
-          lang: fileInfo[1],
-          country: fileInfo[2],
-          name: "".concat(fileInfo[1], "-").concat(fileInfo[2]),
-          paths: (0, _umiUtils.winPath)(fullname),
-          antdLocale: getAntdLocale(fileInfo[0], fileInfo[1], antLocaleMap),
-          momentLocale: getMomentLocale(fileInfo[1], fileInfo[2], momentLocaleMap)
-        });
-      }
-    }
-  }
-
-  return localeList;
 } // data come from https://caniuse.com/#search=intl
 // you can find all browsers in https://github.com/browserslist/browserslist#browsers
 
@@ -181,9 +143,13 @@ function isNeedPolyfill() {
 
 function getOpts(key, options) {
   if (key === 'translate') {
-    var transLateSupport = options.transLateSupport;
+    var _options$translate;
+
+    var transLateSupport = (options === null || options === void 0 ? void 0 : (_options$translate = options.translate) === null || _options$translate === void 0 ? void 0 : _options$translate.support) || {};
+    var dynamicIntl = options.dynamicIntl || undefined;
     return {
-      support: (0, _objectSpread2.default)({}, transLateSupport || {})
+      support: (0, _objectSpread2.default)({}, transLateSupport),
+      dynamicIntl: dynamicIntl
     };
   }
 
@@ -195,10 +161,14 @@ function _default(api) {
   var config = api.config,
       paths = api.paths;
   var targets = config.targets;
-  var momentLocaleMap = options.momentLocaleMap || undefined;
-  var antLocaleMap = options.antLocaleMap || undefined;
-  var localeMap = options.localeMap || undefined;
-  var defaultLocale = options.default || 'zh-CN';
+  var locale = options.locale || {};
+  var momentMap = locale.momentMap || undefined;
+  var antdMap = locale.antdMap || undefined;
+  var fileMap = locale.fileMap || undefined;
+
+  var _dev = options._dev || false;
+
+  var defaultLocale = locale.default || 'zh-CN';
 
   if (isNeedPolyfill(targets)) {
     api.addEntryPolyfillImports({
@@ -212,7 +182,7 @@ function _default(api) {
     api.rebuildTmpFiles();
   });
   api.addRendererWrapperWithComponent(function () {
-    var localeFileList = getLocaleFileList(paths.absSrcPath, paths.absPagesPath, config.singular, momentLocaleMap, antLocaleMap);
+    var localeFileList = getLocaleFileList(paths.absSrcPath, paths.absPagesPath, config.singular, momentMap, antdMap);
     var wrapperTpl = (0, _fs.readFileSync)((0, _path.join)(__dirname, './template/wrapper.jsx.tpl'), 'utf-8');
 
     var _defaultLocale$split = defaultLocale.split('-'),
@@ -222,12 +192,12 @@ function _default(api) {
 
     var list = [];
 
-    if (localeMap) {
-      var locales = Object.keys(localeMap);
+    if (fileMap) {
+      var locales = Object.keys(fileMap);
 
       var _list = locales.map(function (lang) {
         var findLocale = localeFileList.find(function (o) {
-          return o.name === localeMap[lang];
+          return o.name === fileMap[lang];
         });
         return (0, _objectSpread2.default)({}, findLocale, {
           name: lang
@@ -252,29 +222,33 @@ function _default(api) {
       useLocalStorage: true,
       defaultLocale: defaultLocale,
       defaultLang: lang,
-      defaultAntdLocale: getAntdLocale(lang, country, antLocaleMap),
-      defaultMomentLocale: getMomentLocale(lang, country, momentLocaleMap)
+      defaultAntdLocale: getAntdLocale(lang, country, antdMap),
+      defaultMomentLocale: getMomentLocale(lang, country, momentMap)
     });
 
     var wrapperPath = (0, _path.join)(paths.absTmpDirPath, './LocaleWrapper.jsx');
     (0, _fs.writeFileSync)(wrapperPath, wrapperContent, 'utf-8');
     return wrapperPath;
   });
-  var plugins = {
-    // translate
-    translate: function translate() {
-      return require('./translate').default;
-    }
-  };
-  Object.keys(plugins).forEach(function (key) {
-    if (options[key]) {
-      api.registerPlugin({
-        id: "umi-plugin-locale-paik:".concat(key),
-        apply: plugins[key](),
-        opts: getOpts(key, options)
-      });
-    }
-  });
+
+  if (!_dev) {
+    var plugins = {
+      // translate
+      translate: function translate() {
+        return require('./translate').default;
+      }
+    };
+    Object.keys(plugins).forEach(function (key) {
+      if (options[key]) {
+        api.registerPlugin({
+          id: "umi-plugin-locale-paik:".concat(key),
+          apply: plugins[key](),
+          opts: getOpts(key, options)
+        });
+      }
+    });
+  }
+
   api.chainWebpackConfig(function (webpackConfig) {
     var webpack = require(api._resolveDeps('af-webpack/webpack'));
 
@@ -294,9 +268,9 @@ function _default(api) {
       })
     });
 
-    // if (dynamicIntl) {
-    //   opt.alias['umi/withIntl'] = (0, _path.join)(__dirname, './withIntl/index.js');
-    // }
+    if (dynamicIntl && !_dev) {
+      opt.alias['umi/withIntl'] = (0, _path.join)(__dirname, '../withIntl/index.js');
+    }
 
     return opt;
   });

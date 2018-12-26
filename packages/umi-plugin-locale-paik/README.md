@@ -2,17 +2,27 @@
 
 `umi`多语言国际化插件，官方[umi-plugin-locale](https://github.com/umijs/umi/tree/master/packages/umi-plugin-locale)的改进版本
 
-1. 支持json格式数据
-2. 支持命令行进行国际化数据提取
-3. 支持动态加载国际化数据
++ 支持json格式数据
++ 支持命令行进行国际化数据提取
++ 支持动态加载国际化数据
+
+## demo
+[umi-locale-demo](https://github.com/onpaik/umi-locale-demo)
+
 ## 更新日志
+**全新3.0版本**
 
 `v2.3.17`
 
 1. **`messages`不再遵循 `singular`规则，始终为`messages`, 单数形式将不再被识别，不能提取国际化数据**
 2. 增加了webpack配置，build模式下，public/lang下面的文件不进行编译，减少体积
 
+`v3.0.0`
+> 不兼容版本。请升级至新版本
+- 配置更改
+- `umi intl` 命令会根据配置提取国际化到public
 
+[v3.0.0 更新说明](https://github.com/onpaik/umi-lib-paik/tree/master/packages/umi-plugin-locale-paik/docs/v.3.0.0.md")
 
 ## 使用
 
@@ -228,8 +238,6 @@ export default withIntl('TransLate')(transLate);
 ```
  `withIntl('TransLate')(transLate)` 代表 `transLate`组件会使用`public/lang/**/TransLate.json`里面的国际化数据
 
-## demo
-[umi-locale-demo](https://github.com/onpaik/umi-locale-demo)
 
 ## TODO
-从`messags`提取国际化数据到`public/lang`
+[✔️]从`messags`提取国际化数据到`public/lang`

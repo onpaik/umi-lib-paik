@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "dev":"CLEAR_CONSOLE=none UMI_TEST=true umi dev",
+    "intl":"umi intl",
+    "_start": "concurrently npm:dev npm:intl",
+    "start":"npm run dev",
+    "build":"umi build"
+  },
+  "devDependencies": {
+    "umi":"^2.x",
+    "antd":"3.x",
+    "concurrently":"^4.1.0"
+  }
+}
