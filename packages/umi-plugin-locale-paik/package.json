@@ -1,6 +1,6 @@
 {
   "name": "umi-plugin-locale-paik",
-  "version": "2.3.17",
+  "version": "3.0.0",
   "description": "A umi plugin for provide internationalization function.",
   "main": "./lib/index.js",
   "jsnext:main": "./es/index.js",
