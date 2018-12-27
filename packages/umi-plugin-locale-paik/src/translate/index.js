@@ -174,7 +174,8 @@ async function generatePublicFile(...arg){
   const { name, path } = file;
   const dynamicName = getDynamicName(name);
   const tempPublicPath = winPath(`${absSrcPath.replace(/src\//,'public/.lang')}`);
-  const tempFilePath = winPath(`${tempPublicPath}${name.replace(/messages/,'')}`);
+  console.log(tempPublicPath);
+  const tempFilePath = winPath(`${tempPublicPath}/${name}`);
   const ext = getExt(path); 
   _tempData= {
     [dynamicName]:{
