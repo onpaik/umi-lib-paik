@@ -264,6 +264,7 @@ function _default(api) {
     var opt = (0, _objectSpread2.default)({}, memo, {
       alias: (0, _objectSpread2.default)({}, memo.alias || {}, {
         'umi/locale': (0, _path.join)(__dirname, './locale.js'),
+        'umi-plugin-react/locale': (0, _path.join)(__dirname, './locale.js'),
         'react-intl': (0, _path.dirname)(require.resolve('react-intl/package.json'))
       })
     });

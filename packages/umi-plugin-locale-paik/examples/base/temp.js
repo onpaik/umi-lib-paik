@@ -22,6 +22,7 @@
     symlinks: true,
     alias: {
       'umi/locale': '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/src/locale.js',
+      'umi-plugin-react/locale': '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/src/locale.js',
       'react-intl': '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/node_modules/react-intl',
       react: '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/react',
       'react-dom': '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/react-dom',

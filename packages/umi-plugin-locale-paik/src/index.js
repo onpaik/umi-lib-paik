@@ -237,6 +237,7 @@ export default function(api, options = {}) {
       alias: {
         ...(memo.alias || {}),
         'umi/locale': join(__dirname, './locale.js'),
+        'umi-plugin-react/locale': join(__dirname, './locale.js'),
         'react-intl': dirname(require.resolve('react-intl/package.json')),
       },
     };
