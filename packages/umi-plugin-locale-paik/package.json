@@ -5,6 +5,9 @@
   "main": "./lib/index.js",
   "jsnext:main": "./es/index.js",
   "module": "./es/index.js",
+  "browser": {
+    "./lib/index.js": "./lib/locale.js"
+  },
   "authors": [
     "unpaikon"
   ],
