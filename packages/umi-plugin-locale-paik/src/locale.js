@@ -14,6 +14,9 @@ let intl = {
   formatMessage: () => {
     return null;
   },
+  formatHTMLMessage: () => {
+    return null;
+  },
 };
 
 // react-intl 没有直接暴露 formatMessage 这个方法
@@ -27,7 +30,10 @@ function _setIntlObject(theIntl) {
 function formatMessage() {
   return intl.formatMessage.call(intl, ...arguments);
 }
+function formatHTMLMessage() {
+  return intl.formatHTMLMessage.call(intl, ...arguments);
+}
 
 export * from 'react-intl';
 
-export { formatMessage, setLocale, getLocale, _setIntlObject };
+export { formatMessage, setLocale,formatHTMLMessage, getLocale, _setIntlObject };
