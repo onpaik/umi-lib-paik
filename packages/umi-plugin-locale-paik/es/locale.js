@@ -7,11 +7,13 @@ define(["exports", "react-intl"], function (_exports, _reactIntl) {
   var _exportNames = {
     formatMessage: true,
     setLocale: true,
+    formatHTMLMessage: true,
     getLocale: true,
     _setIntlObject: true
   };
   _exports.formatMessage = formatMessage;
   _exports.setLocale = setLocale;
+  _exports.formatHTMLMessage = formatHTMLMessage;
   _exports.getLocale = getLocale;
   _exports._setIntlObject = _setIntlObject;
   Object.keys(_reactIntl).forEach(function (key) {
@@ -40,6 +42,9 @@ define(["exports", "react-intl"], function (_exports, _reactIntl) {
   var intl = {
     formatMessage: function formatMessage() {
       return null;
+    },
+    formatHTMLMessage: function formatHTMLMessage() {
+      return null;
     }
   }; // react-intl 没有直接暴露 formatMessage 这个方法
   // 只能注入到 props 中，所以通过在最外层包一个组件然后组件内调用这个方法来把 intl 这个对象暴露到这里来
@@ -54,5 +59,11 @@ define(["exports", "react-intl"], function (_exports, _reactIntl) {
     var _intl$formatMessage;
 
     return (_intl$formatMessage = intl.formatMessage).call.apply(_intl$formatMessage, [intl].concat(Array.prototype.slice.call(arguments)));
+  }
+
+  function formatHTMLMessage() {
+    var _intl$formatHTMLMessa;
+
+    return (_intl$formatHTMLMessa = intl.formatHTMLMessage).call.apply(_intl$formatHTMLMessa, [intl].concat(Array.prototype.slice.call(arguments)));
   }
 });
