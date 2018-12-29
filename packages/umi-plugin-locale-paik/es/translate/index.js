@@ -484,61 +484,60 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
               name = file.name, path = file.path;
               dynamicName = getDynamicName(name);
               tempPublicPath = (0, _umiUtils.winPath)("".concat(absSrcPath.replace(/src\//, 'public/.lang')));
-              console.log(tempPublicPath);
               tempFilePath = (0, _umiUtils.winPath)("".concat(tempPublicPath, "/").concat(name));
               ext = getExt(path);
               _tempData = (0, _defineProperty2.default)({}, dynamicName, (0, _objectSpread5.default)({}, collectData[dynamicName] || {}));
 
               if (!ext.match(/^(j|t)s$/i)) {
-                _context9.next = 26;
+                _context9.next = 25;
                 break;
               }
 
-              _context9.next = 13;
+              _context9.next = 12;
               return _rimraf.default.sync(tempPublicPath);
 
-            case 13:
+            case 12:
               _transformFileSync2 = (0, _core.transformFileSync)(path, getBabelConfig()), code = _transformFileSync2.code;
-              _context9.next = 16;
+              _context9.next = 15;
               return writeFile(tempFilePath, code);
 
-            case 16:
+            case 15:
               delete require.cache[tempFilePath];
-              _context9.next = 19;
+              _context9.next = 18;
               return require(tempFilePath).default;
 
-            case 19:
+            case 18:
               content = _context9.sent;
-              _context9.next = 22;
+              _context9.next = 21;
               return _rimraf.default.sync(tempPublicPath);
 
-            case 22:
-              _context9.next = 24;
+            case 21:
+              _context9.next = 23;
               return transLatePublic(content, support, path);
 
-            case 24:
+            case 23:
               data = _context9.sent;
               _tempData[dynamicName] = deepmerge(data, _tempData[dynamicName]);
 
-            case 26:
+            case 25:
               if (!ext.match(/^json$/i)) {
-                _context9.next = 33;
+                _context9.next = 32;
                 break;
               }
 
               delete require.cache[tempFilePath];
               _content2 = require(tempFilePath);
-              _context9.next = 31;
+              _context9.next = 30;
               return transLatePublic(_content2, support, path);
 
-            case 31:
+            case 30:
               _data2 = _context9.sent;
               _tempData[dynamicName] = deepmerge(_data2, _tempData[dynamicName]);
 
-            case 33:
+            case 32:
               return _context9.abrupt("return", _tempData);
 
-            case 34:
+            case 33:
             case "end":
               return _context9.stop();
           }
