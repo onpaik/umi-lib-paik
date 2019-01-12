@@ -1,4 +1,4 @@
-define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/helpers/objectSpread", "@babel/runtime/regenerator", "@babel/runtime/helpers/asyncToGenerator", "@babel/polyfill", "path", "@babel/core", "fs", "mkdirp", "globby", "rimraf", "umi-utils", "node-opencc", "chalk"], function (_exports, _defineProperty2, _objectSpread5, _regenerator, _asyncToGenerator2, _polyfill, _path, _core, _fs, _mkdirp, _globby, _rimraf, _umiUtils, _nodeOpencc, _chalk) {
+define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/helpers/objectSpread", "@babel/runtime/regenerator", "@babel/runtime/helpers/asyncToGenerator", "@babel/polyfill", "path", "@babel/core", "fs", "mkdirp", "globby", "rimraf", "umi-utils", "ora", "node-opencc", "chalk"], function (_exports, _defineProperty2, _objectSpread5, _regenerator, _asyncToGenerator2, _polyfill, _path, _core, _fs, _mkdirp, _globby, _rimraf, _umiUtils, _ora, _nodeOpencc, _chalk) {
   "use strict";
 
   var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -14,6 +14,7 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
   _mkdirp = _interopRequireDefault(_mkdirp);
   _globby = _interopRequireDefault(_globby);
   _rimraf = _interopRequireDefault(_rimraf);
+  _ora = _interopRequireDefault(_ora);
   _chalk = _interopRequireDefault(_chalk);
 
   var deepmerge = require('deepmerge');
@@ -205,11 +206,12 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
     var content = arg[0],
         support = arg[1],
         _data = arg[2],
-        path = arg[3];
+        path = arg[3],
+        spinner = arg[4];
 
     if (!content) {
       var info = "".concat(_chalk.default.blue(path));
-      log(_chalk.default.red("\u56FD\u9645\u5316\u5185\u5BB9\u4E3A\u7A7A\uFF0C\u6570\u636E\u63D0\u53D6\u5931\u8D25 (".concat(info, ") \n")));
+      spinner.fail("".concat(_chalk.default.red("\u56FD\u9645\u5316\u5185\u5BB9\u4E3A\u7A7A\uFF0C\u6570\u636E\u63D0\u53D6\u5931\u8D25 (".concat(info, ") \n"))));
       process.exit(1);
     }
 
@@ -253,6 +255,7 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
           singular,
           absSrcPath,
           support,
+          spinner,
           path,
           ext,
           floder,
@@ -273,7 +276,7 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
                 arg[_key3] = _args5[_key3];
               }
 
-              file = arg[0], singular = arg[1], absSrcPath = arg[2], support = arg[3];
+              file = arg[0], singular = arg[1], absSrcPath = arg[2], support = arg[3], spinner = arg[4];
               path = file.path;
               ext = getExt(path);
               floder = getLocaleFloder(singular);
@@ -340,6 +343,7 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
           content,
           support,
           path,
+          spinner,
           info,
           locales,
           localeKey,
@@ -355,11 +359,12 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
                 arg[_key4] = _args8[_key4];
               }
 
-              content = arg[0], support = arg[1], path = arg[2];
+              content = arg[0], support = arg[1], path = arg[2], spinner = arg[3];
 
               if (!content) {
                 info = "".concat(_chalk.default.blue(path));
-                log(_chalk.default.red("\u56FD\u9645\u5316\u5185\u5BB9\u4E3A\u7A7A\uFF0C\u6570\u636E\u63D0\u53D6\u5931\u8D25 (".concat(info, ") \n")));
+                spinner.color = 'red';
+                spinner.fail("".concat(_chalk.default.red("\u56FD\u9645\u5316\u5185\u5BB9\u4E3A\u7A7A\uFF0C\u6570\u636E\u63D0\u53D6\u5931\u8D25 (".concat(info, ") \n"))));
                 process.exit(1);
               }
 
@@ -456,6 +461,7 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
           absSrcPath,
           support,
           collectData,
+          spinner,
           _tempData,
           name,
           path,
@@ -479,7 +485,7 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
                 arg[_key5] = _args9[_key5];
               }
 
-              file = arg[0], absSrcPath = arg[1], support = arg[2], collectData = arg[3];
+              file = arg[0], absSrcPath = arg[1], support = arg[2], collectData = arg[3], spinner = arg[4];
               _tempData = collectData;
               name = file.name, path = file.path;
               dynamicName = getDynamicName(name);
@@ -513,7 +519,7 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
 
             case 21:
               _context9.next = 23;
-              return transLatePublic(content, support, path);
+              return transLatePublic(content, support, path, spinner);
 
             case 23:
               data = _context9.sent;
@@ -528,7 +534,7 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
               delete require.cache[tempFilePath];
               _content2 = require(tempFilePath);
               _context9.next = 30;
-              return transLatePublic(_content2, support, path);
+              return transLatePublic(_content2, support, path, spinner);
 
             case 30:
               _data2 = _context9.sent;
@@ -734,15 +740,16 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
     _handlenormal = (0, _asyncToGenerator2.default)(
     /*#__PURE__*/
     _regenerator.default.mark(function _callee16(localeFiles, singular, absSrcPath, support) {
-      var localeData;
+      var spinner, localeData;
       return _regenerator.default.wrap(function _callee16$(_context16) {
         while (1) {
           switch (_context16.prev = _context16.next) {
             case 0:
-              logInfo('green', "\u6536\u96C6".concat(_chalk.default.blue('非动态'), "\u56FD\u9645\u5316\u4FE1\u606F\u5F00\u59CB"));
+              spinner = (0, _ora.default)();
+              spinner.start("\u6536\u96C6".concat(_chalk.default.blue('非动态'), "\u56FD\u9645\u5316\u4FE1\u606F\u5F00\u59CB"));
               localeData = {}; // 收集国际化数据到非动态目录
 
-              _context16.next = 4;
+              _context16.next = 5;
               return localeFiles.mapSync(
               /*#__PURE__*/
               function () {
@@ -755,7 +762,7 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
                       switch (_context15.prev = _context15.next) {
                         case 0:
                           _context15.next = 2;
-                          return addIntl(file, singular, absSrcPath, support);
+                          return addIntl(file, singular, absSrcPath, support, spinner);
 
                         case 2:
                           singal = _context15.sent;
@@ -786,16 +793,19 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
                 };
               }());
 
-            case 4:
-              logInfo('green', "\u6536\u96C6".concat(_chalk.default.blue('非动态'), "\u56FD\u9645\u5316\u4FE1\u606F\u7ED3\u675F"));
-              logInfo('green', "\u5F00\u59CB\u5199\u5165".concat(_chalk.default.blue('非动态'), "\u56FD\u9645\u5316\u4FE1\u606F"));
-              _context16.next = 8;
+            case 5:
+              spinner.color = 'green';
+              spinner.succeed("\u6536\u96C6".concat(_chalk.default.blue('非动态'), "\u56FD\u9645\u5316\u4FE1\u606F\u6210\u529F"));
+              spinner.color = 'cyan';
+              spinner.start("\u5F00\u59CB\u5199\u5165".concat(_chalk.default.blue('非动态'), "\u56FD\u9645\u5316\u4FE1\u606F"));
+              _context16.next = 11;
               return generateFile(localeData, support, absSrcPath, singular);
 
-            case 8:
-              logInfo('green', "\u5199\u5165".concat(_chalk.default.blue('非动态'), "\u56FD\u9645\u5316\u4FE1\u606F\u7ED3\u675F"));
+            case 11:
+              spinner.color = 'green';
+              spinner.succeed("\u5199\u5165".concat(_chalk.default.blue('非动态'), "\u56FD\u9645\u5316\u4FE1\u606F\u6210\u529F"));
 
-            case 9:
+            case 13:
             case "end":
               return _context16.stop();
           }
@@ -821,6 +831,7 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
           absSrcPath,
           support,
           collectData,
+          spinner,
           _args18 = arguments;
 
       return _regenerator.default.wrap(function _callee18$(_context18) {
@@ -835,12 +846,13 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
               collectData = {};
 
               if (!(dynamicIntl && dynamicLocale.length)) {
-                _context18.next = 11;
+                _context18.next = 12;
                 break;
               }
 
-              logInfo('green', "\u6536\u96C6".concat(_chalk.default.yellow('动态'), "\u56FD\u9645\u5316\u4FE1\u606F\u5F00\u59CB"));
-              _context18.next = 7;
+              spinner = (0, _ora.default)();
+              spinner.start("\u6536\u96C6".concat(_chalk.default.yellow('动态'), "\u56FD\u9645\u5316\u4FE1\u606F\u5F00\u59CB"));
+              _context18.next = 8;
               return dynamicLocale.mapSync(
               /*#__PURE__*/
               function () {
@@ -853,7 +865,7 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
                       switch (_context17.prev = _context17.next) {
                         case 0:
                           _context17.next = 2;
-                          return generatePublicFile(file, absSrcPath, support, collectData);
+                          return generatePublicFile(file, absSrcPath, support, collectData, spinner);
 
                         case 2:
                           data = _context17.sent;
@@ -873,16 +885,16 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
                 };
               }());
 
-            case 7:
-              logInfo('green', "\u6536\u96C6".concat(_chalk.default.yellow('动态'), "\u56FD\u9645\u5316\u4FE1\u606F\u7ED3\u675F"));
-              logInfo('green', "\u5F00\u59CB\u5199\u5165".concat(_chalk.default.yellow('动态'), "\u56FD\u9645\u5316\u4FE1\u606F"));
+            case 8:
+              spinner.succeed("\u6536\u96C6".concat(_chalk.default.yellow('动态'), "\u56FD\u9645\u5316\u4FE1\u606F\u6210\u529F"));
+              spinner.start("\u5F00\u59CB\u5199\u5165".concat(_chalk.default.yellow('动态'), "\u56FD\u9645\u5316\u4FE1\u606F"));
               writePublic(collectData, absSrcPath);
-              logInfo('green', "\u5199\u5165".concat(_chalk.default.yellow('动态'), "\u56FD\u9645\u5316\u4FE1\u606F\u7ED3\u675F"));
-
-            case 11:
-              return _context18.abrupt("return", true);
+              spinner.succeed("\u5199\u5165".concat(_chalk.default.yellow('动态'), "\u56FD\u9645\u5316\u4FE1\u606F\u6210\u529F"));
 
             case 12:
+              return _context18.abrupt("return", true);
+
+            case 13:
             case "end":
               return _context18.stop();
           }

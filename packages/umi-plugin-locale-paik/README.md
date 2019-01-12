@@ -11,7 +11,6 @@
 
 ## 更新日志
 **全新3.0版本**
-
 `v2.3.17`
 
 1. **`messages`不再遵循 `singular`规则，始终为`messages`, 单数形式将不再被识别，不能提取国际化数据**
@@ -54,7 +53,6 @@ export default [
 ## options 默认值
 ```javascript
 {
-  enable: true,
   baseNavigator: true,
   // momentLocaleMap: { en: 'en-nz', zh: 'zh-cn' },
   // antLocaleMap: { en: 'en_US', zh: 'zh_CN' },
@@ -138,7 +136,6 @@ export default {
 ## options
 ```javascript
 {
-  enable: true,
   baseNavigator: true,
   momentLocaleMap: { en: 'en-nz', zh: 'zh-cn' },
   antLocaleMap: { en: 'en_US', zh: 'zh_CN' },
@@ -154,7 +151,7 @@ export default {
   }
 }
 ```
-### options[enable|baseNavigator|default]  
+### options[baseNavigator|default]  
 与官方配置相同
 
 ## options.momentLocaleMap options.antLocaleMap 
@@ -241,3 +238,4 @@ export default withIntl('TransLate')(transLate);
 
 ## TODO
 [✔️]从`messags`提取国际化数据到`public/lang`
+[✔️] 增加import polyfill

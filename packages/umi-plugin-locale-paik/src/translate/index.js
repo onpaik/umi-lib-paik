@@ -6,6 +6,7 @@ import  mkdirp from 'mkdirp';
 import globby from 'globby';
 import rimraf from 'rimraf';
 import { winPath } from 'umi-utils';
+import ora from 'ora';
 import {
   simplifiedToTaiwanWithPhrases,
   simplifiedToHongKong,
@@ -86,10 +87,10 @@ function useTranslate(lang,data){
   return data[lang] || defaultMessage;
 }
 function transLate(...arg){
-  const [ content,support,_data,path ] = arg;
+  const [ content,support,_data,path, spinner ] = arg;
   if(!content){
     const info = `${chalk.blue(path)}`;
-    log(chalk.red(`国际化内容为空，数据提取失败 (${info}) \n`));
+    spinner.fail(`${chalk.red(`国际化内容为空，数据提取失败 (${info}) \n`)}`);
     process.exit(1);
   }
   const _key = Object.keys(content);
@@ -118,7 +119,7 @@ function transLate(...arg){
   return data;
 }
 async function addIntl(...arg){
-  const [ file,singular,absSrcPath,support ] = arg;
+  const [ file,singular,absSrcPath,support,spinner ] = arg;
   const { path } = file;
   const ext = getExt(path); 
   const floder = getLocaleFloder(singular);
@@ -142,10 +143,11 @@ async function addIntl(...arg){
   return data;
 }
 async function transLatePublic(...arg){
-  const [ content, support, path ] = arg;
+  const [ content, support, path, spinner ] = arg;
   if(!content){
     const info = `${chalk.blue(path)}`;
-    log(chalk.red(`国际化内容为空，数据提取失败 (${info}) \n`));
+    spinner.color = 'red';
+    spinner.fail(`${chalk.red(`国际化内容为空，数据提取失败 (${info}) \n`)}`);
     process.exit(1);
   }
   const locales = Object.values(support);
@@ -169,7 +171,7 @@ async function transLatePublic(...arg){
   return data;
 }
 async function generatePublicFile(...arg){
-  const [ file, absSrcPath, support, collectData ] = arg;
+  const [ file, absSrcPath, support, collectData,spinner  ] = arg;
   let _tempData = collectData;
   const { name, path } = file;
   const dynamicName = getDynamicName(name);
@@ -188,13 +190,13 @@ async function generatePublicFile(...arg){
     delete require.cache[tempFilePath]
     const content = await require(tempFilePath).default;
     await rimraf.sync(tempPublicPath);
-    const data = await transLatePublic(content,support,path);
+    const data = await transLatePublic(content,support,path,spinner);
     _tempData[dynamicName] = deepmerge(data,_tempData[dynamicName])
   }
   if(ext.match(/^json$/i)){
     delete require.cache[tempFilePath]
     const content = require(tempFilePath);
-    const data = await transLatePublic(content,support,path);
+    const data = await transLatePublic(content,support,path,spinner);
     _tempData[dynamicName] = deepmerge(data,_tempData[dynamicName])
   }
   return _tempData;
@@ -235,11 +237,12 @@ async function generateFile(...arg){
   })
 }
 async function handlenormal(localeFiles,singular,absSrcPath,support){
-  logInfo('green',`收集${chalk.blue('非动态')}国际化信息开始`)
+  const spinner = ora();
+  spinner.start(`收集${chalk.blue('非动态')}国际化信息开始`);
   let localeData = {};
   // 收集国际化数据到非动态目录
   await localeFiles.mapSync(async file => {
-    const singal = await addIntl(file,singular,absSrcPath,support);
+    const singal = await addIntl(file,singular,absSrcPath,support,spinner);
     if(!singal){
       return null;
     }else{
@@ -247,25 +250,29 @@ async function handlenormal(localeFiles,singular,absSrcPath,support){
     }
     return file;
   });
-  logInfo('green',`收集${chalk.blue('非动态')}国际化信息结束`)
-  logInfo('green',`开始写入${chalk.blue('非动态')}国际化信息`)
+  spinner.color = 'green';
+  spinner.succeed(`收集${chalk.blue('非动态')}国际化信息成功`);
+  spinner.color = 'cyan';
+  spinner.start(`开始写入${chalk.blue('非动态')}国际化信息`);
   await generateFile(localeData,support,absSrcPath,singular);
-  logInfo('green',`写入${chalk.blue('非动态')}国际化信息结束`)
+  spinner.color = 'green';
+  spinner.succeed(`写入${chalk.blue('非动态')}国际化信息成功`);
 }
 async function genDynamic(...arg){
   const [ dynamicIntl,dynamicLocale,absSrcPath,support ] = arg;
   let collectData = {};
   if(dynamicIntl && dynamicLocale.length){
-    logInfo('green',`收集${chalk.yellow('动态')}国际化信息开始`);
+    const spinner = ora();
+    spinner.start(`收集${chalk.yellow('动态')}国际化信息开始`);
     await dynamicLocale.mapSync(async file =>{
-      const data = await generatePublicFile(file,absSrcPath,support,collectData);
+      const data = await generatePublicFile(file,absSrcPath,support,collectData,spinner);
       collectData = deepmerge(data,collectData);
       return file;
     })
-    logInfo('green',`收集${chalk.yellow('动态')}国际化信息结束`);
-    logInfo('green',`开始写入${chalk.yellow('动态')}国际化信息`);
+    spinner.succeed(`收集${chalk.yellow('动态')}国际化信息成功`);
+    spinner.start(`开始写入${chalk.yellow('动态')}国际化信息`);
     writePublic(collectData, absSrcPath);
-    logInfo('green',`写入${chalk.yellow('动态')}国际化信息结束`);
+    spinner.succeed(`写入${chalk.yellow('动态')}国际化信息成功`);
   }
   return true;
 }
