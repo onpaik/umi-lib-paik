@@ -1,45 +1,27 @@
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(["exports", "react-intl"], factory);
+    define(["@babel/runtime/helpers/objectSpread"], factory);
   } else if (typeof exports !== "undefined") {
-    factory(exports, require("react-intl"));
+    factory(require("@babel/runtime/helpers/objectSpread"));
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global.reactIntl);
+    factory(global.objectSpread);
     global.locale = mod.exports;
   }
-})(this, function (_exports, _reactIntl) {
+})(this, function (_objectSpread2) {
   "use strict";
 
-  Object.defineProperty(_exports, "__esModule", {
-    value: true
-  });
-  var _exportNames = {
-    formatMessage: true,
-    setLocale: true,
-    formatHTMLMessage: true,
-    getLocale: true,
-    _setIntlObject: true
-  };
-  _exports.formatMessage = formatMessage;
-  _exports.setLocale = setLocale;
-  _exports.formatHTMLMessage = formatHTMLMessage;
-  _exports.getLocale = getLocale;
-  _exports._setIntlObject = _setIntlObject;
-  Object.keys(_reactIntl).forEach(function (key) {
-    if (key === "default" || key === "__esModule") return;
-    if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-    Object.defineProperty(_exports, key, {
-      enumerable: true,
-      get: function get() {
-        return _reactIntl[key];
-      }
-    });
-  });
+  var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
+  _objectSpread2 = _interopRequireDefault(_objectSpread2);
+
+  /* eslint-disable no-undef, prefer-rest-params */
+  var ReactIntl = require('react-intl');
   /* eslint-disable no-undef */
+
+
   function setLocale(lang) {
     if (lang && getLocale() !== lang) {
       window.localStorage.setItem('umi_locale', lang || '');
@@ -49,16 +31,25 @@
 
   function getLocale() {
     return window.g_lang;
-  }
+  } // init api methods
 
-  var intl = {
-    formatMessage: function formatMessage() {
+
+  var intl;
+  var intlApi = {};
+  ['formatMessage', 'formatHTMLMessage', 'formatDate', 'formatTime', 'formatRelative', 'formatNumber', 'formatPlural', 'now', 'onError'].forEach(function (methodName) {
+    intlApi[methodName] = function () {
+      if (intl && intl[methodName]) {
+        var _intl$methodName;
+
+        // _setIntlObject has been called
+        return (_intl$methodName = intl[methodName]).call.apply(_intl$methodName, [intl].concat(Array.prototype.slice.call(arguments)));
+      } else if (console && console.warn) {
+        console.warn("[umi-plugin-locale-paik] ".concat(methodName, " not initialized yet, you should use it after react app mounted."));
+      }
+
       return null;
-    },
-    formatHTMLMessage: function formatHTMLMessage() {
-      return null;
-    }
-  }; // react-intl 没有直接暴露 formatMessage 这个方法
+    };
+  }); // react-intl 没有直接暴露 formatMessage 这个方法
   // 只能注入到 props 中，所以通过在最外层包一个组件然后组件内调用这个方法来把 intl 这个对象暴露到这里来
   // TODO 查找有没有更好的办法
 
@@ -67,15 +58,9 @@
     intl = theIntl;
   }
 
-  function formatMessage() {
-    var _intl$formatMessage;
-
-    return (_intl$formatMessage = intl.formatMessage).call.apply(_intl$formatMessage, [intl].concat(Array.prototype.slice.call(arguments)));
-  }
-
-  function formatHTMLMessage() {
-    var _intl$formatHTMLMessa;
-
-    return (_intl$formatHTMLMessa = intl.formatHTMLMessage).call.apply(_intl$formatHTMLMessa, [intl].concat(Array.prototype.slice.call(arguments)));
-  }
+  module.exports = (0, _objectSpread2.default)({}, ReactIntl, intlApi, {
+    setLocale: setLocale,
+    getLocale: getLocale,
+    _setIntlObject: _setIntlObject
+  });
 });

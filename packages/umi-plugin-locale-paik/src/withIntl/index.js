@@ -4,9 +4,17 @@ import hoistNonReactStatics from 'hoist-non-react-statics';
 import invariant from 'invariant';
 import withInjectIntl from './injectIntl';
 import getDisplayName from './getDisplayName';
+import importPolyfill from './importPolyfill';
 import { createIntlContext } from './intlHelper';
 
-const fetchIntl = (locale, page) => import(`lang/${locale}/${page}.json`);
+const fetchIntl = (locale, page) => {
+  try{
+    Function('import("")');
+    return import(`lang/${locale}/${page}.json`);
+  }catch(err){
+    return importPolyfill(`lang/${locale}/${page}.json`);
+  };  
+}
 
 function withIntl(
   locale,

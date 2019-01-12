@@ -265,8 +265,10 @@
           dynamicIntl = _options.dynamicIntl;
       var opt = (0, _objectSpread2.default)({}, memo, {
         alias: (0, _objectSpread2.default)({}, memo.alias || {}, {
+          // 排除官方插件的干扰
           'umi/locale': (0, _path.join)(__dirname, './locale.js'),
           'umi-plugin-react/locale': (0, _path.join)(__dirname, './locale.js'),
+          'umi-plugin-locale': (0, _path.join)(__dirname, './locale.js'),
           'react-intl': (0, _path.dirname)(require.resolve('react-intl/package.json'))
         })
       });

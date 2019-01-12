@@ -236,8 +236,10 @@ export default function(api, options = {}) {
       ...memo,
       alias: {
         ...(memo.alias || {}),
+        // 排除官方插件的干扰
         'umi/locale': join(__dirname, './locale.js'),
         'umi-plugin-react/locale': join(__dirname, './locale.js'),
+        'umi-plugin-locale': join(__dirname, './locale.js'),
         'react-intl': dirname(require.resolve('react-intl/package.json')),
       },
     };

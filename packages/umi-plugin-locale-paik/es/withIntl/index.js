@@ -1,4 +1,4 @@
-define(["exports", "@babel/runtime/helpers/extends", "@babel/runtime/regenerator", "@babel/runtime/helpers/asyncToGenerator", "@babel/runtime/helpers/classCallCheck", "@babel/runtime/helpers/createClass", "@babel/runtime/helpers/possibleConstructorReturn", "@babel/runtime/helpers/getPrototypeOf", "@babel/runtime/helpers/inherits", "@babel/runtime/helpers/defineProperty", "react", "react-intl", "hoist-non-react-statics", "invariant", "./injectIntl", "./getDisplayName", "./intlHelper"], function (_exports, _extends2, _regenerator, _asyncToGenerator2, _classCallCheck2, _createClass2, _possibleConstructorReturn2, _getPrototypeOf2, _inherits2, _defineProperty2, _react, _reactIntl, _hoistNonReactStatics, _invariant, _injectIntl, _getDisplayName, _intlHelper) {
+define(["exports", "@babel/runtime/helpers/extends", "@babel/runtime/regenerator", "@babel/runtime/helpers/asyncToGenerator", "@babel/runtime/helpers/classCallCheck", "@babel/runtime/helpers/createClass", "@babel/runtime/helpers/possibleConstructorReturn", "@babel/runtime/helpers/getPrototypeOf", "@babel/runtime/helpers/inherits", "@babel/runtime/helpers/defineProperty", "react", "react-intl", "hoist-non-react-statics", "invariant", "./injectIntl", "./getDisplayName", "./importPolyfill", "./intlHelper"], function (_exports, _extends2, _regenerator, _asyncToGenerator2, _classCallCheck2, _createClass2, _possibleConstructorReturn2, _getPrototypeOf2, _inherits2, _defineProperty2, _react, _reactIntl, _hoistNonReactStatics, _invariant, _injectIntl, _getDisplayName, _importPolyfill, _intlHelper) {
   "use strict";
 
   var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -22,9 +22,17 @@ define(["exports", "@babel/runtime/helpers/extends", "@babel/runtime/regenerator
   _invariant = _interopRequireDefault(_invariant);
   _injectIntl = _interopRequireDefault(_injectIntl);
   _getDisplayName = _interopRequireDefault(_getDisplayName);
+  _importPolyfill = _interopRequireDefault(_importPolyfill);
 
   var fetchIntl = function fetchIntl(locale, page) {
-    return import("lang/".concat(locale, "/").concat(page, ".json"));
+    try {
+      Function('import("")');
+      return import("lang/".concat(locale, "/").concat(page, ".json"));
+    } catch (err) {
+      return (0, _importPolyfill.default)("lang/".concat(locale, "/").concat(page, ".json"));
+    }
+
+    ;
   };
 
   function withIntl(locale, page) {

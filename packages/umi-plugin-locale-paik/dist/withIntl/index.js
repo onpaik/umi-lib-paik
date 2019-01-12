@@ -1,16 +1,16 @@
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(["exports", "@babel/runtime/helpers/extends", "@babel/runtime/regenerator", "@babel/runtime/helpers/asyncToGenerator", "@babel/runtime/helpers/classCallCheck", "@babel/runtime/helpers/createClass", "@babel/runtime/helpers/possibleConstructorReturn", "@babel/runtime/helpers/getPrototypeOf", "@babel/runtime/helpers/inherits", "@babel/runtime/helpers/defineProperty", "react", "react-intl", "hoist-non-react-statics", "invariant", "./injectIntl", "./getDisplayName", "./intlHelper"], factory);
+    define(["exports", "@babel/runtime/helpers/extends", "@babel/runtime/regenerator", "@babel/runtime/helpers/asyncToGenerator", "@babel/runtime/helpers/classCallCheck", "@babel/runtime/helpers/createClass", "@babel/runtime/helpers/possibleConstructorReturn", "@babel/runtime/helpers/getPrototypeOf", "@babel/runtime/helpers/inherits", "@babel/runtime/helpers/defineProperty", "react", "react-intl", "hoist-non-react-statics", "invariant", "./injectIntl", "./getDisplayName", "./importPolyfill", "./intlHelper"], factory);
   } else if (typeof exports !== "undefined") {
-    factory(exports, require("@babel/runtime/helpers/extends"), require("@babel/runtime/regenerator"), require("@babel/runtime/helpers/asyncToGenerator"), require("@babel/runtime/helpers/classCallCheck"), require("@babel/runtime/helpers/createClass"), require("@babel/runtime/helpers/possibleConstructorReturn"), require("@babel/runtime/helpers/getPrototypeOf"), require("@babel/runtime/helpers/inherits"), require("@babel/runtime/helpers/defineProperty"), require("react"), require("react-intl"), require("hoist-non-react-statics"), require("invariant"), require("./injectIntl"), require("./getDisplayName"), require("./intlHelper"));
+    factory(exports, require("@babel/runtime/helpers/extends"), require("@babel/runtime/regenerator"), require("@babel/runtime/helpers/asyncToGenerator"), require("@babel/runtime/helpers/classCallCheck"), require("@babel/runtime/helpers/createClass"), require("@babel/runtime/helpers/possibleConstructorReturn"), require("@babel/runtime/helpers/getPrototypeOf"), require("@babel/runtime/helpers/inherits"), require("@babel/runtime/helpers/defineProperty"), require("react"), require("react-intl"), require("hoist-non-react-statics"), require("invariant"), require("./injectIntl"), require("./getDisplayName"), require("./importPolyfill"), require("./intlHelper"));
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global._extends, global.regenerator, global.asyncToGenerator, global.classCallCheck, global.createClass, global.possibleConstructorReturn, global.getPrototypeOf, global.inherits, global.defineProperty, global.react, global.reactIntl, global.hoistNonReactStatics, global.invariant, global.injectIntl, global.getDisplayName, global.intlHelper);
+    factory(mod.exports, global._extends, global.regenerator, global.asyncToGenerator, global.classCallCheck, global.createClass, global.possibleConstructorReturn, global.getPrototypeOf, global.inherits, global.defineProperty, global.react, global.reactIntl, global.hoistNonReactStatics, global.invariant, global.injectIntl, global.getDisplayName, global.importPolyfill, global.intlHelper);
     global.index = mod.exports;
   }
-})(this, function (_exports, _extends2, _regenerator, _asyncToGenerator2, _classCallCheck2, _createClass2, _possibleConstructorReturn2, _getPrototypeOf2, _inherits2, _defineProperty2, _react, _reactIntl, _hoistNonReactStatics, _invariant, _injectIntl, _getDisplayName, _intlHelper) {
+})(this, function (_exports, _extends2, _regenerator, _asyncToGenerator2, _classCallCheck2, _createClass2, _possibleConstructorReturn2, _getPrototypeOf2, _inherits2, _defineProperty2, _react, _reactIntl, _hoistNonReactStatics, _invariant, _injectIntl, _getDisplayName, _importPolyfill, _intlHelper) {
   "use strict";
 
   var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -34,9 +34,17 @@
   _invariant = _interopRequireDefault(_invariant);
   _injectIntl = _interopRequireDefault(_injectIntl);
   _getDisplayName = _interopRequireDefault(_getDisplayName);
+  _importPolyfill = _interopRequireDefault(_importPolyfill);
 
   var fetchIntl = function fetchIntl(locale, page) {
-    return import("lang/".concat(locale, "/").concat(page, ".json"));
+    try {
+      Function('import("")');
+      return import("lang/".concat(locale, "/").concat(page, ".json"));
+    } catch (err) {
+      return (0, _importPolyfill.default)("lang/".concat(locale, "/").concat(page, ".json"));
+    }
+
+    ;
   };
 
   function withIntl(locale, page) {

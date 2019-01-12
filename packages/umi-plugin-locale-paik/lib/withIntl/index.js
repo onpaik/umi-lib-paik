@@ -38,10 +38,19 @@ var _injectIntl = _interopRequireDefault(require("./injectIntl"));
 
 var _getDisplayName = _interopRequireDefault(require("./getDisplayName"));
 
+var _importPolyfill = _interopRequireDefault(require("./importPolyfill"));
+
 var _intlHelper = require("./intlHelper");
 
 var fetchIntl = function fetchIntl(locale, page) {
-  return import("lang/".concat(locale, "/").concat(page, ".json"));
+  try {
+    Function('import("")');
+    return import("lang/".concat(locale, "/").concat(page, ".json"));
+  } catch (err) {
+    return (0, _importPolyfill.default)("lang/".concat(locale, "/").concat(page, ".json"));
+  }
+
+  ;
 };
 
 function withIntl(locale, page) {
