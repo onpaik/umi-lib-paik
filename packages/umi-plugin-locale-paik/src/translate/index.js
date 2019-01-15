@@ -333,7 +333,8 @@ export default function (api, opt={}) {
   api.onBuildSuccess(({ stats }) => {
     if(process.env.NODE_ENV === 'production' && dynamicIntl){
       const { absOutputPath } = paths;
-      compressionJosn(absOutputPath,);
+      const { _unicode } = config;
+      compressionJosn(absOutputPath,_unicode);
     }
   });
   api.registerCommand('intl',{
@@ -348,16 +349,16 @@ export default function (api, opt={}) {
   });
 }
 
-function compressFile(file){
+function compressFile(file,_unicode){
   const data = readFileSync(file, 'utf-8');
   const parseData = JSON.parse(data);
-  const stringifyData = JSON.stringify(parseData);
-  /* .replace(/[\u007F-\uFFFF]/g, chr => {
+  let stringifyData = JSON.stringify(parseData);
+  if(_unicode) stringifyData = stringifyData.replace(/[\u007F-\uFFFF]/g, chr => {
     return "\\u" + ("0000" + chr.charCodeAt(0).toString(16)).substr(-4)
-  }) */
+  })
   writeFileSync(file,stringifyData);
 }
-function handleJsonFile(filePath){
+function handleJsonFile(filePath,_unicode){
   // 根据文件路径读取文件，返回文件列表
   const files = readdirSync(filePath);
   files.forEach(fileName => {
@@ -365,18 +366,18 @@ function handleJsonFile(filePath){
     const stats = statSync(filedir);
     const isFile = stats.isFile(filedir);
     const isDir = stats.isDirectory();
-    if (isDir) handleJsonFile(filedir);
+    if (isDir) handleJsonFile(filedir,_unicode);
     if (isFile) {
-      compressFile(filedir);
+      compressFile(filedir,_unicode);
     }
   });
 };
-async function compressionJosn(absOutputPath){
+async function compressionJosn(absOutputPath,_unicode){
   const langFloder = winPath(`${absOutputPath}/lang`);
   if(existsSync(langFloder)){
     const spinner = ora();
     spinner.start('开始压缩处理动态国际化文件\n');
-    handleJsonFile(langFloder);
+    handleJsonFile(langFloder,_unicode);
     spinner.succeed('压缩处理动态国际化文件完成\n');
   }
 }

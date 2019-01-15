@@ -411,7 +411,7 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
                               }, _callee7, this);
                             }));
 
-                            return function (_x15) {
+                            return function (_x16) {
                               return _ref5.apply(this, arguments);
                             };
                           }());
@@ -428,7 +428,7 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
                   }, _callee8, this);
                 }));
 
-                return function (_x14) {
+                return function (_x15) {
                   return _ref4.apply(this, arguments);
                 };
               }());
@@ -621,7 +621,7 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
                               }, _callee11, this);
                             }));
 
-                            return function (_x17) {
+                            return function (_x18) {
                               return _ref7.apply(this, arguments);
                             };
                           }());
@@ -637,7 +637,7 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
                   }, _callee12, this);
                 }));
 
-                return function (_x16) {
+                return function (_x17) {
                   return _ref6.apply(this, arguments);
                 };
               }());
@@ -718,7 +718,7 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
                   }, _callee14, this);
                 }));
 
-                return function (_x18) {
+                return function (_x19) {
                   return _ref8.apply(this, arguments);
                 };
               }());
@@ -789,7 +789,7 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
                   }, _callee16, this);
                 }));
 
-                return function (_x19) {
+                return function (_x20) {
                   return _ref9.apply(this, arguments);
                 };
               }());
@@ -881,7 +881,7 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
                   }, _callee18, this);
                 }));
 
-                return function (_x20) {
+                return function (_x21) {
                   return _ref10.apply(this, arguments);
                 };
               }());
@@ -1025,7 +1025,8 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
 
       if (process.env.NODE_ENV === 'production' && dynamicIntl) {
         var absOutputPath = paths.absOutputPath;
-        compressionJosn(absOutputPath);
+        var _unicode = config._unicode;
+        compressionJosn(absOutputPath, _unicode);
       }
     });
     api.registerCommand('intl', {
@@ -1035,18 +1036,17 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
     });
   }
 
-  function compressFile(file) {
+  function compressFile(file, _unicode) {
     var data = (0, _fs.readFileSync)(file, 'utf-8');
     var parseData = JSON.parse(data);
     var stringifyData = JSON.stringify(parseData);
-    /* .replace(/[\u007F-\uFFFF]/g, chr => {
-      return "\\u" + ("0000" + chr.charCodeAt(0).toString(16)).substr(-4)
-    }) */
-
+    if (_unicode) stringifyData = stringifyData.replace(/[\u007F-\uFFFF]/g, function (chr) {
+      return "\\u" + ("0000" + chr.charCodeAt(0).toString(16)).substr(-4);
+    });
     (0, _fs.writeFileSync)(file, stringifyData);
   }
 
-  function handleJsonFile(filePath) {
+  function handleJsonFile(filePath, _unicode) {
     // 根据文件路径读取文件，返回文件列表
     var files = (0, _fs.readdirSync)(filePath);
     files.forEach(function (fileName) {
@@ -1054,24 +1054,24 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
       var stats = (0, _fs.statSync)(filedir);
       var isFile = stats.isFile(filedir);
       var isDir = stats.isDirectory();
-      if (isDir) handleJsonFile(filedir);
+      if (isDir) handleJsonFile(filedir, _unicode);
 
       if (isFile) {
-        compressFile(filedir);
+        compressFile(filedir, _unicode);
       }
     });
   }
 
   ;
 
-  function compressionJosn(_x13) {
+  function compressionJosn(_x13, _x14) {
     return _compressionJosn.apply(this, arguments);
   }
 
   function _compressionJosn() {
     _compressionJosn = (0, _asyncToGenerator2.default)(
     /*#__PURE__*/
-    _regenerator.default.mark(function _callee21(absOutputPath) {
+    _regenerator.default.mark(function _callee21(absOutputPath, _unicode) {
       var langFloder, spinner;
       return _regenerator.default.wrap(function _callee21$(_context21) {
         while (1) {
@@ -1082,7 +1082,7 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
               if ((0, _fs.existsSync)(langFloder)) {
                 spinner = (0, _ora.default)();
                 spinner.start('开始压缩处理动态国际化文件\n');
-                handleJsonFile(langFloder);
+                handleJsonFile(langFloder, _unicode);
                 spinner.succeed('压缩处理动态国际化文件完成\n');
               }
 

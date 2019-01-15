@@ -145,13 +145,17 @@
 
   function getOpts(key, options) {
     if (key === 'translate') {
-      var _options$translate;
+      var _options$translate, _options$translate2;
 
       var transLateSupport = (options === null || options === void 0 ? void 0 : (_options$translate = options.translate) === null || _options$translate === void 0 ? void 0 : _options$translate.support) || {};
       var dynamicIntl = options.dynamicIntl || undefined;
+
+      var _unicode = (options === null || options === void 0 ? void 0 : (_options$translate2 = options.translate) === null || _options$translate2 === void 0 ? void 0 : _options$translate2._unicode) || undefined;
+
       return {
         support: (0, _objectSpread2.default)({}, transLateSupport),
-        dynamicIntl: dynamicIntl
+        dynamicIntl: dynamicIntl,
+        _unicode: _unicode
       };
     }
 

@@ -10,6 +10,10 @@
 ## v3.0.5
 + 增加更多 react-intl 的api
 
+## v3.0.6
++ umi build 时会先执行 umi intl 命名，确保国际化信息的提取
++ umi buld 结束后，会对lang 文件夹下的json文件进行`JSON.stringify`, 减少一丁点体积(蚊子腿)
+
 ## 配置 options
 新版本使用新的配置结构，更加结构化
 ```javascript
@@ -49,3 +53,5 @@
 
 去除`support.zhTW` 与 `support.zhHK`的默认国际化支持，
 
+## 问题
+目前没有找到合适的方法在开发过程中自动进行 `umi intl` 的过程

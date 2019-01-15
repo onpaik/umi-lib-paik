@@ -124,11 +124,13 @@ function getOpts(key, options){
   if(key === 'translate'){
     const transLateSupport = options?.translate?.support || {};
     const dynamicIntl = options.dynamicIntl || undefined;
+    const _unicode = options?.translate?._unicode || undefined;
     return {
       support:{
         ...transLateSupport,
       },
       dynamicIntl,
+      _unicode
     }
   }
   return{}
