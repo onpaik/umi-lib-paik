@@ -1,12 +1,13 @@
 import '@babel/polyfill';
 import { join, extname,dirname,basename } from 'path';
 import { transformFileSync } from '@babel/core';
-import { writeFileSync,existsSync } from 'fs';
+import { writeFileSync,existsSync,readdirSync,statSync,readFileSync } from 'fs';
 import  mkdirp from 'mkdirp';
 import globby from 'globby';
 import rimraf from 'rimraf';
 import { winPath } from 'umi-utils';
 import ora from 'ora';
+import execa from 'execa';
 import {
   simplifiedToTaiwanWithPhrases,
   simplifiedToHongKong,
@@ -322,6 +323,19 @@ export default function (api, opt={}) {
     opt = newOpts;
     api.rebuildTmpFiles();
   });
+  api.onStart(() => {
+    if(process.env.NODE_ENV === 'production' && dynamicIntl){
+      (async () => {
+        await execa('umi', ['intl']);
+      })();
+    }
+  })
+  api.onBuildSuccess(({ stats }) => {
+    if(process.env.NODE_ENV === 'production' && dynamicIntl){
+      const { absOutputPath } = paths;
+      compressionJosn(absOutputPath,);
+    }
+  });
   api.registerCommand('intl',{
     hide:false,
   },args => {
@@ -332,4 +346,37 @@ export default function (api, opt={}) {
       dynamicIntl,
     )
   });
+}
+
+function compressFile(file){
+  const data = readFileSync(file, 'utf-8');
+  const parseData = JSON.parse(data);
+  const stringifyData = JSON.stringify(parseData);
+  /* .replace(/[\u007F-\uFFFF]/g, chr => {
+    return "\\u" + ("0000" + chr.charCodeAt(0).toString(16)).substr(-4)
+  }) */
+  writeFileSync(file,stringifyData);
+}
+function handleJsonFile(filePath){
+  // 根据文件路径读取文件，返回文件列表
+  const files = readdirSync(filePath);
+  files.forEach(fileName => {
+    const filedir = join(filePath, fileName);
+    const stats = statSync(filedir);
+    const isFile = stats.isFile(filedir);
+    const isDir = stats.isDirectory();
+    if (isDir) handleJsonFile(filedir);
+    if (isFile) {
+      compressFile(filedir);
+    }
+  });
+};
+async function compressionJosn(absOutputPath){
+  const langFloder = winPath(`${absOutputPath}/lang`);
+  if(existsSync(langFloder)){
+    const spinner = ora();
+    spinner.start('开始压缩处理动态国际化文件\n');
+    handleJsonFile(langFloder);
+    spinner.succeed('压缩处理动态国际化文件完成\n');
+  }
 }

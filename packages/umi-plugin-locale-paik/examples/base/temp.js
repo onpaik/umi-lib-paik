@@ -1,6 +1,5 @@
 {
-  mode: 'development',
-  devtool: 'cheap-module-source-map',
+  mode: 'production',
   node: {
     setImmediate: false,
     process: 'mock',
@@ -15,8 +14,7 @@
     filename: '[name].js',
     chunkFilename: '[name].async.js',
     publicPath: '/',
-    devtoolModuleFilenameTemplate: function () { /* omitted long function */ },
-    pathinfo: true
+    devtoolModuleFilenameTemplate: function () { /* omitted long function */ }
   },
   resolve: {
     symlinks: true,
@@ -31,7 +29,7 @@
       'react-router-dom': '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/react-router-dom',
       history: '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/umi-history',
       '@': '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/src/',
-      '@tmp': '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/src/pages/.umi',
+      '@tmp': '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/src/pages/.umi-production',
       'umi/link': '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/umi/lib/link.js',
       'umi/dynamic': '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/umi/lib/dynamic.js',
       'umi/navlink': '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/umi/lib/navlink.js',
@@ -333,15 +331,11 @@
       {
         test: filePath => filePath.indexOf(exclude) > -1,
         use: [
-          /* config.module.rule('cssModulesExcludes_0').use('css-hot-loader') */
-          {
-            loader: '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/css-hot-loader/index.js'
-          },
           /* config.module.rule('cssModulesExcludes_0').use('extract-css-loader') */
           {
             loader: '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/mini-css-extract-plugin/dist/loader.js',
             options: {
-              publicPath: '/'
+              publicPath: undefined
             }
           },
           /* config.module.rule('cssModulesExcludes_0').use('css-loader') */
@@ -366,15 +360,11 @@
       {
         test: filePath => filePath.indexOf(exclude) > -1,
         use: [
-          /* config.module.rule('cssModulesExcludes_1').use('css-hot-loader') */
-          {
-            loader: '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/css-hot-loader/index.js'
-          },
           /* config.module.rule('cssModulesExcludes_1').use('extract-css-loader') */
           {
             loader: '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/mini-css-extract-plugin/dist/loader.js',
             options: {
-              publicPath: '/'
+              publicPath: undefined
             }
           },
           /* config.module.rule('cssModulesExcludes_1').use('css-loader') */
@@ -399,15 +389,11 @@
       {
         test: filePath => filePath.indexOf(exclude) > -1,
         use: [
-          /* config.module.rule('cssModulesExcludes_2').use('css-hot-loader') */
-          {
-            loader: '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/css-hot-loader/index.js'
-          },
           /* config.module.rule('cssModulesExcludes_2').use('extract-css-loader') */
           {
             loader: '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/mini-css-extract-plugin/dist/loader.js',
             options: {
-              publicPath: '/'
+              publicPath: undefined
             }
           },
           /* config.module.rule('cssModulesExcludes_2').use('css-loader') */
@@ -440,15 +426,11 @@
       {
         test: filePath => filePath.indexOf(exclude) > -1,
         use: [
-          /* config.module.rule('cssModulesExcludes_3').use('css-hot-loader') */
-          {
-            loader: '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/css-hot-loader/index.js'
-          },
           /* config.module.rule('cssModulesExcludes_3').use('extract-css-loader') */
           {
             loader: '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/mini-css-extract-plugin/dist/loader.js',
             options: {
-              publicPath: '/'
+              publicPath: undefined
             }
           },
           /* config.module.rule('cssModulesExcludes_3').use('css-loader') */
@@ -476,15 +458,11 @@
           function () { /* omitted long function */ }
         ],
         use: [
-          /* config.module.rule('css').use('css-hot-loader') */
-          {
-            loader: '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/css-hot-loader/index.js'
-          },
           /* config.module.rule('css').use('extract-css-loader') */
           {
             loader: '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/mini-css-extract-plugin/dist/loader.js',
             options: {
-              publicPath: '/'
+              publicPath: undefined
             }
           },
           /* config.module.rule('css').use('css-loader') */
@@ -494,7 +472,7 @@
               importLoaders: 1,
               sourceMap: true,
               modules: true,
-              localIdentName: '[name]__[local]___[hash:base64:5]'
+              localIdentName: '[local]___[hash:base64:5]'
             }
           },
           /* config.module.rule('css').use('postcss-loader') */
@@ -514,15 +492,11 @@
           /node_modules/
         ],
         use: [
-          /* config.module.rule('css-in-node_modules').use('css-hot-loader') */
-          {
-            loader: '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/css-hot-loader/index.js'
-          },
           /* config.module.rule('css-in-node_modules').use('extract-css-loader') */
           {
             loader: '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/mini-css-extract-plugin/dist/loader.js',
             options: {
-              publicPath: '/'
+              publicPath: undefined
             }
           },
           /* config.module.rule('css-in-node_modules').use('css-loader') */
@@ -550,15 +524,11 @@
           function () { /* omitted long function */ }
         ],
         use: [
-          /* config.module.rule('less').use('css-hot-loader') */
-          {
-            loader: '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/css-hot-loader/index.js'
-          },
           /* config.module.rule('less').use('extract-css-loader') */
           {
             loader: '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/mini-css-extract-plugin/dist/loader.js',
             options: {
-              publicPath: '/'
+              publicPath: undefined
             }
           },
           /* config.module.rule('less').use('css-loader') */
@@ -568,7 +538,7 @@
               importLoaders: 1,
               sourceMap: true,
               modules: true,
-              localIdentName: '[name]__[local]___[hash:base64:5]'
+              localIdentName: '[local]___[hash:base64:5]'
             }
           },
           /* config.module.rule('less').use('postcss-loader') */
@@ -596,15 +566,11 @@
           /node_modules/
         ],
         use: [
-          /* config.module.rule('less-in-node_modules').use('css-hot-loader') */
-          {
-            loader: '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/css-hot-loader/index.js'
-          },
           /* config.module.rule('less-in-node_modules').use('extract-css-loader') */
           {
             loader: '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/mini-css-extract-plugin/dist/loader.js',
             options: {
-              publicPath: '/'
+              publicPath: undefined
             }
           },
           /* config.module.rule('less-in-node_modules').use('css-loader') */
@@ -640,15 +606,11 @@
           function () { /* omitted long function */ }
         ],
         use: [
-          /* config.module.rule('sass').use('css-hot-loader') */
-          {
-            loader: '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/css-hot-loader/index.js'
-          },
           /* config.module.rule('sass').use('extract-css-loader') */
           {
             loader: '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/mini-css-extract-plugin/dist/loader.js',
             options: {
-              publicPath: '/'
+              publicPath: undefined
             }
           },
           /* config.module.rule('sass').use('css-loader') */
@@ -658,7 +620,7 @@
               importLoaders: 1,
               sourceMap: true,
               modules: true,
-              localIdentName: '[name]__[local]___[hash:base64:5]'
+              localIdentName: '[local]___[hash:base64:5]'
             }
           },
           /* config.module.rule('sass').use('postcss-loader') */
@@ -678,15 +640,11 @@
           /node_modules/
         ],
         use: [
-          /* config.module.rule('sass-in-node_modules').use('css-hot-loader') */
-          {
-            loader: '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/css-hot-loader/index.js'
-          },
           /* config.module.rule('sass-in-node_modules').use('extract-css-loader') */
           {
             loader: '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/mini-css-extract-plugin/dist/loader.js',
             options: {
-              publicPath: '/'
+              publicPath: undefined
             }
           },
           /* config.module.rule('sass-in-node_modules').use('css-loader') */
@@ -709,6 +667,69 @@
       }
     ]
   },
+  optimization: {
+    noEmitOnErrors: true,
+    minimizer: [
+      {
+        options: {
+          test: /\.js(\?.*)?$/i,
+          warningsFilter: function () {
+                return true;
+              },
+          extractComments: false,
+          sourceMap: false,
+          cache: true,
+          cacheKeys: function (defaultCacheKeys) {
+                return defaultCacheKeys;
+              },
+          parallel: true,
+          include: undefined,
+          exclude: undefined,
+          minify: undefined,
+          uglifyOptions: {
+            compress: {
+              ecma: 5,
+              warnings: false,
+              arrows: false,
+              collapse_vars: false,
+              comparisons: false,
+              computed_props: false,
+              hoist_funs: false,
+              hoist_props: false,
+              hoist_vars: false,
+              inline: false,
+              loops: false,
+              negate_iife: false,
+              properties: false,
+              reduce_funcs: false,
+              reduce_vars: false,
+              switches: false,
+              toplevel: false,
+              typeofs: false,
+              booleans: true,
+              if_return: true,
+              sequences: true,
+              unused: true,
+              conditionals: true,
+              dead_code: true,
+              evaluate: true
+            },
+            output: {
+              ecma: 5,
+              comments: false,
+              ascii_only: true
+            },
+            parse: {
+              ecma: 8
+            },
+            mangle: {
+              safari10: true
+            }
+          }
+        }
+      }
+    ]
+  },
   plugins: [
     /* config.plugin('extract-css') */
     new MiniCssExtractPlugin(
@@ -721,7 +742,7 @@
     new DefinePlugin(
       {
         'process.env': {
-          NODE_ENV: '"development"'
+          NODE_ENV: '"production"'
         },
         'process.env.BASE_URL': '"/"',
         __UMI_BIGFISH_COMPAT: undefined,
@@ -755,13 +776,20 @@
         clearConsole: false
       }
     ),
-    /* config.plugin('hmr') */
-    new HotModuleReplacementPlugin()
+    /* config.plugin('hash-module-ids') */
+    new HashedModuleIdsPlugin(),
+    /* config.plugin('language') */
+    new IgnorePlugin(
+      /^\.\/js|json/,
+      /public\/lang$/
+    )
   ],
+  performance: {
+    hints: false
+  },
   entry: {
     umi: [
-      '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/af-webpack/lib/webpackHotDevClient.js',
-      '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/src/pages/.umi/umi.js'
+      '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/src/pages/.umi-production/umi.js'
     ]
   }
 }

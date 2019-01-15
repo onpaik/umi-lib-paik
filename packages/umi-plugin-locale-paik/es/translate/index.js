@@ -1,4 +1,4 @@
-define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/helpers/objectSpread", "@babel/runtime/regenerator", "@babel/runtime/helpers/asyncToGenerator", "@babel/polyfill", "path", "@babel/core", "fs", "mkdirp", "globby", "rimraf", "umi-utils", "ora", "node-opencc", "chalk"], function (_exports, _defineProperty2, _objectSpread5, _regenerator, _asyncToGenerator2, _polyfill, _path, _core, _fs, _mkdirp, _globby, _rimraf, _umiUtils, _ora, _nodeOpencc, _chalk) {
+define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/helpers/objectSpread", "@babel/runtime/regenerator", "@babel/runtime/helpers/asyncToGenerator", "@babel/polyfill", "path", "@babel/core", "fs", "mkdirp", "globby", "rimraf", "umi-utils", "ora", "execa", "node-opencc", "chalk"], function (_exports, _defineProperty2, _objectSpread5, _regenerator, _asyncToGenerator2, _polyfill, _path, _core, _fs, _mkdirp, _globby, _rimraf, _umiUtils, _ora, _execa, _nodeOpencc, _chalk) {
   "use strict";
 
   var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -15,6 +15,7 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
   _globby = _interopRequireDefault(_globby);
   _rimraf = _interopRequireDefault(_rimraf);
   _ora = _interopRequireDefault(_ora);
+  _execa = _interopRequireDefault(_execa);
   _chalk = _interopRequireDefault(_chalk);
 
   var deepmerge = require('deepmerge');
@@ -167,26 +168,26 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
   function _writeFile() {
     _writeFile = (0, _asyncToGenerator2.default)(
     /*#__PURE__*/
-    _regenerator.default.mark(function _callee4(destPath, code) {
+    _regenerator.default.mark(function _callee5(destPath, code) {
       var dir;
-      return _regenerator.default.wrap(function _callee4$(_context4) {
+      return _regenerator.default.wrap(function _callee5$(_context5) {
         while (1) {
-          switch (_context4.prev = _context4.next) {
+          switch (_context5.prev = _context5.next) {
             case 0:
               dir = (0, _path.dirname)(destPath);
-              _context4.next = 3;
+              _context5.next = 3;
               return _mkdirp.default.sync(dir);
 
             case 3:
-              _context4.next = 5;
+              _context5.next = 5;
               return (0, _fs.writeFileSync)(destPath, code);
 
             case 5:
             case "end":
-              return _context4.stop();
+              return _context5.stop();
           }
         }
-      }, _callee4, this);
+      }, _callee5, this);
     }));
     return _writeFile.apply(this, arguments);
   }
@@ -247,7 +248,7 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
   function _addIntl() {
     _addIntl = (0, _asyncToGenerator2.default)(
     /*#__PURE__*/
-    _regenerator.default.mark(function _callee5() {
+    _regenerator.default.mark(function _callee6() {
       var _len2,
           arg,
           _key3,
@@ -266,14 +267,14 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
           code,
           content,
           _content,
-          _args5 = arguments;
+          _args6 = arguments;
 
-      return _regenerator.default.wrap(function _callee5$(_context5) {
+      return _regenerator.default.wrap(function _callee6$(_context6) {
         while (1) {
-          switch (_context5.prev = _context5.next) {
+          switch (_context6.prev = _context6.next) {
             case 0:
-              for (_len2 = _args5.length, arg = new Array(_len2), _key3 = 0; _key3 < _len2; _key3++) {
-                arg[_key3] = _args5[_key3];
+              for (_len2 = _args6.length, arg = new Array(_len2), _key3 = 0; _key3 < _len2; _key3++) {
+                arg[_key3] = _args6[_key3];
               }
 
               file = arg[0], singular = arg[1], absSrcPath = arg[2], support = arg[3], spinner = arg[4];
@@ -285,26 +286,26 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
               data = {};
 
               if (!ext.match(/^(j|t)s$/i)) {
-                _context5.next = 21;
+                _context6.next = 21;
                 break;
               }
 
-              _context5.next = 11;
+              _context6.next = 11;
               return _rimraf.default.sync((0, _umiUtils.winPath)("".concat(absSrcPath).concat(floder, "/").concat(tfloder)));
 
             case 11:
               _transformFileSync = (0, _core.transformFileSync)(path, getBabelConfig()), code = _transformFileSync.code;
-              _context5.next = 14;
+              _context6.next = 14;
               return writeFile(newPath, code);
 
             case 14:
               delete require.cache[newPath];
-              _context5.next = 17;
+              _context6.next = 17;
               return require(newPath).default;
 
             case 17:
-              content = _context5.sent;
-              _context5.next = 20;
+              content = _context6.sent;
+              _context6.next = 20;
               return _rimraf.default.sync((0, _umiUtils.winPath)("".concat(absSrcPath).concat(floder, "/").concat(tfloder)));
 
             case 20:
@@ -317,14 +318,14 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
                 data = transLate(_content, support, data, path);
               }
 
-              return _context5.abrupt("return", data);
+              return _context6.abrupt("return", data);
 
             case 23:
             case "end":
-              return _context5.stop();
+              return _context6.stop();
           }
         }
-      }, _callee5, this);
+      }, _callee6, this);
     }));
     return _addIntl.apply(this, arguments);
   }
@@ -336,7 +337,7 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
   function _transLatePublic() {
     _transLatePublic = (0, _asyncToGenerator2.default)(
     /*#__PURE__*/
-    _regenerator.default.mark(function _callee8() {
+    _regenerator.default.mark(function _callee9() {
       var _len3,
           arg,
           _key4,
@@ -349,14 +350,14 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
           localeKey,
           data,
           temp,
-          _args8 = arguments;
+          _args9 = arguments;
 
-      return _regenerator.default.wrap(function _callee8$(_context8) {
+      return _regenerator.default.wrap(function _callee9$(_context9) {
         while (1) {
-          switch (_context8.prev = _context8.next) {
+          switch (_context9.prev = _context9.next) {
             case 0:
-              for (_len3 = _args8.length, arg = new Array(_len3), _key4 = 0; _key4 < _len3; _key4++) {
-                arg[_key4] = _args8[_key4];
+              for (_len3 = _args9.length, arg = new Array(_len3), _key4 = 0; _key4 < _len3; _key4++) {
+                arg[_key4] = _args9[_key4];
               }
 
               content = arg[0], support = arg[1], path = arg[2], spinner = arg[3];
@@ -375,73 +376,73 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
                 data[lang] = {};
                 return lang;
               });
-              _context8.next = 9;
+              _context9.next = 9;
               return Object.values(content).mapSync(
               /*#__PURE__*/
               function () {
-                var _ref2 = (0, _asyncToGenerator2.default)(
+                var _ref4 = (0, _asyncToGenerator2.default)(
                 /*#__PURE__*/
-                _regenerator.default.mark(function _callee7(obj) {
+                _regenerator.default.mark(function _callee8(obj) {
                   var id, stemp;
-                  return _regenerator.default.wrap(function _callee7$(_context7) {
+                  return _regenerator.default.wrap(function _callee8$(_context8) {
                     while (1) {
-                      switch (_context7.prev = _context7.next) {
+                      switch (_context8.prev = _context8.next) {
                         case 0:
                           id = obj.id;
-                          _context7.next = 3;
+                          _context8.next = 3;
                           return localeKey.mapSync(
                           /*#__PURE__*/
                           function () {
-                            var _ref3 = (0, _asyncToGenerator2.default)(
+                            var _ref5 = (0, _asyncToGenerator2.default)(
                             /*#__PURE__*/
-                            _regenerator.default.mark(function _callee6(k) {
-                              return _regenerator.default.wrap(function _callee6$(_context6) {
+                            _regenerator.default.mark(function _callee7(k) {
+                              return _regenerator.default.wrap(function _callee7$(_context7) {
                                 while (1) {
-                                  switch (_context6.prev = _context6.next) {
+                                  switch (_context7.prev = _context7.next) {
                                     case 0:
                                       data[support[k]] = (0, _objectSpread5.default)({}, data[support[k]], (0, _defineProperty2.default)({}, id, useTranslate(k, obj)));
-                                      return _context6.abrupt("return", k);
+                                      return _context7.abrupt("return", k);
 
                                     case 2:
                                     case "end":
-                                      return _context6.stop();
+                                      return _context7.stop();
                                   }
                                 }
-                              }, _callee6, this);
+                              }, _callee7, this);
                             }));
 
-                            return function (_x14) {
-                              return _ref3.apply(this, arguments);
+                            return function (_x15) {
+                              return _ref5.apply(this, arguments);
                             };
                           }());
 
                         case 3:
-                          stemp = _context7.sent;
-                          return _context7.abrupt("return", obj);
+                          stemp = _context8.sent;
+                          return _context8.abrupt("return", obj);
 
                         case 5:
                         case "end":
-                          return _context7.stop();
+                          return _context8.stop();
                       }
                     }
-                  }, _callee7, this);
+                  }, _callee8, this);
                 }));
 
-                return function (_x13) {
-                  return _ref2.apply(this, arguments);
+                return function (_x14) {
+                  return _ref4.apply(this, arguments);
                 };
               }());
 
             case 9:
-              temp = _context8.sent;
-              return _context8.abrupt("return", data);
+              temp = _context9.sent;
+              return _context9.abrupt("return", data);
 
             case 11:
             case "end":
-              return _context8.stop();
+              return _context9.stop();
           }
         }
-      }, _callee8, this);
+      }, _callee9, this);
     }));
     return _transLatePublic.apply(this, arguments);
   }
@@ -453,7 +454,7 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
   function _generatePublicFile() {
     _generatePublicFile = (0, _asyncToGenerator2.default)(
     /*#__PURE__*/
-    _regenerator.default.mark(function _callee9() {
+    _regenerator.default.mark(function _callee10() {
       var _len4,
           arg,
           _key5,
@@ -475,14 +476,14 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
           data,
           _content2,
           _data2,
-          _args9 = arguments;
+          _args10 = arguments;
 
-      return _regenerator.default.wrap(function _callee9$(_context9) {
+      return _regenerator.default.wrap(function _callee10$(_context10) {
         while (1) {
-          switch (_context9.prev = _context9.next) {
+          switch (_context10.prev = _context10.next) {
             case 0:
-              for (_len4 = _args9.length, arg = new Array(_len4), _key5 = 0; _key5 < _len4; _key5++) {
-                arg[_key5] = _args9[_key5];
+              for (_len4 = _args10.length, arg = new Array(_len4), _key5 = 0; _key5 < _len4; _key5++) {
+                arg[_key5] = _args10[_key5];
               }
 
               file = arg[0], absSrcPath = arg[1], support = arg[2], collectData = arg[3], spinner = arg[4];
@@ -495,60 +496,60 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
               _tempData = (0, _defineProperty2.default)({}, dynamicName, (0, _objectSpread5.default)({}, collectData[dynamicName] || {}));
 
               if (!ext.match(/^(j|t)s$/i)) {
-                _context9.next = 25;
+                _context10.next = 25;
                 break;
               }
 
-              _context9.next = 12;
+              _context10.next = 12;
               return _rimraf.default.sync(tempPublicPath);
 
             case 12:
               _transformFileSync2 = (0, _core.transformFileSync)(path, getBabelConfig()), code = _transformFileSync2.code;
-              _context9.next = 15;
+              _context10.next = 15;
               return writeFile(tempFilePath, code);
 
             case 15:
               delete require.cache[tempFilePath];
-              _context9.next = 18;
+              _context10.next = 18;
               return require(tempFilePath).default;
 
             case 18:
-              content = _context9.sent;
-              _context9.next = 21;
+              content = _context10.sent;
+              _context10.next = 21;
               return _rimraf.default.sync(tempPublicPath);
 
             case 21:
-              _context9.next = 23;
+              _context10.next = 23;
               return transLatePublic(content, support, path, spinner);
 
             case 23:
-              data = _context9.sent;
+              data = _context10.sent;
               _tempData[dynamicName] = deepmerge(data, _tempData[dynamicName]);
 
             case 25:
               if (!ext.match(/^json$/i)) {
-                _context9.next = 32;
+                _context10.next = 32;
                 break;
               }
 
               delete require.cache[tempFilePath];
               _content2 = require(tempFilePath);
-              _context9.next = 30;
+              _context10.next = 30;
               return transLatePublic(_content2, support, path, spinner);
 
             case 30:
-              _data2 = _context9.sent;
+              _data2 = _context10.sent;
               _tempData[dynamicName] = deepmerge(_data2, _tempData[dynamicName]);
 
             case 32:
-              return _context9.abrupt("return", _tempData);
+              return _context10.abrupt("return", _tempData);
 
             case 33:
             case "end":
-              return _context9.stop();
+              return _context10.stop();
           }
         }
-      }, _callee9, this);
+      }, _callee10, this);
     }));
     return _generatePublicFile.apply(this, arguments);
   }
@@ -560,93 +561,93 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
   function _writePublic() {
     _writePublic = (0, _asyncToGenerator2.default)(
     /*#__PURE__*/
-    _regenerator.default.mark(function _callee12(data, absSrcPath) {
-      return _regenerator.default.wrap(function _callee12$(_context12) {
+    _regenerator.default.mark(function _callee13(data, absSrcPath) {
+      return _regenerator.default.wrap(function _callee13$(_context13) {
         while (1) {
-          switch (_context12.prev = _context12.next) {
+          switch (_context13.prev = _context13.next) {
             case 0:
-              _context12.next = 2;
+              _context13.next = 2;
               return Object.keys(data).mapSync(
               /*#__PURE__*/
               function () {
-                var _ref4 = (0, _asyncToGenerator2.default)(
+                var _ref6 = (0, _asyncToGenerator2.default)(
                 /*#__PURE__*/
-                _regenerator.default.mark(function _callee11(name) {
+                _regenerator.default.mark(function _callee12(name) {
                   var distFloder;
-                  return _regenerator.default.wrap(function _callee11$(_context11) {
+                  return _regenerator.default.wrap(function _callee12$(_context12) {
                     while (1) {
-                      switch (_context11.prev = _context11.next) {
+                      switch (_context12.prev = _context12.next) {
                         case 0:
                           distFloder = "".concat(absSrcPath.replace(/src\//, 'public/lang'));
-                          _context11.next = 3;
+                          _context12.next = 3;
                           return Object.keys(data[name]).mapSync(
                           /*#__PURE__*/
                           function () {
-                            var _ref5 = (0, _asyncToGenerator2.default)(
+                            var _ref7 = (0, _asyncToGenerator2.default)(
                             /*#__PURE__*/
-                            _regenerator.default.mark(function _callee10(lang) {
+                            _regenerator.default.mark(function _callee11(lang) {
                               var filePath, orignData;
-                              return _regenerator.default.wrap(function _callee10$(_context10) {
+                              return _regenerator.default.wrap(function _callee11$(_context11) {
                                 while (1) {
-                                  switch (_context10.prev = _context10.next) {
+                                  switch (_context11.prev = _context11.next) {
                                     case 0:
                                       filePath = (0, _umiUtils.winPath)("".concat(distFloder, "/").concat(lang, "/").concat(name, ".json"));
 
                                       if (!(0, _fs.existsSync)(filePath)) {
-                                        _context10.next = 7;
+                                        _context11.next = 7;
                                         break;
                                       }
 
                                       orignData = require(filePath);
-                                      _context10.next = 5;
+                                      _context11.next = 5;
                                       return (0, _fs.writeFileSync)(filePath, JSON.stringify((0, _objectSpread5.default)({}, orignData, data[name][lang]), null, '\t'));
 
                                     case 5:
-                                      _context10.next = 9;
+                                      _context11.next = 9;
                                       break;
 
                                     case 7:
-                                      _context10.next = 9;
+                                      _context11.next = 9;
                                       return writeFile(filePath, JSON.stringify(data[name][lang], null, '\t'));
 
                                     case 9:
-                                      return _context10.abrupt("return", lang);
+                                      return _context11.abrupt("return", lang);
 
                                     case 10:
                                     case "end":
-                                      return _context10.stop();
+                                      return _context11.stop();
                                   }
                                 }
-                              }, _callee10, this);
+                              }, _callee11, this);
                             }));
 
-                            return function (_x16) {
-                              return _ref5.apply(this, arguments);
+                            return function (_x17) {
+                              return _ref7.apply(this, arguments);
                             };
                           }());
 
                         case 3:
-                          return _context11.abrupt("return", name);
+                          return _context12.abrupt("return", name);
 
                         case 4:
                         case "end":
-                          return _context11.stop();
+                          return _context12.stop();
                       }
                     }
-                  }, _callee11, this);
+                  }, _callee12, this);
                 }));
 
-                return function (_x15) {
-                  return _ref4.apply(this, arguments);
+                return function (_x16) {
+                  return _ref6.apply(this, arguments);
                 };
               }());
 
             case 2:
             case "end":
-              return _context12.stop();
+              return _context13.stop();
           }
         }
-      }, _callee12, this);
+      }, _callee13, this);
     }));
     return _writePublic.apply(this, arguments);
   }
@@ -658,7 +659,7 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
   function _generateFile() {
     _generateFile = (0, _asyncToGenerator2.default)(
     /*#__PURE__*/
-    _regenerator.default.mark(function _callee14() {
+    _regenerator.default.mark(function _callee15() {
       var _len5,
           arg,
           _key6,
@@ -667,14 +668,14 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
           absSrcPath,
           singular,
           langs,
-          _args14 = arguments;
+          _args15 = arguments;
 
-      return _regenerator.default.wrap(function _callee14$(_context14) {
+      return _regenerator.default.wrap(function _callee15$(_context15) {
         while (1) {
-          switch (_context14.prev = _context14.next) {
+          switch (_context15.prev = _context15.next) {
             case 0:
-              for (_len5 = _args14.length, arg = new Array(_len5), _key6 = 0; _key6 < _len5; _key6++) {
-                arg[_key6] = _args14[_key6];
+              for (_len5 = _args15.length, arg = new Array(_len5), _key6 = 0; _key6 < _len5; _key6++) {
+                arg[_key6] = _args15[_key6];
               }
 
               data = arg[0], support = arg[1], absSrcPath = arg[2], singular = arg[3];
@@ -682,52 +683,52 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
               langs.mapSync(
               /*#__PURE__*/
               function () {
-                var _ref6 = (0, _asyncToGenerator2.default)(
+                var _ref8 = (0, _asyncToGenerator2.default)(
                 /*#__PURE__*/
-                _regenerator.default.mark(function _callee13(lang) {
+                _regenerator.default.mark(function _callee14(lang) {
                   var langPath, orignData;
-                  return _regenerator.default.wrap(function _callee13$(_context13) {
+                  return _regenerator.default.wrap(function _callee14$(_context14) {
                     while (1) {
-                      switch (_context13.prev = _context13.next) {
+                      switch (_context14.prev = _context14.next) {
                         case 0:
                           langPath = (0, _umiUtils.winPath)("".concat(absSrcPath, "/").concat(getLocaleFloder(singular), "/").concat(lang, ".json"));
 
                           if (!(0, _fs.existsSync)(langPath)) {
-                            _context13.next = 7;
+                            _context14.next = 7;
                             break;
                           }
 
                           orignData = require(langPath);
-                          _context13.next = 5;
+                          _context14.next = 5;
                           return (0, _fs.writeFileSync)(langPath, JSON.stringify((0, _objectSpread5.default)({}, orignData, data[lang]), null, '\t'));
 
                         case 5:
-                          _context13.next = 9;
+                          _context14.next = 9;
                           break;
 
                         case 7:
-                          _context13.next = 9;
+                          _context14.next = 9;
                           return (0, _fs.writeFileSync)(langPath, JSON.stringify(data[lang], null, '\t'));
 
                         case 9:
                         case "end":
-                          return _context13.stop();
+                          return _context14.stop();
                       }
                     }
-                  }, _callee13, this);
+                  }, _callee14, this);
                 }));
 
-                return function (_x17) {
-                  return _ref6.apply(this, arguments);
+                return function (_x18) {
+                  return _ref8.apply(this, arguments);
                 };
               }());
 
             case 4:
             case "end":
-              return _context14.stop();
+              return _context15.stop();
           }
         }
-      }, _callee14, this);
+      }, _callee15, this);
     }));
     return _generateFile.apply(this, arguments);
   }
@@ -739,57 +740,57 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
   function _handlenormal() {
     _handlenormal = (0, _asyncToGenerator2.default)(
     /*#__PURE__*/
-    _regenerator.default.mark(function _callee16(localeFiles, singular, absSrcPath, support) {
+    _regenerator.default.mark(function _callee17(localeFiles, singular, absSrcPath, support) {
       var spinner, localeData;
-      return _regenerator.default.wrap(function _callee16$(_context16) {
+      return _regenerator.default.wrap(function _callee17$(_context17) {
         while (1) {
-          switch (_context16.prev = _context16.next) {
+          switch (_context17.prev = _context17.next) {
             case 0:
               spinner = (0, _ora.default)();
               spinner.start("\u6536\u96C6".concat(_chalk.default.blue('非动态'), "\u56FD\u9645\u5316\u4FE1\u606F\u5F00\u59CB"));
               localeData = {}; // 收集国际化数据到非动态目录
 
-              _context16.next = 5;
+              _context17.next = 5;
               return localeFiles.mapSync(
               /*#__PURE__*/
               function () {
-                var _ref7 = (0, _asyncToGenerator2.default)(
+                var _ref9 = (0, _asyncToGenerator2.default)(
                 /*#__PURE__*/
-                _regenerator.default.mark(function _callee15(file) {
+                _regenerator.default.mark(function _callee16(file) {
                   var singal;
-                  return _regenerator.default.wrap(function _callee15$(_context15) {
+                  return _regenerator.default.wrap(function _callee16$(_context16) {
                     while (1) {
-                      switch (_context15.prev = _context15.next) {
+                      switch (_context16.prev = _context16.next) {
                         case 0:
-                          _context15.next = 2;
+                          _context16.next = 2;
                           return addIntl(file, singular, absSrcPath, support, spinner);
 
                         case 2:
-                          singal = _context15.sent;
+                          singal = _context16.sent;
 
                           if (singal) {
-                            _context15.next = 7;
+                            _context16.next = 7;
                             break;
                           }
 
-                          return _context15.abrupt("return", null);
+                          return _context16.abrupt("return", null);
 
                         case 7:
                           localeData = deepmerge(singal, localeData);
 
                         case 8:
-                          return _context15.abrupt("return", file);
+                          return _context16.abrupt("return", file);
 
                         case 9:
                         case "end":
-                          return _context15.stop();
+                          return _context16.stop();
                       }
                     }
-                  }, _callee15, this);
+                  }, _callee16, this);
                 }));
 
-                return function (_x18) {
-                  return _ref7.apply(this, arguments);
+                return function (_x19) {
+                  return _ref9.apply(this, arguments);
                 };
               }());
 
@@ -798,7 +799,7 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
               spinner.succeed("\u6536\u96C6".concat(_chalk.default.blue('非动态'), "\u56FD\u9645\u5316\u4FE1\u606F\u6210\u529F"));
               spinner.color = 'cyan';
               spinner.start("\u5F00\u59CB\u5199\u5165".concat(_chalk.default.blue('非动态'), "\u56FD\u9645\u5316\u4FE1\u606F"));
-              _context16.next = 11;
+              _context17.next = 11;
               return generateFile(localeData, support, absSrcPath, singular);
 
             case 11:
@@ -807,10 +808,10 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
 
             case 13:
             case "end":
-              return _context16.stop();
+              return _context17.stop();
           }
         }
-      }, _callee16, this);
+      }, _callee17, this);
     }));
     return _handlenormal.apply(this, arguments);
   }
@@ -822,7 +823,7 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
   function _genDynamic() {
     _genDynamic = (0, _asyncToGenerator2.default)(
     /*#__PURE__*/
-    _regenerator.default.mark(function _callee18() {
+    _regenerator.default.mark(function _callee19() {
       var _len6,
           arg,
           _key7,
@@ -832,56 +833,56 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
           support,
           collectData,
           spinner,
-          _args18 = arguments;
+          _args19 = arguments;
 
-      return _regenerator.default.wrap(function _callee18$(_context18) {
+      return _regenerator.default.wrap(function _callee19$(_context19) {
         while (1) {
-          switch (_context18.prev = _context18.next) {
+          switch (_context19.prev = _context19.next) {
             case 0:
-              for (_len6 = _args18.length, arg = new Array(_len6), _key7 = 0; _key7 < _len6; _key7++) {
-                arg[_key7] = _args18[_key7];
+              for (_len6 = _args19.length, arg = new Array(_len6), _key7 = 0; _key7 < _len6; _key7++) {
+                arg[_key7] = _args19[_key7];
               }
 
               dynamicIntl = arg[0], dynamicLocale = arg[1], absSrcPath = arg[2], support = arg[3];
               collectData = {};
 
               if (!(dynamicIntl && dynamicLocale.length)) {
-                _context18.next = 12;
+                _context19.next = 12;
                 break;
               }
 
               spinner = (0, _ora.default)();
               spinner.start("\u6536\u96C6".concat(_chalk.default.yellow('动态'), "\u56FD\u9645\u5316\u4FE1\u606F\u5F00\u59CB"));
-              _context18.next = 8;
+              _context19.next = 8;
               return dynamicLocale.mapSync(
               /*#__PURE__*/
               function () {
-                var _ref8 = (0, _asyncToGenerator2.default)(
+                var _ref10 = (0, _asyncToGenerator2.default)(
                 /*#__PURE__*/
-                _regenerator.default.mark(function _callee17(file) {
+                _regenerator.default.mark(function _callee18(file) {
                   var data;
-                  return _regenerator.default.wrap(function _callee17$(_context17) {
+                  return _regenerator.default.wrap(function _callee18$(_context18) {
                     while (1) {
-                      switch (_context17.prev = _context17.next) {
+                      switch (_context18.prev = _context18.next) {
                         case 0:
-                          _context17.next = 2;
+                          _context18.next = 2;
                           return generatePublicFile(file, absSrcPath, support, collectData, spinner);
 
                         case 2:
-                          data = _context17.sent;
+                          data = _context18.sent;
                           collectData = deepmerge(data, collectData);
-                          return _context17.abrupt("return", file);
+                          return _context18.abrupt("return", file);
 
                         case 5:
                         case "end":
-                          return _context17.stop();
+                          return _context18.stop();
                       }
                     }
-                  }, _callee17, this);
+                  }, _callee18, this);
                 }));
 
-                return function (_x19) {
-                  return _ref8.apply(this, arguments);
+                return function (_x20) {
+                  return _ref10.apply(this, arguments);
                 };
               }());
 
@@ -892,14 +893,14 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
               spinner.succeed("\u5199\u5165".concat(_chalk.default.yellow('动态'), "\u56FD\u9645\u5316\u4FE1\u606F\u6210\u529F"));
 
             case 12:
-              return _context18.abrupt("return", true);
+              return _context19.abrupt("return", true);
 
             case 13:
             case "end":
-              return _context18.stop();
+              return _context19.stop();
           }
         }
-      }, _callee18, this);
+      }, _callee19, this);
     }));
     return _genDynamic.apply(this, arguments);
   }
@@ -911,7 +912,7 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
   function _getTransLataData() {
     _getTransLataData = (0, _asyncToGenerator2.default)(
     /*#__PURE__*/
-    _regenerator.default.mark(function _callee19() {
+    _regenerator.default.mark(function _callee20() {
       var _len7,
           arg,
           _key8,
@@ -923,19 +924,19 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
           files,
           localeFiles,
           dynamicLocale,
-          _args19 = arguments;
+          _args20 = arguments;
 
-      return _regenerator.default.wrap(function _callee19$(_context19) {
+      return _regenerator.default.wrap(function _callee20$(_context20) {
         while (1) {
-          switch (_context19.prev = _context19.next) {
+          switch (_context20.prev = _context20.next) {
             case 0:
-              for (_len7 = _args19.length, arg = new Array(_len7), _key8 = 0; _key8 < _len7; _key8++) {
-                arg[_key8] = _args19[_key8];
+              for (_len7 = _args20.length, arg = new Array(_len7), _key8 = 0; _key8 < _len7; _key8++) {
+                arg[_key8] = _args20[_key8];
               }
 
               singular = arg[0], absSrcPath = arg[1], support = arg[2], dynamicIntl = arg[3];
               msgFloder = getmessageFloder(singular);
-              _context19.next = 5;
+              _context20.next = 5;
               return _globby.default.sync("**/".concat(msgFloder, "/**/**.{ts,js,json}"), {
                 cwd: absSrcPath
               }).map(function (name) {
@@ -946,7 +947,7 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
               });
 
             case 5:
-              files = _context19.sent;
+              files = _context20.sent;
               localeFiles = [];
               dynamicLocale = [];
 
@@ -962,19 +963,19 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
                 localeFiles = files;
               }
 
-              _context19.next = 11;
+              _context20.next = 11;
               return handlenormal(localeFiles, singular, absSrcPath, support);
 
             case 11:
-              _context19.next = 13;
+              _context20.next = 13;
               return genDynamic(dynamicIntl, dynamicLocale, absSrcPath, support);
 
             case 13:
             case "end":
-              return _context19.stop();
+              return _context20.stop();
           }
         }
-      }, _callee19, this);
+      }, _callee20, this);
     }));
     return _getTransLataData.apply(this, arguments);
   }
@@ -998,10 +999,100 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
       opt = newOpts;
       api.rebuildTmpFiles();
     });
+    api.onStart(function () {
+      if (process.env.NODE_ENV === 'production' && dynamicIntl) {
+        (0, _asyncToGenerator2.default)(
+        /*#__PURE__*/
+        _regenerator.default.mark(function _callee4() {
+          return _regenerator.default.wrap(function _callee4$(_context4) {
+            while (1) {
+              switch (_context4.prev = _context4.next) {
+                case 0:
+                  _context4.next = 2;
+                  return (0, _execa.default)('umi', ['intl']);
+
+                case 2:
+                case "end":
+                  return _context4.stop();
+              }
+            }
+          }, _callee4, this);
+        }))();
+      }
+    });
+    api.onBuildSuccess(function (_ref3) {
+      var stats = _ref3.stats;
+
+      if (process.env.NODE_ENV === 'production' && dynamicIntl) {
+        var absOutputPath = paths.absOutputPath;
+        compressionJosn(absOutputPath);
+      }
+    });
     api.registerCommand('intl', {
       hide: false
     }, function (args) {
       getTransLataData(singular, absSrcPath, newSupport, dynamicIntl);
     });
+  }
+
+  function compressFile(file) {
+    var data = (0, _fs.readFileSync)(file, 'utf-8');
+    var parseData = JSON.parse(data);
+    var stringifyData = JSON.stringify(parseData);
+    /* .replace(/[\u007F-\uFFFF]/g, chr => {
+      return "\\u" + ("0000" + chr.charCodeAt(0).toString(16)).substr(-4)
+    }) */
+
+    (0, _fs.writeFileSync)(file, stringifyData);
+  }
+
+  function handleJsonFile(filePath) {
+    // 根据文件路径读取文件，返回文件列表
+    var files = (0, _fs.readdirSync)(filePath);
+    files.forEach(function (fileName) {
+      var filedir = (0, _path.join)(filePath, fileName);
+      var stats = (0, _fs.statSync)(filedir);
+      var isFile = stats.isFile(filedir);
+      var isDir = stats.isDirectory();
+      if (isDir) handleJsonFile(filedir);
+
+      if (isFile) {
+        compressFile(filedir);
+      }
+    });
+  }
+
+  ;
+
+  function compressionJosn(_x13) {
+    return _compressionJosn.apply(this, arguments);
+  }
+
+  function _compressionJosn() {
+    _compressionJosn = (0, _asyncToGenerator2.default)(
+    /*#__PURE__*/
+    _regenerator.default.mark(function _callee21(absOutputPath) {
+      var langFloder, spinner;
+      return _regenerator.default.wrap(function _callee21$(_context21) {
+        while (1) {
+          switch (_context21.prev = _context21.next) {
+            case 0:
+              langFloder = (0, _umiUtils.winPath)("".concat(absOutputPath, "/lang"));
+
+              if ((0, _fs.existsSync)(langFloder)) {
+                spinner = (0, _ora.default)();
+                spinner.start('开始压缩处理动态国际化文件\n');
+                handleJsonFile(langFloder);
+                spinner.succeed('压缩处理动态国际化文件完成\n');
+              }
+
+            case 2:
+            case "end":
+              return _context21.stop();
+          }
+        }
+      }, _callee21, this);
+    }));
+    return _compressionJosn.apply(this, arguments);
   }
 });
