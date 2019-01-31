@@ -1,5 +1,4 @@
-require('request');
-require('whatwg-fetch');
+import 'whatwg-fetch';
 
 const apiUrl = (host,intlUrl) => {
   return `${host.replace(/\/+$/,'')}/${intlUrl.replace(/^\/+/,'').replace(/\/+$/,'')}`
@@ -8,5 +7,5 @@ const apiUrl = (host,intlUrl) => {
 export default function fetchRemoteIntl(host, intlUrl, requestOptions){
   const url = apiUrl(host,intlUrl);
   const request = new Request(apiUrl(host,intlUrl),requestOptions);
-  return fetch(request);
+  return window.fetch(request);
 }

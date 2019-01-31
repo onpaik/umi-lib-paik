@@ -11,7 +11,6 @@ define(["exports"], function (_exports) {
   };
 
   function parseArguments(arg) {
-    console.log(arg);
     var len = arg.length;
     var component = undefined;
     var options = {};
