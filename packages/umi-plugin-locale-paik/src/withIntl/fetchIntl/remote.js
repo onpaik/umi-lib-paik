@@ -1,4 +1,5 @@
-import 'whatwg-fetch';
+require('request');
+require('whatwg-fetch');
 
 const apiUrl = (host,intlUrl) => {
   return `${host.replace(/\/+$/,'')}/${intlUrl.replace(/^\/+/,'').replace(/\/+$/,'')}`

@@ -5,7 +5,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = fetchRemoteIntl;
 
-require("whatwg-fetch");
+require('request');
+
+require('whatwg-fetch');
 
 var apiUrl = function apiUrl(host, intlUrl) {
   return "".concat(host.replace(/\/+$/, ''), "/").concat(intlUrl.replace(/^\/+/, '').replace(/\/+$/, ''));

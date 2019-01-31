@@ -1,10 +1,14 @@
-define(["exports", "whatwg-fetch"], function (_exports, _whatwgFetch) {
+define(["exports"], function (_exports) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
   _exports.default = fetchRemoteIntl;
+
+  require('request');
+
+  require('whatwg-fetch');
 
   var apiUrl = function apiUrl(host, intlUrl) {
     return "".concat(host.replace(/\/+$/, ''), "/").concat(intlUrl.replace(/^\/+/, '').replace(/\/+$/, ''));
