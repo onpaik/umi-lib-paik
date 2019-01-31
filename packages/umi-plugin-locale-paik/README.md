@@ -5,23 +5,22 @@
 + 支持json格式数据
 + 支持命令行进行国际化数据提取
 + 支持动态加载国际化数据
++ 支持远程获取国际化获数据 `v3.1.x`
 
 ## demo
+`请务必查看实例仓库代码`
 [umi-locale-demo](https://github.com/onpaik/umi-locale-demo)
 
-## 更新日志
-**全新3.0版本**
-`v2.3.17`
-
-1. **`messages`不再遵循 `singular`规则，始终为`messages`, 单数形式将不再被识别，不能提取国际化数据**
-2. 增加了webpack配置，build模式下，public/lang下面的文件不进行编译，减少体积
-
-`v3.0.0`
+## 升级至3.x 版本
 > 不兼容版本。请升级至新版本
 - 配置更改
 - `umi intl` 命令会根据配置提取国际化到public
+- `2.3.17`开始，**`messages`不再遵循 `singular`规则，始终为`messages`, 单数形式将不再被识别，不能提取国际化数据**
+- 增加了webpack配置，build模式下，public/lang下面的文件不进行编译，减少体积
 
-[v3.0.0 更新说明](https://github.com/onpaik/umi-lib-paik/tree/master/packages/umi-plugin-locale-paik/docs/v.3.0.0.md)
+[v3.1.x 更新说明](https://github.com/onpaik/umi-lib-paik/tree/master/packages/umi-plugin-locale-paik/docs/v3.1.0.md)
+
+[v3.0.x 更新说明](https://github.com/onpaik/umi-lib-paik/tree/master/packages/umi-plugin-locale-paik/docs/v3.0.0.md)
 
 ## 使用
 
