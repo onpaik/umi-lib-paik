@@ -4,7 +4,6 @@ const type = obj =>
     .replace(/^\[object ([a-zA-Z0-9]+)\]$/, '$1');
 
 export default function parseArguments(arg){
-  console.log(arg);
   const len = arg.length;
   let component = undefined;
   let options = {};

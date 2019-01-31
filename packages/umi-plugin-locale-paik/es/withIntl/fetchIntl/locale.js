@@ -16,13 +16,12 @@ define(["exports", "../importPolyfill"], function (_exports, _importPolyfill) {
 
     var locale = arg[0],
         page = arg[1];
-    var url = "lang/".concat(locale, "/").concat(page, ".json");
 
     try {
       Function('import("")');
-      return import(url);
+      return import("lang/".concat(locale, "/").concat(page, ".json"));
     } catch (err) {
-      return (0, _importPolyfill.default)(url);
+      return (0, _importPolyfill.default)("lang/".concat(locale, "/").concat(page, ".json"));
     }
 
     ;
