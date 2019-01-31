@@ -2,11 +2,10 @@ import importPolyfill from '../importPolyfill';
 
 export default function fetchLocaleIntl(...arg){
   const [ locale, page ] = arg;
-  const url = `lang/${locale}/${page}.json`;
   try{
     Function('import("")');
-    return import(url);
+    return import(`lang/${locale}/${page}.json`);
   }catch(err){
-    return importPolyfill(url);
+    return importPolyfill(`lang/${locale}/${page}.json`);
   };
 }
