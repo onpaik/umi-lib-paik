@@ -1,16 +1,16 @@
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(["exports", "@babel/runtime/helpers/slicedToArray", "../importPolyfill"], factory);
+    define(["exports", "../importPolyfill"], factory);
   } else if (typeof exports !== "undefined") {
-    factory(exports, require("@babel/runtime/helpers/slicedToArray"), require("../importPolyfill"));
+    factory(exports, require("../importPolyfill"));
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global.slicedToArray, global.importPolyfill);
+    factory(mod.exports, global.importPolyfill);
     global.locale = mod.exports;
   }
-})(this, function (_exports, _slicedToArray2, _importPolyfill) {
+})(this, function (_exports, _importPolyfill) {
   "use strict";
 
   var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -19,14 +19,15 @@
     value: true
   });
   _exports.default = fetchLocaleIntl;
-  _slicedToArray2 = _interopRequireDefault(_slicedToArray2);
   _importPolyfill = _interopRequireDefault(_importPolyfill);
 
-  function fetchLocaleIntl(arg) {
-    var _arg = (0, _slicedToArray2.default)(arg, 2),
-        locale = _arg[0],
-        page = _arg[1];
+  function fetchLocaleIntl() {
+    for (var _len = arguments.length, arg = new Array(_len), _key = 0; _key < _len; _key++) {
+      arg[_key] = arguments[_key];
+    }
 
+    var locale = arg[0],
+        page = arg[1];
     var url = "lang/".concat(locale, "/").concat(page, ".json");
 
     try {
