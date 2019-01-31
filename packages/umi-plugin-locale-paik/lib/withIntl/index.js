@@ -6,6 +6,18 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.withIntl = withIntl;
+Object.defineProperty(exports, "compose", {
+  enumerable: true,
+  get: function get() {
+    return _compose.default;
+  }
+});
+Object.defineProperty(exports, "parseArguments", {
+  enumerable: true,
+  get: function get() {
+    return _parseArguments.default;
+  }
+});
 exports.default = void 0;
 
 var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
@@ -26,6 +38,8 @@ var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits
 
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
+var _objectSpread2 = _interopRequireDefault(require("@babel/runtime/helpers/objectSpread"));
+
 var _react = _interopRequireDefault(require("react"));
 
 var _reactIntl = require("react-intl");
@@ -38,28 +52,43 @@ var _injectIntl = _interopRequireDefault(require("./injectIntl"));
 
 var _getDisplayName = _interopRequireDefault(require("./getDisplayName"));
 
-var _importPolyfill = _interopRequireDefault(require("./importPolyfill"));
-
 var _intlHelper = require("./intlHelper");
 
-var fetchIntl = function fetchIntl(locale, page) {
-  try {
-    Function('import("")');
-    return import("lang/".concat(locale, "/").concat(page, ".json"));
-  } catch (err) {
-    return (0, _importPolyfill.default)("lang/".concat(locale, "/").concat(page, ".json"));
-  }
+var _toClass = _interopRequireDefault(require("./toClass"));
 
-  ;
-};
+var _compose = _interopRequireDefault(require("./compose"));
+
+var _parseArguments = _interopRequireDefault(require("./parseArguments/"));
+
+var _locale = _interopRequireDefault(require("./fetchIntl/locale"));
+
+var _remote = _interopRequireDefault(require("./fetchIntl/remote"));
 
 function withIntl(locale, page) {
-  var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {
+  var userOptions = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {
     withRef: false
   };
-  var withRef = options.withRef;
+  var options = (0, _objectSpread2.default)({
+    withRef: false,
+    intlUrl: undefined,
+    host: undefined,
+    resHandler: function resHandler(res) {
+      return res;
+    },
+    requestOptions: {
+      method: 'GET',
+      credentials: 'include',
+      mode: 'cors'
+    }
+  }, userOptions);
+  var withRef = options.withRef,
+      intlUrl = options.intlUrl,
+      host = options.host,
+      resHandler = options.resHandler,
+      requestOptions = options.requestOptions;
   return function (WrappedComponent) {
-    var Component = (0, _injectIntl.default)(WrappedComponent, options);
+    var baseComponent = (0, _injectIntl.default)(WrappedComponent, options);
+    var Component = withRef ? (0, _toClass.default)(baseComponent) : baseComponent;
 
     var WithIntl =
     /*#__PURE__*/
@@ -83,17 +112,52 @@ function withIntl(locale, page) {
         value: function () {
           var _componentDidMount = (0, _asyncToGenerator2.default)(
           /*#__PURE__*/
-          _regenerator.default.mark(function _callee() {
+          _regenerator.default.mark(function _callee2() {
             var localeData, translations;
-            return _regenerator.default.wrap(function _callee$(_context) {
+            return _regenerator.default.wrap(function _callee2$(_context2) {
               while (1) {
-                switch (_context.prev = _context.next) {
+                switch (_context2.prev = _context2.next) {
                   case 0:
-                    _context.next = 2;
-                    return fetchIntl(locale, page);
+                    _context2.next = 2;
+                    return (0, _asyncToGenerator2.default)(
+                    /*#__PURE__*/
+                    _regenerator.default.mark(function _callee() {
+                      var responseData;
+                      return _regenerator.default.wrap(function _callee$(_context) {
+                        while (1) {
+                          switch (_context.prev = _context.next) {
+                            case 0:
+                              if (!(host && intlUrl)) {
+                                _context.next = 5;
+                                break;
+                              }
+
+                              _context.next = 3;
+                              return (0, _remote.default)(host, intlUrl, requestOptions).then(function (res) {
+                                return res.json();
+                              });
+
+                            case 3:
+                              responseData = _context.sent;
+                              return _context.abrupt("return", resHandler(responseData));
+
+                            case 5:
+                              _context.next = 7;
+                              return (0, _locale.default)(locale, page);
+
+                            case 7:
+                              return _context.abrupt("return", _context.sent);
+
+                            case 8:
+                            case "end":
+                              return _context.stop();
+                          }
+                        }
+                      }, _callee, this);
+                    }))();
 
                   case 2:
-                    localeData = _context.sent;
+                    localeData = _context2.sent;
 
                     if (!localeData) {
                       this.setState({
@@ -115,16 +179,16 @@ function withIntl(locale, page) {
 
                   case 4:
                   case "end":
-                    return _context.stop();
+                    return _context2.stop();
                 }
               }
-            }, _callee, this);
+            }, _callee2, this);
           }));
 
           return function componentDidMount() {
             return _componentDidMount.apply(this, arguments);
           };
-        }() // getWrappedInstance调用时候返回我们的ref="wrappedInstance"
+        }() // getWrappedInstance调用时候返回ref="wrappedInstance"
 
       }, {
         key: "getWrappedInstance",
@@ -147,8 +211,8 @@ function withIntl(locale, page) {
             locale: locale,
             messages: translations
           }, _react.default.createElement(Component, (0, _extends2.default)({}, this.props, {
-            ref: function ref(_ref) {
-              _this2._wrappedInstance = withRef ? _ref : null;
+            ref: function ref(_ref2) {
+              _this2._wrappedInstance = withRef ? _ref2 : null;
             }
           })));
         }

@@ -1,4 +1,4 @@
-define(["exports", "@babel/runtime/helpers/extends", "@babel/runtime/regenerator", "@babel/runtime/helpers/asyncToGenerator", "@babel/runtime/helpers/classCallCheck", "@babel/runtime/helpers/createClass", "@babel/runtime/helpers/possibleConstructorReturn", "@babel/runtime/helpers/getPrototypeOf", "@babel/runtime/helpers/inherits", "@babel/runtime/helpers/defineProperty", "react", "react-intl", "hoist-non-react-statics", "invariant", "./injectIntl", "./getDisplayName", "./importPolyfill", "./intlHelper"], function (_exports, _extends2, _regenerator, _asyncToGenerator2, _classCallCheck2, _createClass2, _possibleConstructorReturn2, _getPrototypeOf2, _inherits2, _defineProperty2, _react, _reactIntl, _hoistNonReactStatics, _invariant, _injectIntl, _getDisplayName, _importPolyfill, _intlHelper) {
+define(["exports", "@babel/runtime/helpers/extends", "@babel/runtime/regenerator", "@babel/runtime/helpers/asyncToGenerator", "@babel/runtime/helpers/classCallCheck", "@babel/runtime/helpers/createClass", "@babel/runtime/helpers/possibleConstructorReturn", "@babel/runtime/helpers/getPrototypeOf", "@babel/runtime/helpers/inherits", "@babel/runtime/helpers/defineProperty", "@babel/runtime/helpers/objectSpread", "react", "react-intl", "hoist-non-react-statics", "invariant", "./injectIntl", "./getDisplayName", "./intlHelper", "./toClass", "./compose", "./parseArguments/", "./fetchIntl/locale", "./fetchIntl/remote"], function (_exports, _extends2, _regenerator, _asyncToGenerator2, _classCallCheck2, _createClass2, _possibleConstructorReturn2, _getPrototypeOf2, _inherits2, _defineProperty2, _objectSpread2, _react, _reactIntl, _hoistNonReactStatics, _invariant, _injectIntl, _getDisplayName, _intlHelper, _toClass, _compose, _parseArguments, _locale, _remote) {
   "use strict";
 
   var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -7,6 +7,18 @@ define(["exports", "@babel/runtime/helpers/extends", "@babel/runtime/regenerator
     value: true
   });
   _exports.withIntl = withIntl;
+  Object.defineProperty(_exports, "compose", {
+    enumerable: true,
+    get: function get() {
+      return _compose.default;
+    }
+  });
+  Object.defineProperty(_exports, "parseArguments", {
+    enumerable: true,
+    get: function get() {
+      return _parseArguments.default;
+    }
+  });
   _exports.default = void 0;
   _extends2 = _interopRequireDefault(_extends2);
   _regenerator = _interopRequireDefault(_regenerator);
@@ -17,31 +29,43 @@ define(["exports", "@babel/runtime/helpers/extends", "@babel/runtime/regenerator
   _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf2);
   _inherits2 = _interopRequireDefault(_inherits2);
   _defineProperty2 = _interopRequireDefault(_defineProperty2);
+  _objectSpread2 = _interopRequireDefault(_objectSpread2);
   _react = _interopRequireDefault(_react);
   _hoistNonReactStatics = _interopRequireDefault(_hoistNonReactStatics);
   _invariant = _interopRequireDefault(_invariant);
   _injectIntl = _interopRequireDefault(_injectIntl);
   _getDisplayName = _interopRequireDefault(_getDisplayName);
-  _importPolyfill = _interopRequireDefault(_importPolyfill);
-
-  var fetchIntl = function fetchIntl(locale, page) {
-    try {
-      Function('import("")');
-      return import("lang/".concat(locale, "/").concat(page, ".json"));
-    } catch (err) {
-      return (0, _importPolyfill.default)("lang/".concat(locale, "/").concat(page, ".json"));
-    }
-
-    ;
-  };
+  _toClass = _interopRequireDefault(_toClass);
+  _compose = _interopRequireDefault(_compose);
+  _parseArguments = _interopRequireDefault(_parseArguments);
+  _locale = _interopRequireDefault(_locale);
+  _remote = _interopRequireDefault(_remote);
 
   function withIntl(locale, page) {
-    var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {
+    var userOptions = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {
       withRef: false
     };
-    var withRef = options.withRef;
+    var options = (0, _objectSpread2.default)({
+      withRef: false,
+      intlUrl: undefined,
+      host: undefined,
+      resHandler: function resHandler(res) {
+        return res;
+      },
+      requestOptions: {
+        method: 'GET',
+        credentials: 'include',
+        mode: 'cors'
+      }
+    }, userOptions);
+    var withRef = options.withRef,
+        intlUrl = options.intlUrl,
+        host = options.host,
+        resHandler = options.resHandler,
+        requestOptions = options.requestOptions;
     return function (WrappedComponent) {
-      var Component = (0, _injectIntl.default)(WrappedComponent, options);
+      var baseComponent = (0, _injectIntl.default)(WrappedComponent, options);
+      var Component = withRef ? (0, _toClass.default)(baseComponent) : baseComponent;
 
       var WithIntl =
       /*#__PURE__*/
@@ -65,17 +89,52 @@ define(["exports", "@babel/runtime/helpers/extends", "@babel/runtime/regenerator
           value: function () {
             var _componentDidMount = (0, _asyncToGenerator2.default)(
             /*#__PURE__*/
-            _regenerator.default.mark(function _callee() {
+            _regenerator.default.mark(function _callee2() {
               var localeData, translations;
-              return _regenerator.default.wrap(function _callee$(_context) {
+              return _regenerator.default.wrap(function _callee2$(_context2) {
                 while (1) {
-                  switch (_context.prev = _context.next) {
+                  switch (_context2.prev = _context2.next) {
                     case 0:
-                      _context.next = 2;
-                      return fetchIntl(locale, page);
+                      _context2.next = 2;
+                      return (0, _asyncToGenerator2.default)(
+                      /*#__PURE__*/
+                      _regenerator.default.mark(function _callee() {
+                        var responseData;
+                        return _regenerator.default.wrap(function _callee$(_context) {
+                          while (1) {
+                            switch (_context.prev = _context.next) {
+                              case 0:
+                                if (!(host && intlUrl)) {
+                                  _context.next = 5;
+                                  break;
+                                }
+
+                                _context.next = 3;
+                                return (0, _remote.default)(host, intlUrl, requestOptions).then(function (res) {
+                                  return res.json();
+                                });
+
+                              case 3:
+                                responseData = _context.sent;
+                                return _context.abrupt("return", resHandler(responseData));
+
+                              case 5:
+                                _context.next = 7;
+                                return (0, _locale.default)(locale, page);
+
+                              case 7:
+                                return _context.abrupt("return", _context.sent);
+
+                              case 8:
+                              case "end":
+                                return _context.stop();
+                            }
+                          }
+                        }, _callee, this);
+                      }))();
 
                     case 2:
-                      localeData = _context.sent;
+                      localeData = _context2.sent;
 
                       if (!localeData) {
                         this.setState({
@@ -97,16 +156,16 @@ define(["exports", "@babel/runtime/helpers/extends", "@babel/runtime/regenerator
 
                     case 4:
                     case "end":
-                      return _context.stop();
+                      return _context2.stop();
                   }
                 }
-              }, _callee, this);
+              }, _callee2, this);
             }));
 
             return function componentDidMount() {
               return _componentDidMount.apply(this, arguments);
             };
-          }() // getWrappedInstance调用时候返回我们的ref="wrappedInstance"
+          }() // getWrappedInstance调用时候返回ref="wrappedInstance"
 
         }, {
           key: "getWrappedInstance",
@@ -129,8 +188,8 @@ define(["exports", "@babel/runtime/helpers/extends", "@babel/runtime/regenerator
               locale: locale,
               messages: translations
             }, _react.default.createElement(Component, (0, _extends2.default)({}, this.props, {
-              ref: function ref(_ref) {
-                _this2._wrappedInstance = withRef ? _ref : null;
+              ref: function ref(_ref2) {
+                _this2._wrappedInstance = withRef ? _ref2 : null;
               }
             })));
           }

@@ -1,16 +1,16 @@
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(["exports", "@babel/runtime/helpers/extends", "@babel/runtime/regenerator", "@babel/runtime/helpers/asyncToGenerator", "@babel/runtime/helpers/classCallCheck", "@babel/runtime/helpers/createClass", "@babel/runtime/helpers/possibleConstructorReturn", "@babel/runtime/helpers/getPrototypeOf", "@babel/runtime/helpers/inherits", "@babel/runtime/helpers/defineProperty", "react", "react-intl", "hoist-non-react-statics", "invariant", "./injectIntl", "./getDisplayName", "./importPolyfill", "./intlHelper"], factory);
+    define(["exports", "@babel/runtime/helpers/extends", "@babel/runtime/regenerator", "@babel/runtime/helpers/asyncToGenerator", "@babel/runtime/helpers/classCallCheck", "@babel/runtime/helpers/createClass", "@babel/runtime/helpers/possibleConstructorReturn", "@babel/runtime/helpers/getPrototypeOf", "@babel/runtime/helpers/inherits", "@babel/runtime/helpers/defineProperty", "@babel/runtime/helpers/objectSpread", "react", "react-intl", "hoist-non-react-statics", "invariant", "./injectIntl", "./getDisplayName", "./intlHelper", "./toClass", "./compose", "./parseArguments/", "./fetchIntl/locale", "./fetchIntl/remote"], factory);
   } else if (typeof exports !== "undefined") {
-    factory(exports, require("@babel/runtime/helpers/extends"), require("@babel/runtime/regenerator"), require("@babel/runtime/helpers/asyncToGenerator"), require("@babel/runtime/helpers/classCallCheck"), require("@babel/runtime/helpers/createClass"), require("@babel/runtime/helpers/possibleConstructorReturn"), require("@babel/runtime/helpers/getPrototypeOf"), require("@babel/runtime/helpers/inherits"), require("@babel/runtime/helpers/defineProperty"), require("react"), require("react-intl"), require("hoist-non-react-statics"), require("invariant"), require("./injectIntl"), require("./getDisplayName"), require("./importPolyfill"), require("./intlHelper"));
+    factory(exports, require("@babel/runtime/helpers/extends"), require("@babel/runtime/regenerator"), require("@babel/runtime/helpers/asyncToGenerator"), require("@babel/runtime/helpers/classCallCheck"), require("@babel/runtime/helpers/createClass"), require("@babel/runtime/helpers/possibleConstructorReturn"), require("@babel/runtime/helpers/getPrototypeOf"), require("@babel/runtime/helpers/inherits"), require("@babel/runtime/helpers/defineProperty"), require("@babel/runtime/helpers/objectSpread"), require("react"), require("react-intl"), require("hoist-non-react-statics"), require("invariant"), require("./injectIntl"), require("./getDisplayName"), require("./intlHelper"), require("./toClass"), require("./compose"), require("./parseArguments/"), require("./fetchIntl/locale"), require("./fetchIntl/remote"));
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global._extends, global.regenerator, global.asyncToGenerator, global.classCallCheck, global.createClass, global.possibleConstructorReturn, global.getPrototypeOf, global.inherits, global.defineProperty, global.react, global.reactIntl, global.hoistNonReactStatics, global.invariant, global.injectIntl, global.getDisplayName, global.importPolyfill, global.intlHelper);
+    factory(mod.exports, global._extends, global.regenerator, global.asyncToGenerator, global.classCallCheck, global.createClass, global.possibleConstructorReturn, global.getPrototypeOf, global.inherits, global.defineProperty, global.objectSpread, global.react, global.reactIntl, global.hoistNonReactStatics, global.invariant, global.injectIntl, global.getDisplayName, global.intlHelper, global.toClass, global.compose, global.parseArguments, global.locale, global.remote);
     global.index = mod.exports;
   }
-})(this, function (_exports, _extends2, _regenerator, _asyncToGenerator2, _classCallCheck2, _createClass2, _possibleConstructorReturn2, _getPrototypeOf2, _inherits2, _defineProperty2, _react, _reactIntl, _hoistNonReactStatics, _invariant, _injectIntl, _getDisplayName, _importPolyfill, _intlHelper) {
+})(this, function (_exports, _extends2, _regenerator, _asyncToGenerator2, _classCallCheck2, _createClass2, _possibleConstructorReturn2, _getPrototypeOf2, _inherits2, _defineProperty2, _objectSpread2, _react, _reactIntl, _hoistNonReactStatics, _invariant, _injectIntl, _getDisplayName, _intlHelper, _toClass, _compose, _parseArguments, _locale, _remote) {
   "use strict";
 
   var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -19,6 +19,18 @@
     value: true
   });
   _exports.withIntl = withIntl;
+  Object.defineProperty(_exports, "compose", {
+    enumerable: true,
+    get: function get() {
+      return _compose.default;
+    }
+  });
+  Object.defineProperty(_exports, "parseArguments", {
+    enumerable: true,
+    get: function get() {
+      return _parseArguments.default;
+    }
+  });
   _exports.default = void 0;
   _extends2 = _interopRequireDefault(_extends2);
   _regenerator = _interopRequireDefault(_regenerator);
@@ -29,31 +41,43 @@
   _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf2);
   _inherits2 = _interopRequireDefault(_inherits2);
   _defineProperty2 = _interopRequireDefault(_defineProperty2);
+  _objectSpread2 = _interopRequireDefault(_objectSpread2);
   _react = _interopRequireDefault(_react);
   _hoistNonReactStatics = _interopRequireDefault(_hoistNonReactStatics);
   _invariant = _interopRequireDefault(_invariant);
   _injectIntl = _interopRequireDefault(_injectIntl);
   _getDisplayName = _interopRequireDefault(_getDisplayName);
-  _importPolyfill = _interopRequireDefault(_importPolyfill);
-
-  var fetchIntl = function fetchIntl(locale, page) {
-    try {
-      Function('import("")');
-      return import("lang/".concat(locale, "/").concat(page, ".json"));
-    } catch (err) {
-      return (0, _importPolyfill.default)("lang/".concat(locale, "/").concat(page, ".json"));
-    }
-
-    ;
-  };
+  _toClass = _interopRequireDefault(_toClass);
+  _compose = _interopRequireDefault(_compose);
+  _parseArguments = _interopRequireDefault(_parseArguments);
+  _locale = _interopRequireDefault(_locale);
+  _remote = _interopRequireDefault(_remote);
 
   function withIntl(locale, page) {
-    var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {
+    var userOptions = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {
       withRef: false
     };
-    var withRef = options.withRef;
+    var options = (0, _objectSpread2.default)({
+      withRef: false,
+      intlUrl: undefined,
+      host: undefined,
+      resHandler: function resHandler(res) {
+        return res;
+      },
+      requestOptions: {
+        method: 'GET',
+        credentials: 'include',
+        mode: 'cors'
+      }
+    }, userOptions);
+    var withRef = options.withRef,
+        intlUrl = options.intlUrl,
+        host = options.host,
+        resHandler = options.resHandler,
+        requestOptions = options.requestOptions;
     return function (WrappedComponent) {
-      var Component = (0, _injectIntl.default)(WrappedComponent, options);
+      var baseComponent = (0, _injectIntl.default)(WrappedComponent, options);
+      var Component = withRef ? (0, _toClass.default)(baseComponent) : baseComponent;
 
       var WithIntl =
       /*#__PURE__*/
@@ -77,17 +101,52 @@
           value: function () {
             var _componentDidMount = (0, _asyncToGenerator2.default)(
             /*#__PURE__*/
-            _regenerator.default.mark(function _callee() {
+            _regenerator.default.mark(function _callee2() {
               var localeData, translations;
-              return _regenerator.default.wrap(function _callee$(_context) {
+              return _regenerator.default.wrap(function _callee2$(_context2) {
                 while (1) {
-                  switch (_context.prev = _context.next) {
+                  switch (_context2.prev = _context2.next) {
                     case 0:
-                      _context.next = 2;
-                      return fetchIntl(locale, page);
+                      _context2.next = 2;
+                      return (0, _asyncToGenerator2.default)(
+                      /*#__PURE__*/
+                      _regenerator.default.mark(function _callee() {
+                        var responseData;
+                        return _regenerator.default.wrap(function _callee$(_context) {
+                          while (1) {
+                            switch (_context.prev = _context.next) {
+                              case 0:
+                                if (!(host && intlUrl)) {
+                                  _context.next = 5;
+                                  break;
+                                }
+
+                                _context.next = 3;
+                                return (0, _remote.default)(host, intlUrl, requestOptions).then(function (res) {
+                                  return res.json();
+                                });
+
+                              case 3:
+                                responseData = _context.sent;
+                                return _context.abrupt("return", resHandler(responseData));
+
+                              case 5:
+                                _context.next = 7;
+                                return (0, _locale.default)(locale, page);
+
+                              case 7:
+                                return _context.abrupt("return", _context.sent);
+
+                              case 8:
+                              case "end":
+                                return _context.stop();
+                            }
+                          }
+                        }, _callee, this);
+                      }))();
 
                     case 2:
-                      localeData = _context.sent;
+                      localeData = _context2.sent;
 
                       if (!localeData) {
                         this.setState({
@@ -109,16 +168,16 @@
 
                     case 4:
                     case "end":
-                      return _context.stop();
+                      return _context2.stop();
                   }
                 }
-              }, _callee, this);
+              }, _callee2, this);
             }));
 
             return function componentDidMount() {
               return _componentDidMount.apply(this, arguments);
             };
-          }() // getWrappedInstance调用时候返回我们的ref="wrappedInstance"
+          }() // getWrappedInstance调用时候返回ref="wrappedInstance"
 
         }, {
           key: "getWrappedInstance",
@@ -141,8 +200,8 @@
               locale: locale,
               messages: translations
             }, _react.default.createElement(Component, (0, _extends2.default)({}, this.props, {
-              ref: function ref(_ref) {
-                _this2._wrappedInstance = withRef ? _ref : null;
+              ref: function ref(_ref2) {
+                _this2._wrappedInstance = withRef ? _ref2 : null;
               }
             })));
           }

@@ -9,6 +9,7 @@
   "devDependencies": {
     "umi":"^2.x",
     "antd":"3.x",
+    "umi-plugin-react":"1.x",
     "concurrently":"^4.1.0"
   }
 }

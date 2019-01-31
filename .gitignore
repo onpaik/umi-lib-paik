@@ -7,3 +7,4 @@ package-lock.json
 yarn-error.log
 *.tgz
 lerna-debug.log
+/packages/umi-plugin-locale-paik/src/utils/withIntl/*
