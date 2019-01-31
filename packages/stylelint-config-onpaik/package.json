@@ -15,7 +15,7 @@
   "license": "MIT",
   "dependencies": {
     "prettier-stylelint": "^0.4.2",
-    "stylelint": "^9.9.0",
+    "stylelint": "^9.10.1",
     "stylelint-config-idiomatic-order": "^6.2.0",
     "stylelint-config-standard": "^18.2.0",
     "stylelint-order": "^2.0.0"
