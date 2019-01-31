@@ -1,2 +1,16 @@
 # umi-lib-paik
-umi lib 
+> `欢迎 star`
+ + eslint-config-onpaik
+ + stylelint-config-onpaik
+ + umi-plugin-locale-paik
+
+## eslint-config-onpaik
+eslint 配置
+
+## stylelint-config-onpaik
+
+stylelint 配置
+
+## umi-plugin-locale-paik
+
+umi locale 插件，很好用的哦, 详情见 [umi-plugin-locale-paik](https://www.npmjs.com/package/umi-plugin-locale-paik)
