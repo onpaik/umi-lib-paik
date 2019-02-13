@@ -4,10 +4,10 @@ module.exports = {
     "plugin:prettier/recommended",
     "plugin:react/recommended",
     "plugin:jsx-a11y/recommended",
-    "plugin:jest/recommended"
+    "plugin:jest/recommended",
   ],
-  "plugins": [ "react", "babel", "jest", "import", "prettier"],
-  rules: {
+  "plugins": [ "react", "babel", "jest", "import", "prettier","react-hooks"],
+  "rules": {
     "quotes": 0,
     "babel/quotes": 0,
     "no-trailing-spaces": 0,
