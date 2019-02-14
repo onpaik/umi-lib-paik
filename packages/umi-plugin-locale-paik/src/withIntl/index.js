@@ -4,7 +4,7 @@ import hoistNonReactStatics from 'hoist-non-react-statics';
 import invariant from 'invariant';
 import withInjectIntl from './injectIntl';
 import getDisplayName from './getDisplayName';
-import { createIntlContext } from './intlHelper';
+import { createIntlContext, _setIntlObject, getIntlContext } from './intlHelper';
 import toClass from './toClass';
 import compose from './compose';
 import parseArguments from './parseArguments/';
@@ -71,7 +71,9 @@ function withIntl(
             locale,
             messages: translations,
           });
-
+          /* 覆盖window全局的intl fix #1*/
+          _setIntlObject(getIntlContext());
+          
           this.setState({
             translations,
           });

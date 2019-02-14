@@ -9,6 +9,10 @@ export function createIntlContext({ locale = 'zh-CN', messages = {} }) {
   return intl;
 }
 
+export const _setIntlObject(theIntl) {
+  // umi 系统 API，不对外暴露
+  intl = theIntl;
+}
 export function getIntlContext() {
   return intl;
 }
@@ -21,4 +25,5 @@ export default {
   createIntlContext,
   getIntlContext,
   formatMessage,
+  _setIntlObject,
 };

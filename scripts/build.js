@@ -83,7 +83,7 @@ const fileDisplay = filePath => {
     if (isDir) fileDisplay(filedir);
     if (isFile) {
       const name = basename(filedir);
-      /* if (!name.match(/.test/)) */ build(filedir);
+      if (!name.match(/.test/)) build(filedir);
     }
   });
 };
