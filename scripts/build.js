@@ -9,7 +9,7 @@ const {
   existsSync,
 } = require('fs');
 const mkdirp = require('mkdirp');
-const { join, dirname, extname } = require('path');
+const { join, dirname, extname, basename } = require('path');
 const rimraf = require('rimraf');
 const { argv } = require('yargs');
 
@@ -55,6 +55,7 @@ const getBabelConfig = modType => ({
 const writeFile = async (destPath, code) => {
   const dir = dirname(destPath);
   await mkdirp(dir);
+  // return false;
   await writeFileSync(destPath, code);
 };
 const build = file => {
@@ -81,7 +82,8 @@ const fileDisplay = filePath => {
     const isDir = stats.isDirectory();
     if (isDir) fileDisplay(filedir);
     if (isFile) {
-      build(filedir);
+      const name = basename(filedir);
+      /* if (!name.match(/.test/)) */ build(filedir);
     }
   });
 };

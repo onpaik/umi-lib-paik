@@ -1,0 +1,34 @@
+{
+  "name":"paik-utils",
+  "version": "0.0.1",
+  "main":"./lib/index.js",
+  "description": "Utils for javascript",
+  "authors": [
+    "unpaikon"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/onpaik/umi-lib-paik/tree/master/packages/paik-utils"
+  },
+  "homepage": "https://github.com/onpaik/umi-lib-paik/tree/master/packages/paik-utils",
+  "bugs": {
+    "url": "https://github.com/onpaik/umi-lib-paik/issues"
+  },
+  "license": "MIT",
+  "files": [
+    "lib",
+    "src"
+  ],
+  "keywords": [
+    "paik",
+    "utils",
+    "javascript"
+  ],
+  "devDependencies": {
+    "jest":"24.1.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
+}
