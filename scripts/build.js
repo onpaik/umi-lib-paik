@@ -1,20 +1,32 @@
 #!/usr/bin/env node
 
 const { transformFileSync } = require('@babel/core');
+const shell = require('shelljs');
 const {
   readdirSync,
   statSync,
   writeFileSync,
   readFileSync,
   existsSync,
-  closeSync,
-  openSync,
 } = require('fs');
 const { ensureFileSync } = require('fs-extra');
 const mkdirp = require('mkdirp');
 const { join, dirname, extname, basename } = require('path');
 const rimraf = require('rimraf');
 const { argv } = require('yargs');
+
+const extendArray = () => {
+  Object.assign(Array.prototype, {
+    async mapSync(cb) {
+      await Promise.all(
+        this.map(async (obj, index) => {
+          await cb(obj, index, this);
+        }),
+      );
+    },
+  });
+};
+extendArray();
 
 const { src } = argv;
 
@@ -104,11 +116,19 @@ if (src) {
       .split('/')[1],
   ];
 }
-dist.map(mod => {
-  cleanDir(mod);
+dist.mapSync(async mod => {
+  if (mod === 'paik-utils') {
+    await shell.exec('npm run clean');
+  } else {
+    cleanDir(mod);
+  }
+
   const dir = `${packagesFloder}/${mod}/src`;
   if (existsSync(dir)) {
-    fileDisplay(dir);
+    await fileDisplay(dir);
+  }
+  if (mod === 'paik-utils') {
+    await shell.exec('npm run copy');
   }
   return mod;
 });

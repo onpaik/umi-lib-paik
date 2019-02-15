@@ -1,4 +1,4 @@
-define(["exports", "./isArray", "./isBoolean", "./isFunction", "./isNull", "./isNumber", "./isObject", "./isString", "./isSymbol", "./isUndefined", "./isEmpty", "./isInValid"], function (_exports, _isArray, _isBoolean, _isFunction, _isNull, _isNumber, _isObject, _isString, _isSymbol, _isUndefined, _isEmpty, _isInValid) {
+define(["exports", "./isArray", "./isBoolean", "./isFunction", "./isNull", "./isNumber", "./isObject", "./isString", "./isSymbol", "./isUndefined", "./isEmpty", "./isInValid", "./isClassComponent"], function (_exports, _isArray, _isBoolean, _isFunction, _isNull, _isNumber, _isObject, _isString, _isSymbol, _isUndefined, _isEmpty, _isInValid, _isClassComponent) {
   "use strict";
 
   var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -72,6 +72,12 @@ define(["exports", "./isArray", "./isBoolean", "./isFunction", "./isNull", "./is
       return _isInValid.default;
     }
   });
+  Object.defineProperty(_exports, "isClassComponent", {
+    enumerable: true,
+    get: function get() {
+      return _isClassComponent.default;
+    }
+  });
   _exports.default = void 0;
   _isArray = _interopRequireDefault(_isArray);
   _isBoolean = _interopRequireDefault(_isBoolean);
@@ -84,6 +90,7 @@ define(["exports", "./isArray", "./isBoolean", "./isFunction", "./isNull", "./is
   _isUndefined = _interopRequireDefault(_isUndefined);
   _isEmpty = _interopRequireDefault(_isEmpty);
   _isInValid = _interopRequireDefault(_isInValid);
+  _isClassComponent = _interopRequireDefault(_isClassComponent);
   var _default = {
     isArray: _isArray.default,
     isBoolean: _isBoolean.default,
@@ -95,7 +102,8 @@ define(["exports", "./isArray", "./isBoolean", "./isFunction", "./isNull", "./is
     isSymbol: _isSymbol.default,
     isUndefined: _isUndefined.default,
     isEmpty: _isEmpty.default,
-    isInValid: _isInValid.default
+    isInValid: _isInValid.default,
+    isClassComponent: _isClassComponent.default
   };
   _exports.default = _default;
 });

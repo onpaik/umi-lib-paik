@@ -1,4 +1,4 @@
-define(["exports", "./change", "./common", "./file", "./is", "./preventDefault", "./sort", "./url", "./validate", "./time"], function (_exports, _change, _common, _file, _is, _preventDefault, _sort, _url, _validate, _time) {
+define(["exports", "./change", "./common", "./file", "./is", "./preventDefault", "./sort", "./url", "./validate", "./time", "./get", "./compose"], function (_exports, _change, _common, _file, _is, _preventDefault, _sort, _url, _validate, _time, _get, _compose) {
   "use strict";
 
   var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -60,6 +60,18 @@ define(["exports", "./change", "./common", "./file", "./is", "./preventDefault",
       return _time.default;
     }
   });
+  Object.defineProperty(_exports, "get", {
+    enumerable: true,
+    get: function get() {
+      return _get.default;
+    }
+  });
+  Object.defineProperty(_exports, "compose", {
+    enumerable: true,
+    get: function get() {
+      return _compose.default;
+    }
+  });
   _exports.default = void 0;
   _change = _interopRequireDefault(_change);
   _common = _interopRequireDefault(_common);
@@ -70,6 +82,8 @@ define(["exports", "./change", "./common", "./file", "./is", "./preventDefault",
   _url = _interopRequireDefault(_url);
   _validate = _interopRequireDefault(_validate);
   _time = _interopRequireDefault(_time);
+  _get = _interopRequireDefault(_get);
+  _compose = _interopRequireDefault(_compose);
   var _default = {
     change: _change.default,
     common: _common.default,
@@ -79,7 +93,9 @@ define(["exports", "./change", "./common", "./file", "./is", "./preventDefault",
     sort: _sort.default,
     url: _url.default,
     validate: _validate.default,
-    time: _time.default
+    time: _time.default,
+    get: _get.default,
+    compose: _compose.default
   };
   _exports.default = _default;
 });

@@ -7,8 +7,22 @@ import sort from './sort';
 import url from './url';
 import validate from './validate';
 import time from './time';
+import get from './get';
+import compose from './compose';
 
-export { change, common, file, is, preventDefault, sort, url, validate, time };
+export {
+  change,
+  common,
+  file,
+  is,
+  preventDefault,
+  sort,
+  url,
+  validate,
+  time,
+  get,
+  compose,
+};
 
 export default {
   change,
@@ -20,4 +34,6 @@ export default {
   url,
   validate,
   time,
+  get,
+  compose,
 };

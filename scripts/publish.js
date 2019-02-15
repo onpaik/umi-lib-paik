@@ -22,7 +22,7 @@ if (buildCode === 1) {
   process.exit(1);
 }
 
-const publishToNpm = () =>{
+const publishToNpm = () => {
   console.log(`repos to publish: ${updatedRepos.join(', ')}`);
   updatedRepos.forEach(repo => {
     shell.cd(join(cwd, 'packages', repo));
@@ -39,7 +39,7 @@ const publishToNpm = () =>{
       shell.exec(`npm publish`);
     }
   });
-}
+};
 const cp = fork(
   join(process.cwd(), 'node_modules/.bin/lerna'),
   ['publish', '--skip-npm '].concat(process.argv.slice(2)),

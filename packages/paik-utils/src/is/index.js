@@ -9,6 +9,7 @@ import isSymbol from './isSymbol';
 import isUndefined from './isUndefined';
 import isEmpty from './isEmpty';
 import isInValid from './isInValid';
+import isClassComponent from './isClassComponent';
 
 export {
   isArray,
@@ -22,6 +23,7 @@ export {
   isUndefined,
   isEmpty,
   isInValid,
+  isClassComponent,
 };
 
 export default {
@@ -36,4 +38,5 @@ export default {
   isUndefined,
   isEmpty,
   isInValid,
+  isClassComponent,
 };

@@ -5,6 +5,9 @@
   "scripts": {
     "build": "node ./scripts/build.js",
     "publish": "node ./scripts/publish.js",
+    "clean":"node ./scripts/clean.js --config ./scripts/clean.config.js",
+    "copy":"node ./scripts/copy.js",
+    "disableLint":"node ./scripts/disableLint.js",
     "publish:hard": "node ./scripts/publish.js --no-git-tag-version --no-push"
   },
   "devDependencies": {
