@@ -8,5 +8,5 @@ const to = `${cwd}/packages/paik-utils/`;
 
 shell.exec(`cp -rf ${from}/* ${to}`);
 rimraf.sync(`${to}index.js`);
-
+shell.exec(`npm run upj`);
 shell.exec(`npm run disableLint`);
