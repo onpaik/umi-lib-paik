@@ -5,6 +5,7 @@
 /packages/umi-plugin-translate-paik
 package-lock.json
 yarn-error.log
+/paik-utils
 *.tgz
 lerna-debug.log
 /packages/umi-plugin-locale-paik/src/utils/withIntl/*
