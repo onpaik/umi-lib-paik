@@ -1,4 +1,4 @@
-define(["exports", "@babel/runtime/helpers/slicedToArray", "@babel/runtime/helpers/objectSpread", "../../common"], function (_exports, _slicedToArray2, _objectSpread2, _common) {
+define(["exports", "@babel/runtime/helpers/slicedToArray", "@babel/runtime/helpers/objectSpread", "../common"], function (_exports, _slicedToArray2, _objectSpread2, _common) {
   "use strict";
 
   var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");

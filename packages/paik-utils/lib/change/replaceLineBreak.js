@@ -11,7 +11,7 @@ var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/sli
 
 var _objectSpread2 = _interopRequireDefault(require("@babel/runtime/helpers/objectSpread"));
 
-var _common = require("../../common");
+var _common = require("../common");
 
 var spliceLineBreak = function spliceLineBreak(obj) {
   var newObj = (0, _objectSpread2.default)({}, obj);

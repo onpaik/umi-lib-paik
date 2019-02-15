@@ -1,8 +1,8 @@
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(["exports", "@babel/runtime/helpers/slicedToArray", "@babel/runtime/helpers/objectSpread", "../../common"], factory);
+    define(["exports", "@babel/runtime/helpers/slicedToArray", "@babel/runtime/helpers/objectSpread", "../common"], factory);
   } else if (typeof exports !== "undefined") {
-    factory(exports, require("@babel/runtime/helpers/slicedToArray"), require("@babel/runtime/helpers/objectSpread"), require("../../common"));
+    factory(exports, require("@babel/runtime/helpers/slicedToArray"), require("@babel/runtime/helpers/objectSpread"), require("../common"));
   } else {
     var mod = {
       exports: {}
