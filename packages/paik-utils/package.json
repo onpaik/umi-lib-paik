@@ -1,0 +1,27 @@
+{
+  "name": "paik-utils",
+  "version": "0.0.1",
+  "description": "paik utils",
+  "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/onpaik/umi-lib-paik/tree/master/packages/paik-utils"
+  },
+  "keywords": [
+    "utils",
+    "paik"
+  ],
+  "bugs": {
+    "url": "https://github.com/onpaik/umi-lib-paik/issues"
+  },
+  "files": [
+    "lib",
+    "src"
+  ],
+  "author": "unonpaik",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
+}

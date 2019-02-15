@@ -7,7 +7,10 @@ const {
   writeFileSync,
   readFileSync,
   existsSync,
+  closeSync,
+  openSync,
 } = require('fs');
+const { ensureFileSync } = require('fs-extra');
 const mkdirp = require('mkdirp');
 const { join, dirname, extname, basename } = require('path');
 const rimraf = require('rimraf');
@@ -55,7 +58,11 @@ const getBabelConfig = modType => ({
 const writeFile = async (destPath, code) => {
   const dir = dirname(destPath);
   await mkdirp(dir);
-  // return false;
+  // console.log({
+  //   destPath,
+  //   code,
+  // });
+  ensureFileSync(destPath);
   await writeFileSync(destPath, code);
 };
 const build = file => {
