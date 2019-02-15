@@ -11,20 +11,20 @@ Object.defineProperty(exports, "regExp", {
     return _regExp.default;
   }
 });
-Object.defineProperty(exports, "idCard", {
+Object.defineProperty(exports, "idCardValidate", {
   enumerable: true,
   get: function get() {
-    return _idCard.default;
+    return _idCardValidate.default;
   }
 });
 exports.default = void 0;
 
 var _regExp = _interopRequireDefault(require("./regExp"));
 
-var _idCard = _interopRequireDefault(require("./idCard"));
+var _idCardValidate = _interopRequireDefault(require("./idCardValidate"));
 
 var _default = {
   regExp: _regExp.default,
-  idCard: _idCard.default
+  idCardValidate: _idCardValidate.default
 };
 exports.default = _default;

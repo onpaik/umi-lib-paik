@@ -6,6 +6,10 @@ define(["exports"], function (_exports) {
   });
   _exports.default = _exports.delInvisibleStr = void 0;
 
+  /**
+   * 删除不可见字符
+   * @param {*} str 字符串
+   */
   var delInvisibleStr = function delInvisibleStr(str) {
     return str.toString().replace(/\s*/g, '');
   };

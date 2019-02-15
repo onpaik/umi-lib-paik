@@ -29,6 +29,12 @@ Object.defineProperty(exports, "delInvisibleStr", {
     return _delInvisibleStr.default;
   }
 });
+Object.defineProperty(exports, "delLineBreak", {
+  enumerable: true,
+  get: function get() {
+    return _delLineBreak.default;
+  }
+});
 exports.default = void 0;
 
 var _delInvalidProperty = _interopRequireDefault(require("./delInvalidProperty"));
@@ -39,10 +45,13 @@ var _is = _interopRequireDefault(require("./is"));
 
 var _delInvisibleStr = _interopRequireDefault(require("./delInvisibleStr"));
 
+var _delLineBreak = _interopRequireDefault(require("./delLineBreak"));
+
 var _default = {
   delInvalidProperty: _delInvalidProperty.default,
   hasOwn: _hasOwn.default,
   is: _is.default,
-  delInvisibleStr: _delInvisibleStr.default
+  delInvisibleStr: _delInvisibleStr.default,
+  delLineBreak: _delLineBreak.default
 };
 exports.default = _default;

@@ -1,16 +1,16 @@
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(["exports", "./delInvalidProperty", "./hasOwn", "./is", "./delInvisibleStr"], factory);
+    define(["exports", "./delInvalidProperty", "./hasOwn", "./is", "./delInvisibleStr", "./delLineBreak"], factory);
   } else if (typeof exports !== "undefined") {
-    factory(exports, require("./delInvalidProperty"), require("./hasOwn"), require("./is"), require("./delInvisibleStr"));
+    factory(exports, require("./delInvalidProperty"), require("./hasOwn"), require("./is"), require("./delInvisibleStr"), require("./delLineBreak"));
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global.delInvalidProperty, global.hasOwn, global.is, global.delInvisibleStr);
+    factory(mod.exports, global.delInvalidProperty, global.hasOwn, global.is, global.delInvisibleStr, global.delLineBreak);
     global.index = mod.exports;
   }
-})(this, function (_exports, _delInvalidProperty, _hasOwn, _is, _delInvisibleStr) {
+})(this, function (_exports, _delInvalidProperty, _hasOwn, _is, _delInvisibleStr, _delLineBreak) {
   "use strict";
 
   var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -42,16 +42,24 @@
       return _delInvisibleStr.default;
     }
   });
+  Object.defineProperty(_exports, "delLineBreak", {
+    enumerable: true,
+    get: function get() {
+      return _delLineBreak.default;
+    }
+  });
   _exports.default = void 0;
   _delInvalidProperty = _interopRequireDefault(_delInvalidProperty);
   _hasOwn = _interopRequireDefault(_hasOwn);
   _is = _interopRequireDefault(_is);
   _delInvisibleStr = _interopRequireDefault(_delInvisibleStr);
+  _delLineBreak = _interopRequireDefault(_delLineBreak);
   var _default = {
     delInvalidProperty: _delInvalidProperty.default,
     hasOwn: _hasOwn.default,
     is: _is.default,
-    delInvisibleStr: _delInvisibleStr.default
+    delInvisibleStr: _delInvisibleStr.default,
+    delLineBreak: _delLineBreak.default
   };
   _exports.default = _default;
 });

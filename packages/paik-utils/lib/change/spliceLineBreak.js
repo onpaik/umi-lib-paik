@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.spliceLineBreak = void 0;
+exports.default = exports.spliceLineBreak = void 0;
 
 var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
 
@@ -13,6 +13,10 @@ var _objectSpread2 = _interopRequireDefault(require("@babel/runtime/helpers/obje
 
 var _common = require("../common");
 
+/**
+ * 删除对象属性值中的换行符
+ * @param {*} obj 对象
+ */
 var spliceLineBreak = function spliceLineBreak(obj) {
   var newObj = (0, _objectSpread2.default)({}, obj);
   Object.entries(newObj).map(function (kayVal) {
@@ -20,10 +24,12 @@ var spliceLineBreak = function spliceLineBreak(obj) {
         key = _kayVal[0],
         value = _kayVal[1];
 
-    if ((0, _common.is)(value) === 'String') newObj[key] = value.replace(/[\r\n]/g, '');
+    if ((0, _common.is)(value) === 'String') newObj[key] = (0, _common.delLineBreak)(value);
     return kayVal;
   });
   return newObj;
 };
 
 exports.spliceLineBreak = spliceLineBreak;
+var _default = spliceLineBreak;
+exports.default = _default;

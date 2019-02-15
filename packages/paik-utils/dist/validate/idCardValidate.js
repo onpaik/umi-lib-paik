@@ -1,4 +1,16 @@
-define(["exports"], function (_exports) {
+(function (global, factory) {
+  if (typeof define === "function" && define.amd) {
+    define(["exports"], factory);
+  } else if (typeof exports !== "undefined") {
+    factory(exports);
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports);
+    global.idCardValidate = mod.exports;
+  }
+})(this, function (_exports) {
   "use strict";
 
   Object.defineProperty(_exports, "__esModule", {
@@ -6,6 +18,10 @@ define(["exports"], function (_exports) {
   });
   _exports.default = _exports.idCardValidate = void 0;
 
+  /**
+   * 身份证合法性校验
+   * @param {*} idCard 身份证 15 或者 18位
+   */
   var idCardValidate = function idCardValidate(idCard) {
     var Wi = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2, 1]; // 加权因子
 

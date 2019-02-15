@@ -1,4 +1,4 @@
-define(["exports", "./fenToyuan", "./inValidToText", "./removeLastetZero", "./replaceLineBreak", "./strToDateFomat", "./strToNumber", "./toDecimal", "./toLowerCase", "./toUpperCase", "./trimLR"], function (_exports, _fenToyuan, _inValidToText, _removeLastetZero, _replaceLineBreak, _strToDateFomat, _strToNumber, _toDecimal, _toLowerCase, _toUpperCase, _trimLR) {
+define(["exports", "./fenToyuan", "./inValidToText", "./removeLastetZero", "./spliceLineBreak", "./strToDateFomat", "./strToNumber", "./toDecimal", "./toLowerCase", "./toUpperCase", "./trimLR"], function (_exports, _fenToyuan, _inValidToText, _removeLastetZero, _spliceLineBreak, _strToDateFomat, _strToNumber, _toDecimal, _toLowerCase, _toUpperCase, _trimLR) {
   "use strict";
 
   var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -24,10 +24,10 @@ define(["exports", "./fenToyuan", "./inValidToText", "./removeLastetZero", "./re
       return _removeLastetZero.default;
     }
   });
-  Object.defineProperty(_exports, "replaceLineBreak", {
+  Object.defineProperty(_exports, "spliceLineBreak", {
     enumerable: true,
     get: function get() {
-      return _replaceLineBreak.default;
+      return _spliceLineBreak.default;
     }
   });
   Object.defineProperty(_exports, "strToDateFomat", {
@@ -70,7 +70,7 @@ define(["exports", "./fenToyuan", "./inValidToText", "./removeLastetZero", "./re
   _fenToyuan = _interopRequireDefault(_fenToyuan);
   _inValidToText = _interopRequireDefault(_inValidToText);
   _removeLastetZero = _interopRequireDefault(_removeLastetZero);
-  _replaceLineBreak = _interopRequireDefault(_replaceLineBreak);
+  _spliceLineBreak = _interopRequireDefault(_spliceLineBreak);
   _strToDateFomat = _interopRequireDefault(_strToDateFomat);
   _strToNumber = _interopRequireDefault(_strToNumber);
   _toDecimal = _interopRequireDefault(_toDecimal);
@@ -81,7 +81,7 @@ define(["exports", "./fenToyuan", "./inValidToText", "./removeLastetZero", "./re
     fenToyuan: _fenToyuan.default,
     inValidToText: _inValidToText.default,
     removeLastetZero: _removeLastetZero.default,
-    replaceLineBreak: _replaceLineBreak.default,
+    spliceLineBreak: _spliceLineBreak.default,
     strToDateFomat: _strToDateFomat.default,
     strToNumber: _strToNumber.default,
     toDecimal: _toDecimal.default,

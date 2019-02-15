@@ -23,10 +23,10 @@ Object.defineProperty(exports, "removeLastetZero", {
     return _removeLastetZero.default;
   }
 });
-Object.defineProperty(exports, "replaceLineBreak", {
+Object.defineProperty(exports, "spliceLineBreak", {
   enumerable: true,
   get: function get() {
-    return _replaceLineBreak.default;
+    return _spliceLineBreak.default;
   }
 });
 Object.defineProperty(exports, "strToDateFomat", {
@@ -73,7 +73,7 @@ var _inValidToText = _interopRequireDefault(require("./inValidToText"));
 
 var _removeLastetZero = _interopRequireDefault(require("./removeLastetZero"));
 
-var _replaceLineBreak = _interopRequireDefault(require("./replaceLineBreak"));
+var _spliceLineBreak = _interopRequireDefault(require("./spliceLineBreak"));
 
 var _strToDateFomat = _interopRequireDefault(require("./strToDateFomat"));
 
@@ -91,7 +91,7 @@ var _default = {
   fenToyuan: _fenToyuan.default,
   inValidToText: _inValidToText.default,
   removeLastetZero: _removeLastetZero.default,
-  replaceLineBreak: _replaceLineBreak.default,
+  spliceLineBreak: _spliceLineBreak.default,
   strToDateFomat: _strToDateFomat.default,
   strToNumber: _strToNumber.default,
   toDecimal: _toDecimal.default,

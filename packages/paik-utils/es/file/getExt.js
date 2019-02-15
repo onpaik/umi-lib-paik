@@ -6,6 +6,11 @@ define(["exports"], function (_exports) {
   });
   _exports.default = _exports.getExt = void 0;
 
+  /**
+   * 获取文件拓展名
+   * @param {*} name 符合路径规则的字符串
+   * @returns 文件拓展名 小写
+   */
   var getExt = function getExt(name) {
     return name.substring(name.lastIndexOf('.') + 1, name.length).toLowerCase();
   };

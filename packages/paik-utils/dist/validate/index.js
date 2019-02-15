@@ -1,16 +1,16 @@
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(["exports", "./regExp", "./idCard"], factory);
+    define(["exports", "./regExp", "./idCardValidate"], factory);
   } else if (typeof exports !== "undefined") {
-    factory(exports, require("./regExp"), require("./idCard"));
+    factory(exports, require("./regExp"), require("./idCardValidate"));
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global.regExp, global.idCard);
+    factory(mod.exports, global.regExp, global.idCardValidate);
     global.index = mod.exports;
   }
-})(this, function (_exports, _regExp, _idCard) {
+})(this, function (_exports, _regExp, _idCardValidate) {
   "use strict";
 
   var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -24,18 +24,18 @@
       return _regExp.default;
     }
   });
-  Object.defineProperty(_exports, "idCard", {
+  Object.defineProperty(_exports, "idCardValidate", {
     enumerable: true,
     get: function get() {
-      return _idCard.default;
+      return _idCardValidate.default;
     }
   });
   _exports.default = void 0;
   _regExp = _interopRequireDefault(_regExp);
-  _idCard = _interopRequireDefault(_idCard);
+  _idCardValidate = _interopRequireDefault(_idCardValidate);
   var _default = {
     regExp: _regExp.default,
-    idCard: _idCard.default
+    idCardValidate: _idCardValidate.default
   };
   _exports.default = _default;
 });

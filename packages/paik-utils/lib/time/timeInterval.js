@@ -3,7 +3,8 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = exports.timeInterval = void 0;
+exports.timeInterval = timeInterval;
+exports.default = void 0;
 
 /**
  * 计算timestamp时间间隔
@@ -11,7 +12,7 @@ exports.default = exports.timeInterval = void 0;
  * @param to 结束时间，默认值当前日期的时间戳
  * @param options 设置年、月、日、时、分、秒、负数的显示
  */
-var timeInterval = function timeInterval() {
+function timeInterval() {
   var from = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
   var to = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : new Date().getTime();
   var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {
@@ -54,7 +55,17 @@ var timeInterval = function timeInterval() {
     return parseInt(period, 0) / secondLevelValue;
   };
 
-  var period = to - from;
+  var _from = new Date(from).getTime();
+
+  var _to = new Date(to).getTime();
+
+  if (Number.isNaN(_from) || Number.isNaN(_to)) {
+    /* eslint-disable-next-line */
+    console.error("accept InValid Date, please check ".concat(arguments));
+    return false;
+  }
+
+  var period = _to - _from;
   var isNegative = String(period).startsWith('-');
   if (isNegative) period = Math.abs(period);
   var year = parseInt(getYear(period), 0);
@@ -69,8 +80,7 @@ var timeInterval = function timeInterval() {
   if (day !== 0) result = "".concat(result + day).concat(options.day);
   result = "".concat(result + hour).concat(options.hour).concat(minute).concat(options.minute).concat(second).concat(options.second, " ").concat(isNegative ? options.negative : '');
   return result;
-};
+}
 
-exports.timeInterval = timeInterval;
 var _default = timeInterval;
 exports.default = _default;

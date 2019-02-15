@@ -18,6 +18,10 @@
   });
   _exports.default = _exports.trimLR = void 0;
 
+  /**
+   * 删除首尾空格
+   * @param {*} str 字符串
+   */
   var trimLR = function trimLR(str) {
     return str.replace(/(^\s*)|(\s*$)/g, '');
   };

@@ -1,4 +1,4 @@
-define(["exports", "./regExp", "./idCard"], function (_exports, _regExp, _idCard) {
+define(["exports", "./regExp", "./idCardValidate"], function (_exports, _regExp, _idCardValidate) {
   "use strict";
 
   var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -12,18 +12,18 @@ define(["exports", "./regExp", "./idCard"], function (_exports, _regExp, _idCard
       return _regExp.default;
     }
   });
-  Object.defineProperty(_exports, "idCard", {
+  Object.defineProperty(_exports, "idCardValidate", {
     enumerable: true,
     get: function get() {
-      return _idCard.default;
+      return _idCardValidate.default;
     }
   });
   _exports.default = void 0;
   _regExp = _interopRequireDefault(_regExp);
-  _idCard = _interopRequireDefault(_idCard);
+  _idCardValidate = _interopRequireDefault(_idCardValidate);
   var _default = {
     regExp: _regExp.default,
-    idCard: _idCard.default
+    idCardValidate: _idCardValidate.default
   };
   _exports.default = _default;
 });

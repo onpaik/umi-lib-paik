@@ -5,7 +5,11 @@ define(["exports"], function (_exports) {
     value: true
   });
   _exports.default = _exports.removeLastetZero = void 0;
-  var regexp = /(?:\.0*|(\.\d+?)0+)$/; // 取消小数后面多余的0
+  var regexp = /(?:\.0*|(\.\d+?)0+)$/;
+  /**
+   * 取消小数后面多余的0
+   * @param {*} num 数字
+   */
 
   var removeLastetZero = function removeLastetZero(num) {
     return String(num).replace(regexp, '$1');

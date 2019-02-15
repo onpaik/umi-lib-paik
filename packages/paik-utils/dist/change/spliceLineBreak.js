@@ -8,7 +8,7 @@
       exports: {}
     };
     factory(mod.exports, global.slicedToArray, global.objectSpread, global.common);
-    global.replaceLineBreak = mod.exports;
+    global.spliceLineBreak = mod.exports;
   }
 })(this, function (_exports, _slicedToArray2, _objectSpread2, _common) {
   "use strict";
@@ -18,10 +18,14 @@
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
-  _exports.spliceLineBreak = void 0;
+  _exports.default = _exports.spliceLineBreak = void 0;
   _slicedToArray2 = _interopRequireDefault(_slicedToArray2);
   _objectSpread2 = _interopRequireDefault(_objectSpread2);
 
+  /**
+   * 删除对象属性值中的换行符
+   * @param {*} obj 对象
+   */
   var spliceLineBreak = function spliceLineBreak(obj) {
     var newObj = (0, _objectSpread2.default)({}, obj);
     Object.entries(newObj).map(function (kayVal) {
@@ -29,11 +33,13 @@
           key = _kayVal[0],
           value = _kayVal[1];
 
-      if ((0, _common.is)(value) === 'String') newObj[key] = value.replace(/[\r\n]/g, '');
+      if ((0, _common.is)(value) === 'String') newObj[key] = (0, _common.delLineBreak)(value);
       return kayVal;
     });
     return newObj;
   };
 
   _exports.spliceLineBreak = spliceLineBreak;
+  var _default = spliceLineBreak;
+  _exports.default = _default;
 });

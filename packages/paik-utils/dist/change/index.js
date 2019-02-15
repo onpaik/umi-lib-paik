@@ -1,16 +1,16 @@
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(["exports", "./fenToyuan", "./inValidToText", "./removeLastetZero", "./replaceLineBreak", "./strToDateFomat", "./strToNumber", "./toDecimal", "./toLowerCase", "./toUpperCase", "./trimLR"], factory);
+    define(["exports", "./fenToyuan", "./inValidToText", "./removeLastetZero", "./spliceLineBreak", "./strToDateFomat", "./strToNumber", "./toDecimal", "./toLowerCase", "./toUpperCase", "./trimLR"], factory);
   } else if (typeof exports !== "undefined") {
-    factory(exports, require("./fenToyuan"), require("./inValidToText"), require("./removeLastetZero"), require("./replaceLineBreak"), require("./strToDateFomat"), require("./strToNumber"), require("./toDecimal"), require("./toLowerCase"), require("./toUpperCase"), require("./trimLR"));
+    factory(exports, require("./fenToyuan"), require("./inValidToText"), require("./removeLastetZero"), require("./spliceLineBreak"), require("./strToDateFomat"), require("./strToNumber"), require("./toDecimal"), require("./toLowerCase"), require("./toUpperCase"), require("./trimLR"));
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global.fenToyuan, global.inValidToText, global.removeLastetZero, global.replaceLineBreak, global.strToDateFomat, global.strToNumber, global.toDecimal, global.toLowerCase, global.toUpperCase, global.trimLR);
+    factory(mod.exports, global.fenToyuan, global.inValidToText, global.removeLastetZero, global.spliceLineBreak, global.strToDateFomat, global.strToNumber, global.toDecimal, global.toLowerCase, global.toUpperCase, global.trimLR);
     global.index = mod.exports;
   }
-})(this, function (_exports, _fenToyuan, _inValidToText, _removeLastetZero, _replaceLineBreak, _strToDateFomat, _strToNumber, _toDecimal, _toLowerCase, _toUpperCase, _trimLR) {
+})(this, function (_exports, _fenToyuan, _inValidToText, _removeLastetZero, _spliceLineBreak, _strToDateFomat, _strToNumber, _toDecimal, _toLowerCase, _toUpperCase, _trimLR) {
   "use strict";
 
   var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -36,10 +36,10 @@
       return _removeLastetZero.default;
     }
   });
-  Object.defineProperty(_exports, "replaceLineBreak", {
+  Object.defineProperty(_exports, "spliceLineBreak", {
     enumerable: true,
     get: function get() {
-      return _replaceLineBreak.default;
+      return _spliceLineBreak.default;
     }
   });
   Object.defineProperty(_exports, "strToDateFomat", {
@@ -82,7 +82,7 @@
   _fenToyuan = _interopRequireDefault(_fenToyuan);
   _inValidToText = _interopRequireDefault(_inValidToText);
   _removeLastetZero = _interopRequireDefault(_removeLastetZero);
-  _replaceLineBreak = _interopRequireDefault(_replaceLineBreak);
+  _spliceLineBreak = _interopRequireDefault(_spliceLineBreak);
   _strToDateFomat = _interopRequireDefault(_strToDateFomat);
   _strToNumber = _interopRequireDefault(_strToNumber);
   _toDecimal = _interopRequireDefault(_toDecimal);
@@ -93,7 +93,7 @@
     fenToyuan: _fenToyuan.default,
     inValidToText: _inValidToText.default,
     removeLastetZero: _removeLastetZero.default,
-    replaceLineBreak: _replaceLineBreak.default,
+    spliceLineBreak: _spliceLineBreak.default,
     strToDateFomat: _strToDateFomat.default,
     strToNumber: _strToNumber.default,
     toDecimal: _toDecimal.default,

@@ -5,6 +5,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = exports.delInvalidProperty = void 0;
 
+/**
+ * 删除对象里的无效属性，不包括 0， false,
+ * @param {*} obj 对象
+ */
 var delInvalidProperty = function delInvalidProperty(obj) {
   var newObj = obj;
   Object.keys(obj).map(function (k) {

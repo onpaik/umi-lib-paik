@@ -8,7 +8,7 @@
       exports: {}
     };
     factory(mod.exports);
-    global.delInvisibleStr = mod.exports;
+    global.delLineBreak = mod.exports;
   }
 })(this, function (_exports) {
   "use strict";
@@ -16,13 +16,17 @@
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
-  _exports.default = _exports.delInvisibleStr = void 0;
+  _exports.default = _exports.delLineBreak = void 0;
 
-  var delInvisibleStr = function delInvisibleStr(str) {
-    return str.toString().replace(/\s*/g, '');
+  /**
+   * 删除字符串中的换行符
+   * @param {*} val 字符串
+   */
+  var delLineBreak = function delLineBreak(val) {
+    return val.replace(/[\r\n]/g, '');
   };
 
-  _exports.delInvisibleStr = delInvisibleStr;
-  var _default = delInvisibleStr;
+  _exports.delLineBreak = delLineBreak;
+  var _default = delLineBreak;
   _exports.default = _default;
 });
