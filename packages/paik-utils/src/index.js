@@ -6,8 +6,9 @@ import preventDefault from './preventDefault';
 import sort from './sort';
 import url from './url';
 import validate from './validate';
+import time from './time';
 
-export { change, common, file, is, preventDefault, sort, url, validate };
+export { change, common, file, is, preventDefault, sort, url, validate, time };
 
 export default {
   change,
@@ -18,4 +19,5 @@ export default {
   sort,
   url,
   validate,
+  time,
 };

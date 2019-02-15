@@ -1,16 +1,16 @@
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(["exports", "./change", "./common", "./file", "./is", "./preventDefault", "./sort", "./url", "./validate"], factory);
+    define(["exports", "./change", "./common", "./file", "./is", "./preventDefault", "./sort", "./url", "./validate", "./time"], factory);
   } else if (typeof exports !== "undefined") {
-    factory(exports, require("./change"), require("./common"), require("./file"), require("./is"), require("./preventDefault"), require("./sort"), require("./url"), require("./validate"));
+    factory(exports, require("./change"), require("./common"), require("./file"), require("./is"), require("./preventDefault"), require("./sort"), require("./url"), require("./validate"), require("./time"));
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global.change, global.common, global.file, global.is, global.preventDefault, global.sort, global.url, global.validate);
+    factory(mod.exports, global.change, global.common, global.file, global.is, global.preventDefault, global.sort, global.url, global.validate, global.time);
     global.index = mod.exports;
   }
-})(this, function (_exports, _change, _common, _file, _is, _preventDefault, _sort, _url, _validate) {
+})(this, function (_exports, _change, _common, _file, _is, _preventDefault, _sort, _url, _validate, _time) {
   "use strict";
 
   var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -66,6 +66,12 @@
       return _validate.default;
     }
   });
+  Object.defineProperty(_exports, "time", {
+    enumerable: true,
+    get: function get() {
+      return _time.default;
+    }
+  });
   _exports.default = void 0;
   _change = _interopRequireDefault(_change);
   _common = _interopRequireDefault(_common);
@@ -75,6 +81,7 @@
   _sort = _interopRequireDefault(_sort);
   _url = _interopRequireDefault(_url);
   _validate = _interopRequireDefault(_validate);
+  _time = _interopRequireDefault(_time);
   var _default = {
     change: _change.default,
     common: _common.default,
@@ -83,7 +90,8 @@
     preventDefault: _preventDefault.default,
     sort: _sort.default,
     url: _url.default,
-    validate: _validate.default
+    validate: _validate.default,
+    time: _time.default
   };
   _exports.default = _default;
 });

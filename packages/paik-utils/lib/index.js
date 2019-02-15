@@ -53,6 +53,12 @@ Object.defineProperty(exports, "validate", {
     return _validate.default;
   }
 });
+Object.defineProperty(exports, "time", {
+  enumerable: true,
+  get: function get() {
+    return _time.default;
+  }
+});
 exports.default = void 0;
 
 var _change = _interopRequireDefault(require("./change"));
@@ -71,6 +77,8 @@ var _url = _interopRequireDefault(require("./url"));
 
 var _validate = _interopRequireDefault(require("./validate"));
 
+var _time = _interopRequireDefault(require("./time"));
+
 var _default = {
   change: _change.default,
   common: _common.default,
@@ -79,6 +87,7 @@ var _default = {
   preventDefault: _preventDefault.default,
   sort: _sort.default,
   url: _url.default,
-  validate: _validate.default
+  validate: _validate.default,
+  time: _time.default
 };
 exports.default = _default;
