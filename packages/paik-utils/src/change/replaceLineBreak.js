@@ -1,4 +1,4 @@
-import { is } from '../../common';
+import { is } from '../common';
 
 export const spliceLineBreak = obj => {
   const newObj = {
