@@ -1,3 +1,7 @@
+/**
+ * 身份证合法性校验
+ * @param {*} idCard 身份证 15 或者 18位
+ */
 export const idCardValidate = idCard => {
   const Wi = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2, 1]; // 加权因子
   const ValideCode = [1, 0, 10, 9, 8, 7, 6, 5, 4, 3, 2]; // 身份证验证位值.10代表X

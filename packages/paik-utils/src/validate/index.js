@@ -1,9 +1,9 @@
 import regExp from './regExp';
-import idCard from './idCard';
+import idCardValidate from './idCardValidate';
 
-export { regExp, idCard };
+export { regExp, idCardValidate };
 
 export default {
   regExp,
-  idCard,
+  idCardValidate,
 };

@@ -4,7 +4,7 @@
  * @param to 结束时间，默认值当前日期的时间戳
  * @param options 设置年、月、日、时、分、秒、负数的显示
  */
-export const timeInterval = (
+export function timeInterval(
   from = 0,
   to = new Date().getTime(),
   options = {
@@ -16,7 +16,7 @@ export const timeInterval = (
     second: '秒',
     negative: '之后',
   },
-) => {
+) {
   const yearLevelValue = 365 * 24 * 60 * 60 * 1000;
   const monthLevelValue = 30 * 24 * 60 * 60 * 1000;
   const dayLevelValue = 24 * 60 * 60 * 1000;
@@ -31,7 +31,14 @@ export const timeInterval = (
   const getMinute = period => parseInt(period, 0) / minuteLevelValue;
   const getSecond = period => parseInt(period, 0) / secondLevelValue;
 
-  let period = to - from;
+  const _from = new Date(from).getTime();
+  const _to = new Date(to).getTime();
+  if (Number.isNaN(_from) || Number.isNaN(_to)) {
+    /* eslint-disable-next-line */
+    console.error(`accept InValid Date, please check ${arguments}`);
+    return false;
+  }
+  let period = _to - _from;
   const isNegative = String(period).startsWith('-');
   if (isNegative) period = Math.abs(period);
   const year = parseInt(getYear(period), 0);
@@ -79,6 +86,6 @@ export const timeInterval = (
   } ${isNegative ? options.negative : ''}`;
 
   return result;
-};
+}
 
 export default timeInterval;

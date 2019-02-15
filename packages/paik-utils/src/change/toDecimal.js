@@ -1,3 +1,8 @@
+/**
+ * 长小数保留小数位
+ * @param {*} num 数字
+ * @param {*} n 保留小数位
+ */
 export const toDecimal = (num, n) => {
   let f = parseFloat(num);
   const arr = Array.from(new Array(n).keys());

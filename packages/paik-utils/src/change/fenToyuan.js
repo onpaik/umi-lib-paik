@@ -1,3 +1,8 @@
+/**
+ * 分转换成元
+ * @param {*} num 整数
+ * @param {*} type 货币类型
+ */
 export const fenToyuan = (num, type = '') => {
   let _num = +num;
   // eslint-disable-next-line

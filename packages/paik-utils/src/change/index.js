@@ -1,7 +1,7 @@
 import fenToyuan from './fenToyuan';
 import inValidToText from './inValidToText';
 import removeLastetZero from './removeLastetZero';
-import replaceLineBreak from './replaceLineBreak';
+import spliceLineBreak from './spliceLineBreak';
 import strToDateFomat from './strToDateFomat';
 import strToNumber from './strToNumber';
 import toDecimal from './toDecimal';
@@ -13,7 +13,7 @@ export {
   fenToyuan,
   inValidToText,
   removeLastetZero,
-  replaceLineBreak,
+  spliceLineBreak,
   strToDateFomat,
   strToNumber,
   toDecimal,
@@ -26,7 +26,7 @@ export default {
   fenToyuan,
   inValidToText,
   removeLastetZero,
-  replaceLineBreak,
+  spliceLineBreak,
   strToDateFomat,
   strToNumber,
   toDecimal,

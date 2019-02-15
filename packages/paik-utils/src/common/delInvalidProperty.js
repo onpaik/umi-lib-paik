@@ -1,3 +1,7 @@
+/**
+ * 删除对象里的无效属性，不包括 0， false,
+ * @param {*} obj 对象
+ */
 export const delInvalidProperty = obj => {
   const newObj = obj;
   Object.keys(obj).map(k => {

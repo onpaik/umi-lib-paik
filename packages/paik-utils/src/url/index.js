@@ -1,3 +1,11 @@
-import { getParam, getParams } from './getParam';
+import getParam from './getParam';
+import getParams from './getParams';
+import paramParse from './paramParse';
 
-export { getParam, getParams };
+export { getParam, getParams, paramParse };
+
+export default {
+  getParam,
+  getParams,
+  paramParse,
+};
