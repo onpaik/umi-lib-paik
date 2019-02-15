@@ -25,6 +25,10 @@
       'umi-plugin-react/locale': '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/src/locale.js',
       'umi-plugin-locale': '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/src/locale.js',
       'react-intl': '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/node_modules/react-intl',
+      dva: '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/dva',
+      'dva-loading': '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/dva-loading/lib/index.js',
+      'path-to-regexp': '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/path-to-regexp/index.js',
+      'object-assign': '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/object-assign/index.js',
       react: '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/react',
       'react-dom': '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/react-dom',
       'react-router': '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/react-router',
@@ -42,7 +46,9 @@
       'umi/_renderRoutes': '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/umi/lib/renderRoutes.js',
       'umi/_createHistory': '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/umi/lib/createHistory.js',
       'umi/_runtimePlugin': '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/umi/lib/runtimePlugin.js',
-      '@babel/polyfill': '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/@babel/polyfill/lib/index.js'
+      '@babel/polyfill': '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/@babel/polyfill/lib/index.js',
+      antd: '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/antd',
+      'antd-mobile': '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/antd-mobile'
     },
     extensions: [
       '.web.js',
@@ -129,6 +135,35 @@
               ],
               plugins: [
                 [
+                  '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/babel-plugin-import/lib/index.js',
+                  {
+                    libraryName: 'antd',
+                    libraryDirectory: 'es',
+                    style: true
+                  },
+                  'antd'
+                ],
+                [
+                  '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/babel-plugin-import/lib/index.js',
+                  {
+                    libraryName: 'antd-mobile',
+                    libraryDirectory: 'es',
+                    style: true
+                  },
+                  'antd-mobile'
+                ],
+                [
+                  '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/babel-plugin-import/lib/index.js',
+                  {
+                    libraryName: 'ant-design-pro',
+                    libraryDirectory: 'lib',
+                    style: true,
+                    camel2DashComponentName: false
+                  },
+                  'ant-design-pro'
+                ],
+                '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/babel-plugin-dva-hmr/lib/index.js',
+                [
                   '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/babel-plugin-named-asset-import/index.js',
                   {
                     loaderMap: {
@@ -180,6 +215,35 @@
               ],
               plugins: [
                 [
+                  '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/babel-plugin-import/lib/index.js',
+                  {
+                    libraryName: 'antd',
+                    libraryDirectory: 'es',
+                    style: true
+                  },
+                  'antd'
+                ],
+                [
+                  '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/babel-plugin-import/lib/index.js',
+                  {
+                    libraryName: 'antd-mobile',
+                    libraryDirectory: 'es',
+                    style: true
+                  },
+                  'antd-mobile'
+                ],
+                [
+                  '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/babel-plugin-import/lib/index.js',
+                  {
+                    libraryName: 'ant-design-pro',
+                    libraryDirectory: 'lib',
+                    style: true,
+                    camel2DashComponentName: false
+                  },
+                  'ant-design-pro'
+                ],
+                '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/babel-plugin-dva-hmr/lib/index.js',
+                [
                   '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/babel-plugin-named-asset-import/index.js',
                   {
                     loaderMap: {
@@ -228,6 +292,35 @@
               ],
               plugins: [
                 [
+                  '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/babel-plugin-import/lib/index.js',
+                  {
+                    libraryName: 'antd',
+                    libraryDirectory: 'es',
+                    style: true
+                  },
+                  'antd'
+                ],
+                [
+                  '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/babel-plugin-import/lib/index.js',
+                  {
+                    libraryName: 'antd-mobile',
+                    libraryDirectory: 'es',
+                    style: true
+                  },
+                  'antd-mobile'
+                ],
+                [
+                  '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/babel-plugin-import/lib/index.js',
+                  {
+                    libraryName: 'ant-design-pro',
+                    libraryDirectory: 'lib',
+                    style: true,
+                    camel2DashComponentName: false
+                  },
+                  'ant-design-pro'
+                ],
+                '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/babel-plugin-dva-hmr/lib/index.js',
+                [
                   '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/babel-plugin-named-asset-import/index.js',
                   {
                     loaderMap: {
@@ -266,6 +359,7 @@
                 ]
               ],
               plugins: [
+                '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/babel-plugin-dva-hmr/lib/index.js',
                 '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/babel-plugin-dynamic-import-node/lib/index.js'
               ],
               cacheDirectory: true,
@@ -301,6 +395,35 @@
                 ]
               ],
               plugins: [
+                [
+                  '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/babel-plugin-import/lib/index.js',
+                  {
+                    libraryName: 'antd',
+                    libraryDirectory: 'es',
+                    style: true
+                  },
+                  'antd'
+                ],
+                [
+                  '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/babel-plugin-import/lib/index.js',
+                  {
+                    libraryName: 'antd-mobile',
+                    libraryDirectory: 'es',
+                    style: true
+                  },
+                  'antd-mobile'
+                ],
+                [
+                  '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/babel-plugin-import/lib/index.js',
+                  {
+                    libraryName: 'ant-design-pro',
+                    libraryDirectory: 'lib',
+                    style: true,
+                    camel2DashComponentName: false
+                  },
+                  'ant-design-pro'
+                ],
+                '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/babel-plugin-dva-hmr/lib/index.js',
                 [
                   '/Users/jedi/workshop/an-github/umi-lib-paik/packages/umi-plugin-locale-paik/examples/base/node_modules/babel-plugin-named-asset-import/index.js',
                   {

@@ -9,9 +9,6 @@ export function createIntlContext({ locale = 'zh-CN', messages = {} }) {
   return intl;
 }
 
-export function _setIntlObject(theIntl) {
-  intl = theIntl;
-}
 export function getIntlContext() {
   return intl;
 }
@@ -24,5 +21,4 @@ export default {
   createIntlContext,
   getIntlContext,
   formatMessage,
-  _setIntlObject,
 };

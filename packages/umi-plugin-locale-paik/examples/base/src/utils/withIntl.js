@@ -11,7 +11,7 @@ const getFloder = () => {
 export default (...arg) => {
  const { component, options } = parseArguments(arg);
   return withIntl(getFloder(), component, {
-    host: 'http://localhost:8001',
+    host: 'http://localhost:8000',
     resHandler: res => {
       const ret = {
         ...res,

@@ -3,7 +3,12 @@ import { writeFileSync } from 'fs';
 export default {
   plugins: [
     ['umi-plugin-react',{
-      locale: false
+      locale: false,
+      dva: {
+        // immer: true,
+        hmr: true,
+      },
+      antd: true
     }],
     [
       '../../src/index',
