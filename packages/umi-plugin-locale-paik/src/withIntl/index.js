@@ -5,7 +5,7 @@ import invariant from 'invariant';
 import withInjectIntl from './injectIntl';
 import getDisplayName from './getDisplayName';
 import { createIntlContext, getIntlContext } from './intlHelper';
-import { _setIntlObject } form 'umi/locale';
+import { _setIntlObject } from 'umi/locale';
 import toClass from './toClass';
 import compose from './compose';
 import parseArguments from './parseArguments/';
