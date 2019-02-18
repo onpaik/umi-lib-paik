@@ -17,6 +17,8 @@
     value: true
   });
   _exports.default = _exports.removeLastetZero = void 0;
+
+  /* eslint-disable */
   var regexp = /(?:\.0*|(\.\d+?)0+)$/;
   /**
    * 取消小数后面多余的0

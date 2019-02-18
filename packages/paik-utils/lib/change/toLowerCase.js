@@ -5,6 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = exports.toLowerCase = void 0;
 
+/* eslint-disable */
 var toLowerCase = function toLowerCase(str) {
   return String.prototype.toLowerCase.call(str || '');
 };

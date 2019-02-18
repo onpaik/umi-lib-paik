@@ -11,6 +11,7 @@ var _typeof2 = _interopRequireDefault(require("@babel/runtime/helpers/typeof"));
 
 var _shams = _interopRequireDefault(require("./shams"));
 
+/* eslint-disable */
 var origSymbol = global.Symbol;
 
 function hasSymbol() {

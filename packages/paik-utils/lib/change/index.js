@@ -87,6 +87,7 @@ var _toUpperCase = _interopRequireDefault(require("./toUpperCase"));
 
 var _trimLR = _interopRequireDefault(require("./trimLR"));
 
+/* eslint-disable */
 var _default = {
   fenToyuan: _fenToyuan.default,
   inValidToText: _inValidToText.default,

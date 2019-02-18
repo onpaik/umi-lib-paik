@@ -6,12 +6,14 @@ Object.defineProperty(exports, "__esModule", {
 exports.timeInterval = timeInterval;
 exports.default = void 0;
 
+/* eslint-disable */
+
 /**
- * 计算timestamp时间间隔
- * @param from 开始时间
- * @param to 结束时间，默认值当前日期的时间戳
- * @param options 设置年、月、日、时、分、秒、负数的显示
- */
+* 计算timestamp时间间隔
+* @param from 开始时间
+* @param to 结束时间，默认值当前日期的时间戳
+* @param options 设置年、月、日、时、分、秒、负数的显示
+*/
 function timeInterval() {
   var from = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
   var to = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : new Date().getTime();

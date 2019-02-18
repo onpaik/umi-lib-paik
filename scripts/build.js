@@ -28,6 +28,7 @@ const extendArray = () => {
 };
 extendArray();
 
+const arg = argv._[0];
 const { src } = argv;
 
 const cwd = process.cwd();
@@ -77,8 +78,10 @@ const writeFile = async (destPath, code) => {
   ensureFileSync(destPath);
   await writeFileSync(destPath, code);
 };
-const build = file => {
-  modMap.map(mod => {
+const build = (file, modExits) => {
+  let mapper = modMap;
+  if (modExits) mapper = modExits;
+  mapper.map(mod => {
     const ext = extname(file);
     const destPath = file.replace(/src/, mod);
     if (ext.match(/js/gi)) {
@@ -91,7 +94,7 @@ const build = file => {
   });
 };
 
-const fileDisplay = filePath => {
+const fileDisplay = (filePath, mod) => {
   // 根据文件路径读取文件，返回文件列表
   const files = readdirSync(filePath);
   files.forEach(fileName => {
@@ -102,7 +105,7 @@ const fileDisplay = filePath => {
     if (isDir) fileDisplay(filedir);
     if (isFile) {
       const name = basename(filedir);
-      if (!name.match(/.test/)) build(filedir);
+      if (!name.match(/.test/)) build(filedir, mod);
     }
   });
 };
@@ -111,6 +114,13 @@ let dist = packages;
 if (src) {
   dist = [
     src
+      .replace(/\.\//g, '')
+      .replace(/\/?$/g, '')
+      .split('/')[1],
+  ];
+} else if (arg) {
+  dist = [
+    arg
       .replace(/\.\//g, '')
       .replace(/\/?$/g, '')
       .split('/')[1],
@@ -125,7 +135,11 @@ dist.mapSync(async mod => {
 
   const dir = `${packagesFloder}/${mod}/src`;
   if (existsSync(dir)) {
-    await fileDisplay(dir);
+    if (mod === 'babel-plugin-import-paik') {
+      await fileDisplay(dir, ['lib']);
+    } else {
+      await fileDisplay(dir);
+    }
   }
   if (mod === 'paik-utils') {
     await shell.exec('npm run copy');

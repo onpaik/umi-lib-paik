@@ -1,4 +1,5 @@
-import getDisplayName from './getDisplayName';
+/* eslint-disable */ 
+ import getDisplayName from './getDisplayName';
 
 export { getDisplayName };
 

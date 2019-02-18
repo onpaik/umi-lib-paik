@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.renderUndefined = void 0;
 
+/* eslint-disable */
 // String.fromCharCode(8212) === '-'
 
 /**

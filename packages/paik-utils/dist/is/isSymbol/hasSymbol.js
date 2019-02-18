@@ -21,6 +21,8 @@
   _exports.default = hasSymbol;
   _typeof2 = _interopRequireDefault(_typeof2);
   _shams = _interopRequireDefault(_shams);
+
+  /* eslint-disable */
   var origSymbol = global.Symbol;
 
   function hasSymbol() {

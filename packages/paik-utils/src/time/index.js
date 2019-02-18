@@ -1,4 +1,5 @@
-import timeInterval from './timeInterval';
+/* eslint-disable */ 
+ import timeInterval from './timeInterval';
 
 export { timeInterval };
 

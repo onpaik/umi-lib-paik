@@ -6,10 +6,12 @@ define(["exports"], function (_exports) {
   });
   _exports.default = _exports.delLineBreak = void 0;
 
+  /* eslint-disable */
+
   /**
-   * 删除字符串中的换行符
-   * @param {*} val 字符串
-   */
+  * 删除字符串中的换行符
+  * @param {*} val 字符串
+  */
   var delLineBreak = function delLineBreak(val) {
     return val.replace(/[\r\n]/g, '');
   };

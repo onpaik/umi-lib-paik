@@ -1,16 +1,16 @@
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(["exports", "@babel/runtime/helpers/typeof", "../../common", "./hasSymbol"], factory);
+    define(["exports", "@babel/runtime/helpers/typeof", "../../common/is", "./hasSymbol"], factory);
   } else if (typeof exports !== "undefined") {
-    factory(exports, require("@babel/runtime/helpers/typeof"), require("../../common"), require("./hasSymbol"));
+    factory(exports, require("@babel/runtime/helpers/typeof"), require("../../common/is"), require("./hasSymbol"));
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global._typeof, global.common, global.hasSymbol);
+    factory(mod.exports, global._typeof, global.is, global.hasSymbol);
     global.index = mod.exports;
   }
-})(this, function (_exports, _typeof2, _common, _hasSymbol) {
+})(this, function (_exports, _typeof2, _is, _hasSymbol) {
   "use strict";
 
   var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -20,8 +20,10 @@
   });
   _exports.default = _exports.isSymbol = void 0;
   _typeof2 = _interopRequireDefault(_typeof2);
+  _is = _interopRequireDefault(_is);
   _hasSymbol = _interopRequireDefault(_hasSymbol);
 
+  /* eslint-disable */
   var isSymbol = function isSymbol(obj) {
     if ((0, _hasSymbol.default)()) {
       var symToStr = Symbol.prototype.toString;
@@ -39,7 +41,7 @@
         return true;
       }
 
-      if ((0, _common.is)(obj) !== 'Symbol') {
+      if ((0, _is.default)(obj) !== 'Symbol') {
         return false;
       }
 

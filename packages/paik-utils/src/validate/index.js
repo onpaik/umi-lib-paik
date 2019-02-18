@@ -1,4 +1,5 @@
-import regExp from './regExp';
+/* eslint-disable */ 
+ import regExp from './regExp';
 import idCardValidate from './idCardValidate';
 
 export { regExp, idCardValidate };

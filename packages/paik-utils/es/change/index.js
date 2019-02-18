@@ -77,6 +77,8 @@ define(["exports", "./fenToyuan", "./inValidToText", "./removeLastetZero", "./sp
   _toLowerCase = _interopRequireDefault(_toLowerCase);
   _toUpperCase = _interopRequireDefault(_toUpperCase);
   _trimLR = _interopRequireDefault(_trimLR);
+
+  /* eslint-disable */
   var _default = {
     fenToyuan: _fenToyuan.default,
     inValidToText: _inValidToText.default,

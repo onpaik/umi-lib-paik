@@ -1,4 +1,6 @@
-import { is, delLineBreak } from '../common';
+/* eslint-disable */ 
+ import is from '../common/is';
+import delLineBreak from '../common/delLineBreak';
 
 /**
  * 删除对象属性值中的换行符

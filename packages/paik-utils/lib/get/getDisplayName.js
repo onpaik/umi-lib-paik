@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.getDisplayName = getDisplayName;
 exports.default = void 0;
 
+/* eslint-disable */
 function getDisplayName(Component) {
   if (typeof Component === 'string') {
     return Component;

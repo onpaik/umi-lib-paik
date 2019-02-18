@@ -1,3 +1,4 @@
-export const toUpperCase = str => String.prototype.toUpperCase.call(str || '');
+/* eslint-disable */ 
+ export const toUpperCase = str => String.prototype.toUpperCase.call(str || '');
 
 export default toUpperCase;

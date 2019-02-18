@@ -18,12 +18,14 @@
   });
   _exports.default = _exports.sortTime = void 0;
 
+  /* eslint-disable */
+
   /**
-   * @param key String 需要排序的key值,只能排序时间
-   * @param type String asc:升序;desc:降序
-   * @param data 需要排序的数组
-   * @return new Array
-   */
+  * @param key String 需要排序的key值,只能排序时间
+  * @param type String asc:升序;desc:降序
+  * @param data 需要排序的数组
+  * @return new Array
+  */
   var sortTime = function sortTime(key, data) {
     var type = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'desc';
     var typeMap = {

@@ -1,4 +1,5 @@
-/**
+/* eslint-disable */ 
+ /**
  * hasOwnProperty
  * @param {*} obj 对象
  * @param {*} key key

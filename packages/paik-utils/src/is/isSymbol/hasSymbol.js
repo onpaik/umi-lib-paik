@@ -1,4 +1,5 @@
-import hasSymbolSham from './shams';
+/* eslint-disable */ 
+ import hasSymbolSham from './shams';
 
 const origSymbol = global.Symbol;
 export default function hasSymbol() {

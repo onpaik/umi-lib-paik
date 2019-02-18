@@ -6,6 +6,7 @@ define(["exports"], function (_exports) {
   });
   _exports.renderUndefined = void 0;
 
+  /* eslint-disable */
   // String.fromCharCode(8212) === '-'
 
   /**

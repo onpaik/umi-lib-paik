@@ -1,4 +1,5 @@
-/**
+/* eslint-disable */ 
+ /**
  * 获取文件的base64字符串
  * @param {*} file 文件 blob 对象
  * @param {*} callback 回调函数，参数为base64

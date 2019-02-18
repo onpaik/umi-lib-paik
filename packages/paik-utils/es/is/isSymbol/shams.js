@@ -1,4 +1,4 @@
-define(["exports", "@babel/runtime/helpers/typeof", "../../common"], function (_exports, _typeof2, _common) {
+define(["exports", "@babel/runtime/helpers/typeof", "../../common/is"], function (_exports, _typeof2, _is) {
   "use strict";
 
   var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -8,7 +8,9 @@ define(["exports", "@babel/runtime/helpers/typeof", "../../common"], function (_
   });
   _exports.default = hasSymbols;
   _typeof2 = _interopRequireDefault(_typeof2);
+  _is = _interopRequireDefault(_is);
 
+  /* eslint-disable */
   function hasSymbols() {
     if (typeof Symbol !== 'function' || typeof Object.getOwnPropertySymbols !== 'function') {
       return false;
@@ -26,11 +28,11 @@ define(["exports", "@babel/runtime/helpers/typeof", "../../common"], function (_
       return false;
     }
 
-    if ((0, _common.is)(sym) !== 'Symbol') {
+    if ((0, _is.default)(sym) !== 'Symbol') {
       return false;
     }
 
-    if ((0, _common.is)(symObj) !== 'Symbol') {
+    if ((0, _is.default)(symObj) !== 'Symbol') {
       return false;
     } // temp disabled per https://github.com/ljharb/object.assign/issues/17
     // if (sym instanceof Symbol) { return false; }

@@ -1,4 +1,5 @@
-import change from './change';
+/* eslint-disable */ 
+ import change from './change';
 import common from './common';
 import file from './file';
 import is from './is';

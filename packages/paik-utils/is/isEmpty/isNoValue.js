@@ -12,6 +12,7 @@ var _common = _interopRequireDefault(require("../../common"));
 
 var _isEmptyObj = _interopRequireDefault(require("./isEmptyObj"));
 
+/* eslint-disable */
 var objectIsNoValue = function objectIsNoValue(obj) {
   var newObj = (0, _common.default)(obj);
   if ((0, _isEmptyObj.default)(newObj)) return true;

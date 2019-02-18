@@ -23,6 +23,7 @@ var _regExp = _interopRequireDefault(require("./regExp"));
 
 var _idCardValidate = _interopRequireDefault(require("./idCardValidate"));
 
+/* eslint-disable */
 var _default = {
   regExp: _regExp.default,
   idCardValidate: _idCardValidate.default

@@ -12,7 +12,11 @@ var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/sli
 
 var _objectSpread2 = _interopRequireDefault(require("@babel/runtime/helpers/objectSpread"));
 
-var _common = require("../common");
+var _is = _interopRequireDefault(require("../common/is"));
+
+var _delLineBreak = _interopRequireDefault(require("../common/delLineBreak"));
+
+/* eslint-disable */
 
 /**
  * 删除对象属性值中的换行符
@@ -25,7 +29,7 @@ var spliceLineBreak = function spliceLineBreak(obj) {
         key = _kayVal[0],
         value = _kayVal[1];
 
-    if ((0, _common.is)(value) === 'String') newObj[key] = (0, _common.delLineBreak)(value);
+    if ((0, _is.default)(value) === 'String') newObj[key] = (0, _delLineBreak.default)(value);
     return kayVal;
   });
   return newObj;

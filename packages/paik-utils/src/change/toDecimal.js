@@ -1,4 +1,5 @@
-/**
+/* eslint-disable */ 
+ /**
  * 长小数保留小数位
  * @param {*} num 数字
  * @param {*} n 保留小数位

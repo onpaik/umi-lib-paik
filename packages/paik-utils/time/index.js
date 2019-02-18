@@ -16,6 +16,7 @@ exports.default = void 0;
 
 var _timeInterval = _interopRequireDefault(require("./timeInterval"));
 
+/* eslint-disable */
 var _default = {
   timeInterval: _timeInterval.default
 };

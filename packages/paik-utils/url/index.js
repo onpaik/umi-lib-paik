@@ -32,6 +32,7 @@ var _getParams = _interopRequireDefault(require("./getParams"));
 
 var _paramParse = _interopRequireDefault(require("./paramParse"));
 
+/* eslint-disable */
 var _default = {
   getParam: _getParam.default,
   getParams: _getParams.default,

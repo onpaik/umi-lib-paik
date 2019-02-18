@@ -10,8 +10,9 @@ exports.default = hasSymbols;
 
 var _typeof2 = _interopRequireDefault(require("@babel/runtime/helpers/typeof"));
 
-var _common = require("../../common");
+var _is = _interopRequireDefault(require("../../common/is"));
 
+/* eslint-disable */
 function hasSymbols() {
   if (typeof Symbol !== 'function' || typeof Object.getOwnPropertySymbols !== 'function') {
     return false;
@@ -29,11 +30,11 @@ function hasSymbols() {
     return false;
   }
 
-  if ((0, _common.is)(sym) !== 'Symbol') {
+  if ((0, _is.default)(sym) !== 'Symbol') {
     return false;
   }
 
-  if ((0, _common.is)(symObj) !== 'Symbol') {
+  if ((0, _is.default)(symObj) !== 'Symbol') {
     return false;
   } // temp disabled per https://github.com/ljharb/object.assign/issues/17
   // if (sym instanceof Symbol) { return false; }

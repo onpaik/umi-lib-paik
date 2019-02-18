@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = exports.preventDefault = void 0;
 
+/* eslint-disable */
 var preventDefault = function preventDefault(e) {
   var _e = e || window.event;
 

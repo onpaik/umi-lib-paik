@@ -1,4 +1,5 @@
-import { is } from '../../common';
+/* eslint-disable */ 
+ import is from '../../common/is';
 
 export const isFunction = obj => is(obj) === 'Function';
 

@@ -103,6 +103,7 @@ var _isInValid = _interopRequireDefault(require("./isInValid"));
 
 var _isClassComponent = _interopRequireDefault(require("./isClassComponent"));
 
+/* eslint-disable */
 var _default = {
   isArray: _isArray.default,
   isBoolean: _isBoolean.default,

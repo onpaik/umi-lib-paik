@@ -1,4 +1,5 @@
-import delInvalidProperty from '../../common';
+/* eslint-disable */ 
+ import delInvalidProperty from '../../common';
 import isEmptyObj from './isEmptyObj';
 
 export const objectIsNoValue = obj => {

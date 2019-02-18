@@ -1,16 +1,16 @@
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(["exports", "@babel/runtime/helpers/typeof", "../../common"], factory);
+    define(["exports", "@babel/runtime/helpers/typeof", "../../common/is"], factory);
   } else if (typeof exports !== "undefined") {
-    factory(exports, require("@babel/runtime/helpers/typeof"), require("../../common"));
+    factory(exports, require("@babel/runtime/helpers/typeof"), require("../../common/is"));
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global._typeof, global.common);
+    factory(mod.exports, global._typeof, global.is);
     global.shams = mod.exports;
   }
-})(this, function (_exports, _typeof2, _common) {
+})(this, function (_exports, _typeof2, _is) {
   "use strict";
 
   var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -20,7 +20,9 @@
   });
   _exports.default = hasSymbols;
   _typeof2 = _interopRequireDefault(_typeof2);
+  _is = _interopRequireDefault(_is);
 
+  /* eslint-disable */
   function hasSymbols() {
     if (typeof Symbol !== 'function' || typeof Object.getOwnPropertySymbols !== 'function') {
       return false;
@@ -38,11 +40,11 @@
       return false;
     }
 
-    if ((0, _common.is)(sym) !== 'Symbol') {
+    if ((0, _is.default)(sym) !== 'Symbol') {
       return false;
     }
 
-    if ((0, _common.is)(symObj) !== 'Symbol') {
+    if ((0, _is.default)(symObj) !== 'Symbol') {
       return false;
     } // temp disabled per https://github.com/ljharb/object.assign/issues/17
     // if (sym instanceof Symbol) { return false; }

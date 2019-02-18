@@ -5,6 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = exports.paramParse = void 0;
 
+/* eslint-disable */
 var paramParse = function paramParse(str) {
   return Object.fromEntries(new URLSearchParams(str));
 };

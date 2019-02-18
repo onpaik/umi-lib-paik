@@ -1,4 +1,5 @@
-import { is } from '../../common';
+/* eslint-disable */ 
+ import is from '../../common/is';
 import hasSymbol from './hasSymbol';
 
 export const isSymbol = obj => {

@@ -14,6 +14,8 @@ define(["exports", "./getDisplayName"], function (_exports, _getDisplayName) {
   });
   _exports.default = void 0;
   _getDisplayName = _interopRequireDefault(_getDisplayName);
+
+  /* eslint-disable */
   var _default = _getDisplayName.default;
   _exports.default = _default;
 });

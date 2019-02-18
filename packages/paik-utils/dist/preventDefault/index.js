@@ -18,6 +18,7 @@
   });
   _exports.default = _exports.preventDefault = void 0;
 
+  /* eslint-disable */
   var preventDefault = function preventDefault(e) {
     var _e = e || window.event;
 

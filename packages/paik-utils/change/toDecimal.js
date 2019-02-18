@@ -6,11 +6,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = exports.toDecimal = void 0;
 
+/* eslint-disable */
+
 /**
- * 长小数保留小数位
- * @param {*} num 数字
- * @param {*} n 保留小数位
- */
+* 长小数保留小数位
+* @param {*} num 数字
+* @param {*} n 保留小数位
+*/
 var toDecimal = function toDecimal(num, n) {
   var f = parseFloat(num);
   var arr = Array.from(new Array(n).keys());

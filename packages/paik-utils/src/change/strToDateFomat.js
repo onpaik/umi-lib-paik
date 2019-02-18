@@ -1,4 +1,5 @@
-/**
+/* eslint-disable */ 
+ /**
  * 转为形如`YYYYMMDDHHmmss`日期字符串 为 YYYY/MM/DD HH:mm:ss
  * @param {*} str 时间字符串
  * @param {*} sperate 日期分隔符

@@ -5,10 +5,12 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = exports.idCardValidate = void 0;
 
+/* eslint-disable */
+
 /**
- * 身份证合法性校验
- * @param {*} idCard 身份证 15 或者 18位
- */
+* 身份证合法性校验
+* @param {*} idCard 身份证 15 或者 18位
+*/
 var idCardValidate = function idCardValidate(idCard) {
   var Wi = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2, 1]; // 加权因子
 

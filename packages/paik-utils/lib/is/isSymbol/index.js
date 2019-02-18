@@ -9,10 +9,11 @@ exports.default = exports.isSymbol = void 0;
 
 var _typeof2 = _interopRequireDefault(require("@babel/runtime/helpers/typeof"));
 
-var _common = require("../../common");
+var _is = _interopRequireDefault(require("../../common/is"));
 
 var _hasSymbol = _interopRequireDefault(require("./hasSymbol"));
 
+/* eslint-disable */
 var isSymbol = function isSymbol(obj) {
   if ((0, _hasSymbol.default)()) {
     var symToStr = Symbol.prototype.toString;
@@ -30,7 +31,7 @@ var isSymbol = function isSymbol(obj) {
       return true;
     }
 
-    if ((0, _common.is)(obj) !== 'Symbol') {
+    if ((0, _is.default)(obj) !== 'Symbol') {
       return false;
     }
 
