@@ -27,7 +27,7 @@ module.exports = function (_ref) {
     visitor: {
       ImportDeclaration: function ImportDeclaration(path, state) {
         var options = (0, _objectSpread2.default)({
-          preventFullImport: true
+          preventFullImport: false
         }, state.opts);
 
         if (!t.isStringLiteral(path.node.source, {

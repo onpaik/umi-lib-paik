@@ -17,7 +17,7 @@ module.exports = ({ types: t }) => {
     visitor: {
       ImportDeclaration: (path, state) => {
         const options = {
-          preventFullImport: true,
+          preventFullImport: false,
           ...state.opts,
         };
         if (!t.isStringLiteral(path.node.source, { value: 'paik-utils' })) {

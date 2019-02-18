@@ -1,11 +1,7 @@
 {
   "plugins": [
     [
-      "./src",{
-        "_ignore": true,
-        "preventFullImport": false,
-        "useLib": false
-      }
+      "./src"
     ]
   ]
 }
