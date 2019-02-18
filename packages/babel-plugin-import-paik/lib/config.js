@@ -7,8 +7,6 @@ module.exports = {
 	"spliceLineBreak": "change",
 	"strToDateFomat": "change",
 	"strToNumber": "change",
-	"test.js": "change/test.js",
-	"temp": "change/test.js",
 	"toDecimal": "change",
 	"toLowerCase": "change",
 	"toUpperCase": "change",

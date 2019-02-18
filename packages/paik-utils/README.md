@@ -52,3 +52,47 @@ import is from "paik-utils/common/is";
 import timeInterval from "paik-utils/time/timeInterval";
 import isArray from "paik-utils/is/isArray";
 ```
+
+
+## 方法 具体可见代码
+### fenToyuan
+### inValidToText
+### removeLastetZero
+### spliceLineBreak
+### strToDateFomat
+### strToNumber
+### toDecimal
+### toLowerCase
+### toUpperCase
+### trimLR
+### delInvalidProperty
+### delInvisibleStr
+### delLineBreak
+### hasOwn
+### is
+### getBase64
+### getExt
+### getDisplayName
+### isArray
+### isBoolean
+### isClassComponent
+### isEmpty
+### isEmptyObj
+### isNoValue
+### isFunction
+### isInValid
+### isNull
+### isNumber
+### isObject
+### isString
+### hasSymbol
+### isSymbol
+### shams
+### isUndefined
+### sortTime
+### timeInterval
+### getParam
+### getParams
+### paramParse
+### idCardValidate
+### regExp
