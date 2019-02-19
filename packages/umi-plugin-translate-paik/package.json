@@ -29,15 +29,15 @@
     "translate"
   ],
   "dependencies": {
-    "@babel/core": "^7.2.2",
-    "@babel/polyfill": "^7.0.0",
-    "@babel/preset-env": "^7.2.0",
-    "deepmerge": "^3.0.0",
-    "globby": "^8.0.1",
+    "@babel/core": "^7.3.3",
+    "@babel/polyfill": "^7.2.5",
+    "@babel/preset-env": "^7.3.1",
+    "deepmerge": "^3.2.0",
+    "globby": "^9.0.0",
     "mkdirp": "0.5.1",
     "node-opencc": "2.0.1",
     "path": "^0.12.7",
-    "rimraf": "^2.6.2"
+    "rimraf": "^2.6.3"
   },
   "publishConfig": {
     "access": "public",

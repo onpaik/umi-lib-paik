@@ -31,10 +31,10 @@
     "react"
   ],
   "dependencies": {
-    "hoist-non-react-statics": "^3.2.1",
+    "hoist-non-react-statics": "^3.3.0",
     "invariant": "^2.2.4",
-    "react": "^16.6.3",
-    "react-intl": "^2.7.2"
+    "react": "^16.8.2",
+    "react-intl": "^2.8.0"
   },
   "publishConfig": {
     "access": "public",
