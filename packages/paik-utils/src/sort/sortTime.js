@@ -11,8 +11,8 @@ export const sortTime = (key, data, type = 'desc') => {
     asc: [-1, 1],
   };
   const compare = (obj1, obj2) => {
-    const val1 = new Date(obj1).getTime();
-    const val2 = new Date(obj2).getTime();
+    const val1 = new Date(obj1[key]).getTime();
+    const val2 = new Date(obj2[key]).getTime();
     if (val1 === 'NaN' || val2 === 'NaN') return 0;
     if (val1 < val2) return typeMap[type][0];
     if (val1 > val2) return typeMap[type][1];
