@@ -9,9 +9,7 @@
   "command": {
 		"publish": {
       "verifyAccess": false,
-      "ignoreChanges":[
-        "umi-plugin-translate-paik"
-      ]
+      "ignoreChanges":[]
 		}
 	}
 }
