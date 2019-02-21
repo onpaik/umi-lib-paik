@@ -1,5 +1,4 @@
-/* eslint-disable */ 
- import isArray from './isArray';
+import isArray from './isArray';
 import isBoolean from './isBoolean';
 import isFunction from './isFunction';
 import isNull from './isNull';

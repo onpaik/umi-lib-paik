@@ -1,5 +1,4 @@
-/* eslint-disable */ 
- export function getDisplayName(Component) {
+export function getDisplayName(Component) {
   if (typeof Component === 'string') {
     return Component;
   }

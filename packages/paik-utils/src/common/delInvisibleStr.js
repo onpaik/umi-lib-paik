@@ -1,5 +1,4 @@
-/* eslint-disable */ 
- /**
+/**
  * 删除不可见字符
  * @param {*} str 字符串
  */

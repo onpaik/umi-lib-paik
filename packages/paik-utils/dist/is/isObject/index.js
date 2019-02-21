@@ -21,7 +21,6 @@
   _exports.default = _exports.isObject = void 0;
   _is = _interopRequireDefault(_is);
 
-  /* eslint-disable */
   var isObject = function isObject(obj) {
     return (0, _is.default)(obj) === 'Object';
   };

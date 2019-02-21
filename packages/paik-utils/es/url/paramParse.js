@@ -6,7 +6,6 @@ define(["exports"], function (_exports) {
   });
   _exports.default = _exports.paramParse = void 0;
 
-  /* eslint-disable */
   var paramParse = function paramParse(str) {
     return Object.fromEntries(new URLSearchParams(str));
   };

@@ -1,17 +1,15 @@
-/* eslint-disable */ 
- "use strict";
+/* eslint-disable */
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = exports.delInvalidProperty = void 0;
 
-/* eslint-disable */
-
 /**
-* 删除对象里的无效属性，不包括 0， false,
-* @param {*} obj 对象
-*/
+ * 删除对象里的无效属性，不包括 0， false,
+ * @param {*} obj 对象
+ */
 var delInvalidProperty = function delInvalidProperty(obj) {
   var newObj = obj;
   Object.keys(obj).map(function (k) {

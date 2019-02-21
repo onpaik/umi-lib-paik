@@ -15,6 +15,5 @@ exports.default = void 0;
 
 var _getDisplayName = _interopRequireDefault(require("./getDisplayName"));
 
-/* eslint-disable */
 var _default = _getDisplayName.default;
 exports.default = _default;

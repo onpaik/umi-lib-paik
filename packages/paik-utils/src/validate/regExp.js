@@ -1,5 +1,4 @@
-/* eslint-disable */ 
- export const regExp = {
+export const regExp = {
   /* 特殊字符 */
   special: /[`~·！!@￥$#%……^…&*（()）—_\-+=《》<>,，。./?？、|『』」「'|’"“”‘\\[{【】}\]\\||:；;：]+/,
   /* 字母数字 */

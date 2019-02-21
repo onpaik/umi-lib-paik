@@ -18,7 +18,6 @@
   });
   _exports.default = _exports.isInValid = void 0;
 
-  /* eslint-disable */
   var isInValid = function isInValid(val) {
     return val === undefined || val === '' || val === null;
   };

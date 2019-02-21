@@ -1,10 +1,9 @@
-/* eslint-disable */ 
- import isEmptyObj from './isEmptyObj';
-import isNoValue from './isNoValue';
+import isEmptyObj from './isEmptyObj';
+import isEmptyValue from './isEmptyValue';
 
-export { isEmptyObj, isNoValue };
+export { isEmptyObj, isEmptyValue };
 
 export default {
   isEmptyObj,
-  isNoValue,
+  isEmptyValue,
 };

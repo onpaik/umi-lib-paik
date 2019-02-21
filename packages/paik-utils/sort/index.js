@@ -1,5 +1,5 @@
-/* eslint-disable */ 
- "use strict";
+/* eslint-disable */
+"use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
@@ -16,6 +16,5 @@ exports.default = void 0;
 
 var _sortTime = _interopRequireDefault(require("./sortTime"));
 
-/* eslint-disable */
 var _default = _sortTime.default;
 exports.default = _default;

@@ -18,13 +18,11 @@
   });
   _exports.default = _exports.fenToyuan = void 0;
 
-  /* eslint-disable */
-
   /**
-  * 分转换成元
-  * @param {*} num 整数
-  * @param {*} type 货币类型
-  */
+   * 分转换成元
+   * @param {*} num 整数
+   * @param {*} type 货币类型
+   */
   var fenToyuan = function fenToyuan(num) {
     var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
 

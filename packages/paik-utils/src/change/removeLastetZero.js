@@ -1,5 +1,4 @@
-/* eslint-disable */ 
- const regexp = /(?:\.0*|(\.\d+?)0+)$/;
+const regexp = /(?:\.0*|(\.\d+?)0+)$/;
 /**
  * 取消小数后面多余的0
  * @param {*} num 数字

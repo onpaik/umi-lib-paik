@@ -1,5 +1,4 @@
-/* eslint-disable */ 
- /**
+/**
  * 获取url 问号后的值
  * @param {*} name 需要获取的key
  * @return 字符串，没有则返回 null

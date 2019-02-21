@@ -5,7 +5,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = exports.isInValid = void 0;
 
-/* eslint-disable */
 var isInValid = function isInValid(val) {
   return val === undefined || val === '' || val === null;
 };

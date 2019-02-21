@@ -7,7 +7,6 @@ define(["exports"], function (_exports) {
   _exports.getDisplayName = getDisplayName;
   _exports.default = void 0;
 
-  /* eslint-disable */
   function getDisplayName(Component) {
     if (typeof Component === 'string') {
       return Component;

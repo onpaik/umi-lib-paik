@@ -1,12 +1,10 @@
-/* eslint-disable */ 
- "use strict";
+/* eslint-disable */
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = exports.removeLastetZero = void 0;
-
-/* eslint-disable */
 var regexp = /(?:\.0*|(\.\d+?)0+)$/;
 /**
  * 取消小数后面多余的0

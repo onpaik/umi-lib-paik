@@ -9,7 +9,6 @@ define(["exports", "../../common/is"], function (_exports, _is) {
   _exports.default = _exports.isUndefined = void 0;
   _is = _interopRequireDefault(_is);
 
-  /* eslint-disable */
   var isUndefined = function isUndefined(obj) {
     return (0, _is.default)(obj) === 'Undefined';
   };

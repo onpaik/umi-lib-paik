@@ -1,5 +1,4 @@
-/* eslint-disable */ 
- /**
+/**
  * 分转换成元
  * @param {*} num 整数
  * @param {*} type 货币类型

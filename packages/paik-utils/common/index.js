@@ -1,5 +1,5 @@
-/* eslint-disable */ 
- "use strict";
+/* eslint-disable */
+"use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
@@ -48,7 +48,6 @@ var _delInvisibleStr = _interopRequireDefault(require("./delInvisibleStr"));
 
 var _delLineBreak = _interopRequireDefault(require("./delLineBreak"));
 
-/* eslint-disable */
 var _default = {
   delInvalidProperty: _delInvalidProperty.default,
   hasOwn: _hasOwn.default,

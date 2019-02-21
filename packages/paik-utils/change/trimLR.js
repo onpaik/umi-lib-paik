@@ -1,17 +1,15 @@
-/* eslint-disable */ 
- "use strict";
+/* eslint-disable */
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = exports.trimLR = void 0;
 
-/* eslint-disable */
-
 /**
-* 删除首尾空格
-* @param {*} str 字符串
-*/
+ * 删除首尾空格
+ * @param {*} str 字符串
+ */
 var trimLR = function trimLR(str) {
   return str.replace(/(^\s*)|(\s*$)/g, '');
 };

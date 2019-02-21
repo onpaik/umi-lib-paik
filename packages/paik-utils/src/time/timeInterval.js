@@ -1,5 +1,4 @@
-/* eslint-disable */ 
- /**
+/**
  * 计算timestamp时间间隔
  * @param from 开始时间
  * @param to 结束时间，默认值当前日期的时间戳

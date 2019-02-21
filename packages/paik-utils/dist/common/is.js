@@ -18,12 +18,10 @@
   });
   _exports.default = _exports.is = void 0;
 
-  /* eslint-disable */
-
   /**
-  * 获取对象类型
-  * @param {*} obj 对象
-  */
+   * 获取对象类型
+   * @param {*} obj 对象
+   */
   var is = function is(obj) {
     return Object.prototype.toString.call(obj).replace(/^\[object ([a-zA-Z0-9]+)\]$/, '$1');
   };

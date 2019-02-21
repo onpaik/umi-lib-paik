@@ -22,7 +22,6 @@
   _typeof2 = _interopRequireDefault(_typeof2);
   _is = _interopRequireDefault(_is);
 
-  /* eslint-disable */
   function hasSymbols() {
     if (typeof Symbol !== 'function' || typeof Object.getOwnPropertySymbols !== 'function') {
       return false;

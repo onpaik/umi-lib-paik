@@ -1,5 +1,4 @@
-/* eslint-disable */ 
- import getParam from './getParam';
+import getParam from './getParam';
 import getParams from './getParams';
 import paramParse from './paramParse';
 

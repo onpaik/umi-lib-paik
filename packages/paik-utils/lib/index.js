@@ -95,7 +95,6 @@ var _get = _interopRequireDefault(require("./get"));
 
 var _compose = _interopRequireDefault(require("./compose"));
 
-/* eslint-disable */
 var _default = {
   change: _change.default,
   common: _common.default,

@@ -1,5 +1,5 @@
-/* eslint-disable */ 
- "use strict";
+/* eslint-disable */
+"use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
@@ -24,7 +24,6 @@ var _getBase = _interopRequireDefault(require("./getBase64"));
 
 var _getExt = _interopRequireDefault(require("./getExt"));
 
-/* eslint-disable */
 var _default = {
   getBase64: _getBase.default,
   getExt: _getExt.default

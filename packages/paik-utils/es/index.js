@@ -84,8 +84,6 @@ define(["exports", "./change", "./common", "./file", "./is", "./preventDefault",
   _time = _interopRequireDefault(_time);
   _get = _interopRequireDefault(_get);
   _compose = _interopRequireDefault(_compose);
-
-  /* eslint-disable */
   var _default = {
     change: _change.default,
     common: _common.default,

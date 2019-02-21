@@ -9,7 +9,6 @@ exports.default = exports.isString = void 0;
 
 var _is = _interopRequireDefault(require("../../common/is"));
 
-/* eslint-disable */
 var isString = function isString(obj) {
   return (0, _is.default)(obj) === 'String';
 };

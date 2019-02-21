@@ -1,12 +1,10 @@
-/* eslint-disable */ 
- "use strict";
+/* eslint-disable */
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = exports.regExp = void 0;
-
-/* eslint-disable */
 var regExp = {
   /* 特殊字符 */
   special: /[`~·！!@￥$#%……^…&*（()）—_\-+=《》<>,，。./?？、|『』」「'|’"“”‘\\[{【】}\]\\||:；;：]+/,

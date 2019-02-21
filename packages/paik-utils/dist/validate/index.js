@@ -33,8 +33,6 @@
   _exports.default = void 0;
   _regExp = _interopRequireDefault(_regExp);
   _idCardValidate = _interopRequireDefault(_idCardValidate);
-
-  /* eslint-disable */
   var _default = {
     regExp: _regExp.default,
     idCardValidate: _idCardValidate.default

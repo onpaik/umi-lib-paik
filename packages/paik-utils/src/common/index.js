@@ -1,5 +1,4 @@
-/* eslint-disable */ 
- import delInvalidProperty from './delInvalidProperty';
+import delInvalidProperty from './delInvalidProperty';
 import hasOwn from './hasOwn';
 import is from './is';
 import delInvisibleStr from './delInvisibleStr';

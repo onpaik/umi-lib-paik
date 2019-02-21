@@ -1,5 +1,4 @@
-/* eslint-disable */ 
- import getBase64 from './getBase64';
+import getBase64 from './getBase64';
 import getExt from './getExt';
 
 export { getBase64, getExt };

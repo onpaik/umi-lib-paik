@@ -1,5 +1,4 @@
-/* eslint-disable */ 
- export const isClassComponent = Component =>
+export const isClassComponent = Component =>
   Boolean(
     Component &&
       Component.prototype &&

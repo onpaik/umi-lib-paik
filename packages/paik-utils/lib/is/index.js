@@ -111,7 +111,6 @@ var _isClassComponent = _interopRequireDefault(require("./isClassComponent"));
 
 var _isPromise = _interopRequireDefault(require("./isPromise"));
 
-/* eslint-disable */
 var _default = {
   isArray: _isArray.default,
   isBoolean: _isBoolean.default,

@@ -1,5 +1,4 @@
-/* eslint-disable */ 
- import sortTime from './sortTime';
+import sortTime from './sortTime';
 
 export { sortTime };
 

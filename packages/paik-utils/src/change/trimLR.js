@@ -1,5 +1,4 @@
-/* eslint-disable */ 
- /**
+/**
  * 删除首尾空格
  * @param {*} str 字符串
  */

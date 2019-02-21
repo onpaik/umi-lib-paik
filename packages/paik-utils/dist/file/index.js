@@ -33,8 +33,6 @@
   _exports.default = void 0;
   _getBase = _interopRequireDefault(_getBase);
   _getExt = _interopRequireDefault(_getExt);
-
-  /* eslint-disable */
   var _default = {
     getBase64: _getBase.default,
     getExt: _getExt.default

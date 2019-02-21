@@ -6,7 +6,6 @@ define(["exports"], function (_exports) {
   });
   _exports.default = _exports.isClassComponent = void 0;
 
-  /* eslint-disable */
   var isClassComponent = function isClassComponent(Component) {
     return Boolean(Component && Component.prototype && typeof Component.prototype.render === 'function');
   };

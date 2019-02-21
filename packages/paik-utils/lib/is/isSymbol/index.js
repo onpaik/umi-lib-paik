@@ -13,7 +13,6 @@ var _is = _interopRequireDefault(require("../../common/is"));
 
 var _hasSymbol = _interopRequireDefault(require("./hasSymbol"));
 
-/* eslint-disable */
 var isSymbol = function isSymbol(obj) {
   if ((0, _hasSymbol.default)()) {
     var symToStr = Symbol.prototype.toString;

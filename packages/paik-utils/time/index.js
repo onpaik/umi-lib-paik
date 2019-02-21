@@ -1,5 +1,5 @@
-/* eslint-disable */ 
- "use strict";
+/* eslint-disable */
+"use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
@@ -16,7 +16,6 @@ exports.default = void 0;
 
 var _timeInterval = _interopRequireDefault(require("./timeInterval"));
 
-/* eslint-disable */
 var _default = {
   timeInterval: _timeInterval.default
 };

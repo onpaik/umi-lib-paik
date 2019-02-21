@@ -1,5 +1,4 @@
-/* eslint-disable */ 
- import is from '../common/is';
+import is from '../common/is';
 import delLineBreak from '../common/delLineBreak';
 
 /**

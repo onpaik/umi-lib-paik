@@ -15,8 +15,6 @@ var _is = _interopRequireDefault(require("../common/is"));
 
 var _delLineBreak = _interopRequireDefault(require("../common/delLineBreak"));
 
-/* eslint-disable */
-
 /**
  * 删除对象属性值中的换行符
  * @param {*} obj 对象

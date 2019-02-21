@@ -21,7 +21,6 @@
   _exports.default = _exports.isNull = void 0;
   _is = _interopRequireDefault(_is);
 
-  /* eslint-disable */
   var isNull = function isNull(obj) {
     return (0, _is.default)(obj) === 'Null';
   };

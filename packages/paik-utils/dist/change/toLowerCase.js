@@ -18,7 +18,6 @@
   });
   _exports.default = _exports.toLowerCase = void 0;
 
-  /* eslint-disable */
   var toLowerCase = function toLowerCase(str) {
     return String.prototype.toLowerCase.call(str || '');
   };

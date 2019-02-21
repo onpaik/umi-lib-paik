@@ -26,8 +26,6 @@
   });
   _exports.default = void 0;
   _timeInterval = _interopRequireDefault(_timeInterval);
-
-  /* eslint-disable */
   var _default = {
     timeInterval: _timeInterval.default
   };

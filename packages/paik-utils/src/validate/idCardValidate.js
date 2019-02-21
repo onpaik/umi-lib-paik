@@ -1,5 +1,4 @@
-/* eslint-disable */ 
- /**
+/**
  * 身份证合法性校验
  * @param {*} idCard 身份证 15 或者 18位
  */

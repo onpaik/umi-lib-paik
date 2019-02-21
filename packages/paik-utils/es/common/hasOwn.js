@@ -6,13 +6,11 @@ define(["exports"], function (_exports) {
   });
   _exports.default = _exports.hasOwn = void 0;
 
-  /* eslint-disable */
-
   /**
-  * hasOwnProperty
-  * @param {*} obj 对象
-  * @param {*} key key
-  */
+   * hasOwnProperty
+   * @param {*} obj 对象
+   * @param {*} key key
+   */
   var hasOwn = function hasOwn(obj, key) {
     return Object.prototype.hasOwnProperty.call(obj, key);
   };

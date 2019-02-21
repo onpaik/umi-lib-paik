@@ -1,12 +1,11 @@
-/* eslint-disable */ 
- "use strict";
+/* eslint-disable */
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = exports.isInValid = void 0;
 
-/* eslint-disable */
 var isInValid = function isInValid(val) {
   return val === undefined || val === '' || val === null;
 };

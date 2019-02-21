@@ -9,7 +9,6 @@ define(["exports", "../../common/is"], function (_exports, _is) {
   _exports.default = _exports.isString = void 0;
   _is = _interopRequireDefault(_is);
 
-  /* eslint-disable */
   var isString = function isString(obj) {
     return (0, _is.default)(obj) === 'String';
   };

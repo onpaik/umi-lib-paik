@@ -5,12 +5,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = exports.delLineBreak = void 0;
 
-/* eslint-disable */
-
 /**
-* 删除字符串中的换行符
-* @param {*} val 字符串
-*/
+ * 删除字符串中的换行符
+ * @param {*} val 字符串
+ */
 var delLineBreak = function delLineBreak(val) {
   return val.replace(/[\r\n]/g, '');
 };

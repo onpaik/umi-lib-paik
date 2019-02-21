@@ -37,13 +37,14 @@ const addDisableEslintText = fileName => {
   const data = readFileSync(fileName, 'utf8');
   let content = data;
   if (!data.startsWith('/* eslint-disable */'))
-    content = `/* eslint-disable */ \n ${data}`;
+    content = `/* eslint-disable */\n${data}`;
   writeFileSync(fileName, content);
 };
 const babelHelpMod = {};
 
 const fileDisplay = filePath => {
   const files = readdirSync(filePath);
+  const { length } = files;
   files.forEach(fileName => {
     const filedir = join(filePath, fileName);
     const stats = statSync(filedir);
@@ -59,7 +60,11 @@ const fileDisplay = filePath => {
       const dir = dirName.split('/');
       if (name.match(/^index$/gi)) {
         if (dir.length !== 1) {
-          babelHelpMod[dir[dir.length - 1]] = dir.join('/');
+          if (length === 1)
+            babelHelpMod[dir[dir.length - 1]] = dir
+              .splice(dir.length - 2, 1)
+              .join('/');
+          else babelHelpMod[dir[dir.length - 1]] = dir.join('/');
         }
       } else if (dir.length !== 1) {
         babelHelpMod[name] = dir.join('/');
@@ -83,7 +88,17 @@ const template = (data, type) => `${
 
 module.exports = ${JSON.stringify(data, null, '\t')};`;
 
-['lib', 'src'].map(d => {
+const newObj = {};
+Object.keys(babelHelpMod).map(key => {
+  const value = babelHelpMod[key];
+  const values = value.split('/');
+  const len = values.length;
+  if (len > 1 && values[len - 1] === key)
+    newObj[key] = value.replace(new RegExp(`\\/${key}`), '');
+  else newObj[key] = value;
+  return key;
+});
+[('lib', 'src')].map(d => {
   writeFileSync(babelConfig(d), template(babelHelpMod, d));
   return d;
 });

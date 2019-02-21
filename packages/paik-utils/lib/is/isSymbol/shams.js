@@ -11,7 +11,6 @@ var _typeof2 = _interopRequireDefault(require("@babel/runtime/helpers/typeof"));
 
 var _is = _interopRequireDefault(require("../../common/is"));
 
-/* eslint-disable */
 function hasSymbols() {
   if (typeof Symbol !== 'function' || typeof Object.getOwnPropertySymbols !== 'function') {
     return false;

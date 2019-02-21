@@ -18,7 +18,6 @@
   });
   _exports.default = _exports.toUpperCase = void 0;
 
-  /* eslint-disable */
   var toUpperCase = function toUpperCase(str) {
     return String.prototype.toUpperCase.call(str || '');
   };

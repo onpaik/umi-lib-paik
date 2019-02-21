@@ -1,5 +1,4 @@
-/* eslint-disable */ 
- /**
+/**
  * 删除字符串中的换行符
  * @param {*} val 字符串
  */

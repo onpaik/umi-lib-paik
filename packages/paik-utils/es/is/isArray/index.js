@@ -9,7 +9,6 @@ define(["exports", "../../common/is"], function (_exports, _is) {
   _exports.default = _exports.isArray = void 0;
   _is = _interopRequireDefault(_is);
 
-  /* eslint-disable */
   var isArray = function isArray(obj) {
     if (!Array.isArray) {
       return (0, _is.default)(obj) === 'Array';

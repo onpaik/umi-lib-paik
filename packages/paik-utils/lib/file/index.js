@@ -23,7 +23,6 @@ var _getBase = _interopRequireDefault(require("./getBase64"));
 
 var _getExt = _interopRequireDefault(require("./getExt"));
 
-/* eslint-disable */
 var _default = {
   getBase64: _getBase.default,
   getExt: _getExt.default

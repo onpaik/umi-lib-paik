@@ -98,8 +98,6 @@ define(["exports", "./isArray", "./isBoolean", "./isFunction", "./isNull", "./is
   _isInValid = _interopRequireDefault(_isInValid);
   _isClassComponent = _interopRequireDefault(_isClassComponent);
   _isPromise = _interopRequireDefault(_isPromise);
-
-  /* eslint-disable */
   var _default = {
     isArray: _isArray.default,
     isBoolean: _isBoolean.default,

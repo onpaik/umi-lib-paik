@@ -1,5 +1,5 @@
-/* eslint-disable */ 
- "use strict";
+/* eslint-disable */
+"use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
@@ -15,8 +15,6 @@ var _objectSpread2 = _interopRequireDefault(require("@babel/runtime/helpers/obje
 var _is = _interopRequireDefault(require("../common/is"));
 
 var _delLineBreak = _interopRequireDefault(require("../common/delLineBreak"));
-
-/* eslint-disable */
 
 /**
  * 删除对象属性值中的换行符

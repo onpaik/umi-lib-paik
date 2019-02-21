@@ -1,12 +1,11 @@
-/* eslint-disable */ 
- "use strict";
+/* eslint-disable */
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = exports.preventDefault = void 0;
 
-/* eslint-disable */
 var preventDefault = function preventDefault(e) {
   var _e = e || window.event;
 

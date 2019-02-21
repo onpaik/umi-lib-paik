@@ -9,7 +9,6 @@ exports.default = exports.isBoolean = void 0;
 
 var _is = _interopRequireDefault(require("../../common/is"));
 
-/* eslint-disable */
 var isBoolean = function isBoolean(obj) {
   return (0, _is.default)(obj) === 'Boolean';
 };

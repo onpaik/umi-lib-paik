@@ -1,5 +1,5 @@
-/* eslint-disable */ 
- "use strict";
+/* eslint-disable */
+"use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
@@ -10,18 +10,16 @@ exports.default = exports.getParams = void 0;
 
 var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
 
-/* eslint-disable */
-
 /**
-* 获取url 问号后的值
-* @param {*} name 需要获取的key，非必填
-* @return
-* 0、无结果，返回null
-*
-* 1、有参数name, 返回字符串或者null
-*
-* 2、无参数，返回对象
-*/
+ * 获取url 问号后的值
+ * @param {*} name 需要获取的key，非必填
+ * @return
+ * 0、无结果，返回null
+ *
+ * 1、有参数name, 返回字符串或者null
+ *
+ * 2、无参数，返回对象
+ */
 var getParams = function getParams(name) {
   var href = window.location.href;
   var obj = {};

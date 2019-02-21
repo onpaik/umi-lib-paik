@@ -9,7 +9,6 @@ exports.default = exports.isFunction = void 0;
 
 var _is = _interopRequireDefault(require("../../common/is"));
 
-/* eslint-disable */
 var isFunction = function isFunction(obj) {
   return (0, _is.default)(obj) === 'Function';
 };

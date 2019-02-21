@@ -24,8 +24,6 @@
   _is = _interopRequireDefault(_is);
   _delLineBreak = _interopRequireDefault(_delLineBreak);
 
-  /* eslint-disable */
-
   /**
    * 删除对象属性值中的换行符
    * @param {*} obj 对象

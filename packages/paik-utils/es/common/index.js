@@ -42,8 +42,6 @@ define(["exports", "./delInvalidProperty", "./hasOwn", "./is", "./delInvisibleSt
   _is = _interopRequireDefault(_is);
   _delInvisibleStr = _interopRequireDefault(_delInvisibleStr);
   _delLineBreak = _interopRequireDefault(_delLineBreak);
-
-  /* eslint-disable */
   var _default = {
     delInvalidProperty: _delInvalidProperty.default,
     hasOwn: _hasOwn.default,

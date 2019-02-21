@@ -1,5 +1,4 @@
-/* eslint-disable */ 
- import fenToyuan from './fenToyuan';
+import fenToyuan from './fenToyuan';
 import inValidToText from './inValidToText';
 import removeLastetZero from './removeLastetZero';
 import spliceLineBreak from './spliceLineBreak';

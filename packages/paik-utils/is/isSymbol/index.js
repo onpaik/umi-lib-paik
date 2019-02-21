@@ -1,5 +1,5 @@
-/* eslint-disable */ 
- "use strict";
+/* eslint-disable */
+"use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
@@ -14,7 +14,6 @@ var _is = _interopRequireDefault(require("../../common/is"));
 
 var _hasSymbol = _interopRequireDefault(require("./hasSymbol"));
 
-/* eslint-disable */
 var isSymbol = function isSymbol(obj) {
   if ((0, _hasSymbol.default)()) {
     var symToStr = Symbol.prototype.toString;

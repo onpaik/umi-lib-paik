@@ -1,5 +1,4 @@
-/* eslint-disable */ 
- import is from '../../common/is';
+import is from '../../common/is';
 
 export const isBoolean = obj => is(obj) === 'Boolean';
 

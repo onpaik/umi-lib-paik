@@ -9,7 +9,6 @@ exports.default = exports.isNumber = void 0;
 
 var _is = _interopRequireDefault(require("../../common/is"));
 
-/* eslint-disable */
 var isNumber = function isNumber(obj) {
   return (0, _is.default)(obj) === 'Number';
 };
