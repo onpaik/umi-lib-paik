@@ -11,6 +11,7 @@ import isUndefined from './isUndefined';
 import isEmpty from './isEmpty';
 import isInValid from './isInValid';
 import isClassComponent from './isClassComponent';
+import isPromise from './isPromise';
 
 export {
   isArray,
@@ -25,6 +26,7 @@ export {
   isEmpty,
   isInValid,
   isClassComponent,
+  isPromise,
 };
 
 export default {
@@ -40,4 +42,5 @@ export default {
   isEmpty,
   isInValid,
   isClassComponent,
+  isPromise,
 };

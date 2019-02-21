@@ -1,4 +1,4 @@
-define(["exports", "./isArray", "./isBoolean", "./isFunction", "./isNull", "./isNumber", "./isObject", "./isString", "./isSymbol", "./isUndefined", "./isEmpty", "./isInValid", "./isClassComponent"], function (_exports, _isArray, _isBoolean, _isFunction, _isNull, _isNumber, _isObject, _isString, _isSymbol, _isUndefined, _isEmpty, _isInValid, _isClassComponent) {
+define(["exports", "./isArray", "./isBoolean", "./isFunction", "./isNull", "./isNumber", "./isObject", "./isString", "./isSymbol", "./isUndefined", "./isEmpty", "./isInValid", "./isClassComponent", "./isPromise"], function (_exports, _isArray, _isBoolean, _isFunction, _isNull, _isNumber, _isObject, _isString, _isSymbol, _isUndefined, _isEmpty, _isInValid, _isClassComponent, _isPromise) {
   "use strict";
 
   var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -78,6 +78,12 @@ define(["exports", "./isArray", "./isBoolean", "./isFunction", "./isNull", "./is
       return _isClassComponent.default;
     }
   });
+  Object.defineProperty(_exports, "isPromise", {
+    enumerable: true,
+    get: function get() {
+      return _isPromise.default;
+    }
+  });
   _exports.default = void 0;
   _isArray = _interopRequireDefault(_isArray);
   _isBoolean = _interopRequireDefault(_isBoolean);
@@ -91,6 +97,7 @@ define(["exports", "./isArray", "./isBoolean", "./isFunction", "./isNull", "./is
   _isEmpty = _interopRequireDefault(_isEmpty);
   _isInValid = _interopRequireDefault(_isInValid);
   _isClassComponent = _interopRequireDefault(_isClassComponent);
+  _isPromise = _interopRequireDefault(_isPromise);
 
   /* eslint-disable */
   var _default = {
@@ -105,7 +112,8 @@ define(["exports", "./isArray", "./isBoolean", "./isFunction", "./isNull", "./is
     isUndefined: _isUndefined.default,
     isEmpty: _isEmpty.default,
     isInValid: _isInValid.default,
-    isClassComponent: _isClassComponent.default
+    isClassComponent: _isClassComponent.default,
+    isPromise: _isPromise.default
   };
   _exports.default = _default;
 });

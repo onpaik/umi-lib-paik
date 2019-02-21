@@ -30,6 +30,7 @@ module.exports = {
 	"isNull": "is/isNull",
 	"isNumber": "is/isNumber",
 	"isObject": "is/isObject",
+	"isPromise": "is/isPromise",
 	"isString": "is/isString",
 	"hasSymbol": "is/isSymbol",
 	"isSymbol": "is/isSymbol",

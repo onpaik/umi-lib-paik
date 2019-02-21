@@ -1,16 +1,16 @@
 (function (global, factory) {
   if (typeof define === "function" && define.amd) {
-    define(["exports", "./isArray", "./isBoolean", "./isFunction", "./isNull", "./isNumber", "./isObject", "./isString", "./isSymbol", "./isUndefined", "./isEmpty", "./isInValid", "./isClassComponent"], factory);
+    define(["exports", "./isArray", "./isBoolean", "./isFunction", "./isNull", "./isNumber", "./isObject", "./isString", "./isSymbol", "./isUndefined", "./isEmpty", "./isInValid", "./isClassComponent", "./isPromise"], factory);
   } else if (typeof exports !== "undefined") {
-    factory(exports, require("./isArray"), require("./isBoolean"), require("./isFunction"), require("./isNull"), require("./isNumber"), require("./isObject"), require("./isString"), require("./isSymbol"), require("./isUndefined"), require("./isEmpty"), require("./isInValid"), require("./isClassComponent"));
+    factory(exports, require("./isArray"), require("./isBoolean"), require("./isFunction"), require("./isNull"), require("./isNumber"), require("./isObject"), require("./isString"), require("./isSymbol"), require("./isUndefined"), require("./isEmpty"), require("./isInValid"), require("./isClassComponent"), require("./isPromise"));
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global.isArray, global.isBoolean, global.isFunction, global.isNull, global.isNumber, global.isObject, global.isString, global.isSymbol, global.isUndefined, global.isEmpty, global.isInValid, global.isClassComponent);
+    factory(mod.exports, global.isArray, global.isBoolean, global.isFunction, global.isNull, global.isNumber, global.isObject, global.isString, global.isSymbol, global.isUndefined, global.isEmpty, global.isInValid, global.isClassComponent, global.isPromise);
     global.index = mod.exports;
   }
-})(this, function (_exports, _isArray, _isBoolean, _isFunction, _isNull, _isNumber, _isObject, _isString, _isSymbol, _isUndefined, _isEmpty, _isInValid, _isClassComponent) {
+})(this, function (_exports, _isArray, _isBoolean, _isFunction, _isNull, _isNumber, _isObject, _isString, _isSymbol, _isUndefined, _isEmpty, _isInValid, _isClassComponent, _isPromise) {
   "use strict";
 
   var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -90,6 +90,12 @@
       return _isClassComponent.default;
     }
   });
+  Object.defineProperty(_exports, "isPromise", {
+    enumerable: true,
+    get: function get() {
+      return _isPromise.default;
+    }
+  });
   _exports.default = void 0;
   _isArray = _interopRequireDefault(_isArray);
   _isBoolean = _interopRequireDefault(_isBoolean);
@@ -103,6 +109,7 @@
   _isEmpty = _interopRequireDefault(_isEmpty);
   _isInValid = _interopRequireDefault(_isInValid);
   _isClassComponent = _interopRequireDefault(_isClassComponent);
+  _isPromise = _interopRequireDefault(_isPromise);
 
   /* eslint-disable */
   var _default = {
@@ -117,7 +124,8 @@
     isUndefined: _isUndefined.default,
     isEmpty: _isEmpty.default,
     isInValid: _isInValid.default,
-    isClassComponent: _isClassComponent.default
+    isClassComponent: _isClassComponent.default,
+    isPromise: _isPromise.default
   };
   _exports.default = _default;
 });

@@ -77,6 +77,12 @@ Object.defineProperty(exports, "isClassComponent", {
     return _isClassComponent.default;
   }
 });
+Object.defineProperty(exports, "isPromise", {
+  enumerable: true,
+  get: function get() {
+    return _isPromise.default;
+  }
+});
 exports.default = void 0;
 
 var _isArray = _interopRequireDefault(require("./isArray"));
@@ -103,6 +109,8 @@ var _isInValid = _interopRequireDefault(require("./isInValid"));
 
 var _isClassComponent = _interopRequireDefault(require("./isClassComponent"));
 
+var _isPromise = _interopRequireDefault(require("./isPromise"));
+
 /* eslint-disable */
 var _default = {
   isArray: _isArray.default,
@@ -116,6 +124,7 @@ var _default = {
   isUndefined: _isUndefined.default,
   isEmpty: _isEmpty.default,
   isInValid: _isInValid.default,
-  isClassComponent: _isClassComponent.default
+  isClassComponent: _isClassComponent.default,
+  isPromise: _isPromise.default
 };
 exports.default = _default;
