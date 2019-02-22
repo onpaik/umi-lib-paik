@@ -8,6 +8,7 @@ import toDecimal from './toDecimal';
 import toLowerCase from './toLowerCase';
 import toUpperCase from './toUpperCase';
 import trimLR from './trimLR';
+import toQueryString from './toQueryString';
 
 export {
   fenToyuan,
@@ -20,6 +21,7 @@ export {
   toLowerCase,
   toUpperCase,
   trimLR,
+  toQueryString,
 };
 
 export default {
@@ -33,4 +35,5 @@ export default {
   toLowerCase,
   toUpperCase,
   trimLR,
+  toQueryString,
 };
