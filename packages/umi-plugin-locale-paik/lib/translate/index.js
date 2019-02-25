@@ -1014,7 +1014,8 @@ function _default(api) {
   };
   var _opt = opt,
       support = _opt.support,
-      dynamicIntl = _opt.dynamicIntl;
+      dynamicIntl = _opt.dynamicIntl,
+      autoIntl = _opt.autoIntl;
   var config = api.config,
       paths = api.paths;
   var singular = config.singular;
@@ -1047,33 +1048,35 @@ function _default(api) {
     }
   });
 
-  api._beforeServerWithApp(
-  /*#__PURE__*/
-  function () {
-    var _ref4 = (0, _asyncToGenerator2.default)(
+  if (autoIntl) {
+    api._beforeServerWithApp(
     /*#__PURE__*/
-    _regenerator.default.mark(function _callee5(_ref3) {
-      var app;
-      return _regenerator.default.wrap(function _callee5$(_context5) {
-        while (1) {
-          switch (_context5.prev = _context5.next) {
-            case 0:
-              app = _ref3.app;
-              _context5.next = 3;
-              return (0, _execa.default)('paik-intl', ['start']);
+    function () {
+      var _ref4 = (0, _asyncToGenerator2.default)(
+      /*#__PURE__*/
+      _regenerator.default.mark(function _callee5(_ref3) {
+        var app;
+        return _regenerator.default.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                app = _ref3.app;
+                _context5.next = 3;
+                return (0, _execa.default)('paik-intl', ['start']);
 
-            case 3:
-            case "end":
-              return _context5.stop();
+              case 3:
+              case "end":
+                return _context5.stop();
+            }
           }
-        }
-      }, _callee5, this);
-    }));
+        }, _callee5, this);
+      }));
 
-    return function (_x13) {
-      return _ref4.apply(this, arguments);
-    };
-  }());
+      return function (_x13) {
+        return _ref4.apply(this, arguments);
+      };
+    }());
+  }
 
   api.onBuildSuccess(function (_ref5) {
     var stats = _ref5.stats;
