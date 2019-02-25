@@ -22,7 +22,6 @@
   "license": "MIT",
   "files": [
     "lib",
-    "src",
     "bin",
     "scripts",
     "template"

@@ -311,7 +311,7 @@ export default function (api, opt={}) {
     enUS:'en-US',
     zhCN:'zh-CN',
   };
-  const { support, dynamicIntl } = opt;
+  const { support, dynamicIntl, autoIntl } = opt;
   const { config, paths } = api;
   const { singular } = config;
   const { absSrcPath } = paths;
@@ -333,9 +333,11 @@ export default function (api, opt={}) {
       })();
     }
   })
-  api._beforeServerWithApp(async ({ app })=> {
-    await execa('paik-intl', ['start']);
-  })
+  if(autoIntl) {
+    api._beforeServerWithApp(async ({ app })=> {
+      await execa('paik-intl', ['start']);
+    })
+  }
   api.onBuildSuccess(({ stats }) => {
     if(process.env.NODE_ENV === 'production' && dynamicIntl){
       const { absOutputPath } = paths;
