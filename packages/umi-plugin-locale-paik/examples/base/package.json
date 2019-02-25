@@ -4,12 +4,14 @@
     "intl":"umi intl",
     "_start": "concurrently npm:dev npm:intl",
     "start":"npm run dev",
-    "build":"umi build"
+    "build":"umi build",
+    "paik-intl": "node ../../src/bin/paik-intl.js start"
   },
   "devDependencies": {
     "umi":"^2.x",
     "antd":"3.x",
     "umi-plugin-react":"1.x",
-    "concurrently":"^4.1.0"
+    "concurrently":"^4.1.0",
+    "umi-plugin-locale-paik":"^3.1.7"
   }
 }

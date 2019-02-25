@@ -17,6 +17,7 @@ import chalk from 'chalk';
 const deepmerge = require('deepmerge');
 const log = console.log;
 const dynamicReg = /^(d|D)-\S+/g;
+let _src_ = undefined;
 
 Object.assign(Array.prototype, {
   async foreachSync(cb) {
@@ -91,7 +92,7 @@ function transLate(...arg){
   const [ content,support,_data,path, spinner ] = arg;
   if(!content){
     const info = `${chalk.blue(path)}`;
-    spinner.fail(`${chalk.red(`国际化内容为空，数据提取失败 (${info}) \n`)}`);
+    !_src_ && spinner.fail(`${chalk.red(`国际化内容为空，数据提取失败 (${info}) \n`)}`);
     process.exit(1);
   }
   const _key = Object.keys(content);
@@ -148,7 +149,7 @@ async function transLatePublic(...arg){
   if(!content){
     const info = `${chalk.blue(path)}`;
     spinner.color = 'red';
-    spinner.fail(`${chalk.red(`国际化内容为空，数据提取失败 (${info}) \n`)}`);
+    !_src_ && spinner.fail(`${chalk.red(`国际化内容为空，数据提取失败 (${info}) \n`)}`);
     process.exit(1);
   }
   const locales = Object.values(support);
@@ -239,7 +240,7 @@ async function generateFile(...arg){
 }
 async function handlenormal(localeFiles,singular,absSrcPath,support){
   const spinner = ora();
-  spinner.start(`收集${chalk.blue('非动态')}国际化信息开始`);
+  !_src_ && spinner.start(`收集${chalk.blue('非动态')}国际化信息开始`);
   let localeData = {};
   // 收集国际化数据到非动态目录
   await localeFiles.mapSync(async file => {
@@ -252,36 +253,38 @@ async function handlenormal(localeFiles,singular,absSrcPath,support){
     return file;
   });
   spinner.color = 'green';
-  spinner.succeed(`收集${chalk.blue('非动态')}国际化信息成功`);
+  !_src_ && spinner.succeed(`收集${chalk.blue('非动态')}国际化信息成功`);
   spinner.color = 'cyan';
-  spinner.start(`开始写入${chalk.blue('非动态')}国际化信息`);
+  !_src_ && spinner.start(`开始写入${chalk.blue('非动态')}国际化信息`);
   await generateFile(localeData,support,absSrcPath,singular);
   spinner.color = 'green';
-  spinner.succeed(`写入${chalk.blue('非动态')}国际化信息成功`);
+  !_src_ && spinner.succeed(`写入${chalk.blue('非动态')}国际化信息成功`);
 }
 async function genDynamic(...arg){
   const [ dynamicIntl,dynamicLocale,absSrcPath,support ] = arg;
   let collectData = {};
   if(dynamicIntl && dynamicLocale.length){
     const spinner = ora();
-    spinner.start(`收集${chalk.yellow('动态')}国际化信息开始`);
+    !_src_ && spinner.start(`收集${chalk.yellow('动态')}国际化信息开始`);
     await dynamicLocale.mapSync(async file =>{
       const data = await generatePublicFile(file,absSrcPath,support,collectData,spinner);
       collectData = deepmerge(data,collectData);
       return file;
     })
-    spinner.succeed(`收集${chalk.yellow('动态')}国际化信息成功`);
-    spinner.start(`开始写入${chalk.yellow('动态')}国际化信息`);
+    !_src_ && spinner.succeed(`收集${chalk.yellow('动态')}国际化信息成功`);
+    !_src_ && spinner.start(`开始写入${chalk.yellow('动态')}国际化信息`);
     writePublic(collectData, absSrcPath);
-    spinner.succeed(`写入${chalk.yellow('动态')}国际化信息成功`);
+    !_src_ && spinner.succeed(`写入${chalk.yellow('动态')}国际化信息成功`);
   }
   return true;
 }
 async function getTransLataData(...arg){
-  const [ singular, absSrcPath,support,dynamicIntl] = arg;
+  const [ singular, absSrcPath,support,dynamicIntl, src] = arg;
   const msgFloder = getmessageFloder(singular);
+  let partten =  `**/${msgFloder}/**/**.{ts,js,json}`;
+  if(src) partten = src;
   const files = await globby
-  .sync(`**/${msgFloder}/**/**.{ts,js,json}`, {
+  .sync(partten, {
     cwd: absSrcPath,
   }).map(name => ({
     name,
@@ -330,6 +333,9 @@ export default function (api, opt={}) {
       })();
     }
   })
+  api._beforeServerWithApp(async ({ app })=> {
+    await execa('paik-intl', ['start']);
+  })
   api.onBuildSuccess(({ stats }) => {
     if(process.env.NODE_ENV === 'production' && dynamicIntl){
       const { absOutputPath } = paths;
@@ -340,11 +346,14 @@ export default function (api, opt={}) {
   api.registerCommand('intl',{
     hide:false,
   },args => {
+    const { src } = args;
+    _src_ = src;
     getTransLataData(
       singular,
       absSrcPath,
       newSupport,
       dynamicIntl,
+      src,
     )
   });
 }
