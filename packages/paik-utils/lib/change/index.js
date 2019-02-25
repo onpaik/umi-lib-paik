@@ -65,6 +65,12 @@ Object.defineProperty(exports, "trimLR", {
     return _trimLR.default;
   }
 });
+Object.defineProperty(exports, "toQueryString", {
+  enumerable: true,
+  get: function get() {
+    return _toQueryString.default;
+  }
+});
 exports.default = void 0;
 
 var _fenToyuan = _interopRequireDefault(require("./fenToyuan"));
@@ -87,6 +93,8 @@ var _toUpperCase = _interopRequireDefault(require("./toUpperCase"));
 
 var _trimLR = _interopRequireDefault(require("./trimLR"));
 
+var _toQueryString = _interopRequireDefault(require("./toQueryString"));
+
 var _default = {
   fenToyuan: _fenToyuan.default,
   inValidToText: _inValidToText.default,
@@ -97,6 +105,7 @@ var _default = {
   toDecimal: _toDecimal.default,
   toLowerCase: _toLowerCase.default,
   toUpperCase: _toUpperCase.default,
-  trimLR: _trimLR.default
+  trimLR: _trimLR.default,
+  toQueryString: _toQueryString.default
 };
 exports.default = _default;

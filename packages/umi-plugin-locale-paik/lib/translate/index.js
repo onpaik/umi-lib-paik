@@ -43,6 +43,7 @@ var deepmerge = require('deepmerge');
 
 var log = console.log;
 var dynamicReg = /^(d|D)-\S+/g;
+var _src_ = undefined;
 Object.assign(Array.prototype, {
   foreachSync: function () {
     var _foreachSync = (0, _asyncToGenerator2.default)(
@@ -189,26 +190,26 @@ function writeFile(_x5, _x6) {
 function _writeFile() {
   _writeFile = (0, _asyncToGenerator2.default)(
   /*#__PURE__*/
-  _regenerator.default.mark(function _callee5(destPath, code) {
+  _regenerator.default.mark(function _callee6(destPath, code) {
     var dir;
-    return _regenerator.default.wrap(function _callee5$(_context5) {
+    return _regenerator.default.wrap(function _callee6$(_context6) {
       while (1) {
-        switch (_context5.prev = _context5.next) {
+        switch (_context6.prev = _context6.next) {
           case 0:
             dir = (0, _path.dirname)(destPath);
-            _context5.next = 3;
+            _context6.next = 3;
             return _mkdirp.default.sync(dir);
 
           case 3:
-            _context5.next = 5;
+            _context6.next = 5;
             return (0, _fs.writeFileSync)(destPath, code);
 
           case 5:
           case "end":
-            return _context5.stop();
+            return _context6.stop();
         }
       }
-    }, _callee5, this);
+    }, _callee6, this);
   }));
   return _writeFile.apply(this, arguments);
 }
@@ -233,7 +234,7 @@ function transLate() {
 
   if (!content) {
     var info = "".concat(_chalk.default.blue(path));
-    spinner.fail("".concat(_chalk.default.red("\u56FD\u9645\u5316\u5185\u5BB9\u4E3A\u7A7A\uFF0C\u6570\u636E\u63D0\u53D6\u5931\u8D25 (".concat(info, ") \n"))));
+    !_src_ && spinner.fail("".concat(_chalk.default.red("\u56FD\u9645\u5316\u5185\u5BB9\u4E3A\u7A7A\uFF0C\u6570\u636E\u63D0\u53D6\u5931\u8D25 (".concat(info, ") \n"))));
     process.exit(1);
   }
 
@@ -269,7 +270,7 @@ function addIntl() {
 function _addIntl() {
   _addIntl = (0, _asyncToGenerator2.default)(
   /*#__PURE__*/
-  _regenerator.default.mark(function _callee6() {
+  _regenerator.default.mark(function _callee7() {
     var _len2,
         arg,
         _key3,
@@ -288,14 +289,14 @@ function _addIntl() {
         code,
         content,
         _content,
-        _args6 = arguments;
+        _args7 = arguments;
 
-    return _regenerator.default.wrap(function _callee6$(_context6) {
+    return _regenerator.default.wrap(function _callee7$(_context7) {
       while (1) {
-        switch (_context6.prev = _context6.next) {
+        switch (_context7.prev = _context7.next) {
           case 0:
-            for (_len2 = _args6.length, arg = new Array(_len2), _key3 = 0; _key3 < _len2; _key3++) {
-              arg[_key3] = _args6[_key3];
+            for (_len2 = _args7.length, arg = new Array(_len2), _key3 = 0; _key3 < _len2; _key3++) {
+              arg[_key3] = _args7[_key3];
             }
 
             file = arg[0], singular = arg[1], absSrcPath = arg[2], support = arg[3], spinner = arg[4];
@@ -307,26 +308,26 @@ function _addIntl() {
             data = {};
 
             if (!ext.match(/^(j|t)s$/i)) {
-              _context6.next = 21;
+              _context7.next = 21;
               break;
             }
 
-            _context6.next = 11;
+            _context7.next = 11;
             return _rimraf.default.sync((0, _umiUtils.winPath)("".concat(absSrcPath).concat(floder, "/").concat(tfloder)));
 
           case 11:
             _transformFileSync = (0, _core.transformFileSync)(path, getBabelConfig()), code = _transformFileSync.code;
-            _context6.next = 14;
+            _context7.next = 14;
             return writeFile(newPath, code);
 
           case 14:
             delete require.cache[newPath];
-            _context6.next = 17;
+            _context7.next = 17;
             return require(newPath).default;
 
           case 17:
-            content = _context6.sent;
-            _context6.next = 20;
+            content = _context7.sent;
+            _context7.next = 20;
             return _rimraf.default.sync((0, _umiUtils.winPath)("".concat(absSrcPath).concat(floder, "/").concat(tfloder)));
 
           case 20:
@@ -339,14 +340,14 @@ function _addIntl() {
               data = transLate(_content, support, data, path);
             }
 
-            return _context6.abrupt("return", data);
+            return _context7.abrupt("return", data);
 
           case 23:
           case "end":
-            return _context6.stop();
+            return _context7.stop();
         }
       }
-    }, _callee6, this);
+    }, _callee7, this);
   }));
   return _addIntl.apply(this, arguments);
 }
@@ -358,7 +359,7 @@ function transLatePublic() {
 function _transLatePublic() {
   _transLatePublic = (0, _asyncToGenerator2.default)(
   /*#__PURE__*/
-  _regenerator.default.mark(function _callee9() {
+  _regenerator.default.mark(function _callee10() {
     var _len3,
         arg,
         _key4,
@@ -371,14 +372,14 @@ function _transLatePublic() {
         localeKey,
         data,
         temp,
-        _args9 = arguments;
+        _args10 = arguments;
 
-    return _regenerator.default.wrap(function _callee9$(_context9) {
+    return _regenerator.default.wrap(function _callee10$(_context10) {
       while (1) {
-        switch (_context9.prev = _context9.next) {
+        switch (_context10.prev = _context10.next) {
           case 0:
-            for (_len3 = _args9.length, arg = new Array(_len3), _key4 = 0; _key4 < _len3; _key4++) {
-              arg[_key4] = _args9[_key4];
+            for (_len3 = _args10.length, arg = new Array(_len3), _key4 = 0; _key4 < _len3; _key4++) {
+              arg[_key4] = _args10[_key4];
             }
 
             content = arg[0], support = arg[1], path = arg[2], spinner = arg[3];
@@ -386,7 +387,7 @@ function _transLatePublic() {
             if (!content) {
               info = "".concat(_chalk.default.blue(path));
               spinner.color = 'red';
-              spinner.fail("".concat(_chalk.default.red("\u56FD\u9645\u5316\u5185\u5BB9\u4E3A\u7A7A\uFF0C\u6570\u636E\u63D0\u53D6\u5931\u8D25 (".concat(info, ") \n"))));
+              !_src_ && spinner.fail("".concat(_chalk.default.red("\u56FD\u9645\u5316\u5185\u5BB9\u4E3A\u7A7A\uFF0C\u6570\u636E\u63D0\u53D6\u5931\u8D25 (".concat(info, ") \n"))));
               process.exit(1);
             }
 
@@ -397,73 +398,73 @@ function _transLatePublic() {
               data[lang] = {};
               return lang;
             });
-            _context9.next = 9;
+            _context10.next = 9;
             return Object.values(content).mapSync(
             /*#__PURE__*/
             function () {
-              var _ref4 = (0, _asyncToGenerator2.default)(
+              var _ref6 = (0, _asyncToGenerator2.default)(
               /*#__PURE__*/
-              _regenerator.default.mark(function _callee8(obj) {
+              _regenerator.default.mark(function _callee9(obj) {
                 var id, stemp;
-                return _regenerator.default.wrap(function _callee8$(_context8) {
+                return _regenerator.default.wrap(function _callee9$(_context9) {
                   while (1) {
-                    switch (_context8.prev = _context8.next) {
+                    switch (_context9.prev = _context9.next) {
                       case 0:
                         id = obj.id;
-                        _context8.next = 3;
+                        _context9.next = 3;
                         return localeKey.mapSync(
                         /*#__PURE__*/
                         function () {
-                          var _ref5 = (0, _asyncToGenerator2.default)(
+                          var _ref7 = (0, _asyncToGenerator2.default)(
                           /*#__PURE__*/
-                          _regenerator.default.mark(function _callee7(k) {
-                            return _regenerator.default.wrap(function _callee7$(_context7) {
+                          _regenerator.default.mark(function _callee8(k) {
+                            return _regenerator.default.wrap(function _callee8$(_context8) {
                               while (1) {
-                                switch (_context7.prev = _context7.next) {
+                                switch (_context8.prev = _context8.next) {
                                   case 0:
                                     data[support[k]] = (0, _objectSpread5.default)({}, data[support[k]], (0, _defineProperty2.default)({}, id, useTranslate(k, obj)));
-                                    return _context7.abrupt("return", k);
+                                    return _context8.abrupt("return", k);
 
                                   case 2:
                                   case "end":
-                                    return _context7.stop();
+                                    return _context8.stop();
                                 }
                               }
-                            }, _callee7, this);
+                            }, _callee8, this);
                           }));
 
-                          return function (_x16) {
-                            return _ref5.apply(this, arguments);
+                          return function (_x17) {
+                            return _ref7.apply(this, arguments);
                           };
                         }());
 
                       case 3:
-                        stemp = _context8.sent;
-                        return _context8.abrupt("return", obj);
+                        stemp = _context9.sent;
+                        return _context9.abrupt("return", obj);
 
                       case 5:
                       case "end":
-                        return _context8.stop();
+                        return _context9.stop();
                     }
                   }
-                }, _callee8, this);
+                }, _callee9, this);
               }));
 
-              return function (_x15) {
-                return _ref4.apply(this, arguments);
+              return function (_x16) {
+                return _ref6.apply(this, arguments);
               };
             }());
 
           case 9:
-            temp = _context9.sent;
-            return _context9.abrupt("return", data);
+            temp = _context10.sent;
+            return _context10.abrupt("return", data);
 
           case 11:
           case "end":
-            return _context9.stop();
+            return _context10.stop();
         }
       }
-    }, _callee9, this);
+    }, _callee10, this);
   }));
   return _transLatePublic.apply(this, arguments);
 }
@@ -475,7 +476,7 @@ function generatePublicFile() {
 function _generatePublicFile() {
   _generatePublicFile = (0, _asyncToGenerator2.default)(
   /*#__PURE__*/
-  _regenerator.default.mark(function _callee10() {
+  _regenerator.default.mark(function _callee11() {
     var _len4,
         arg,
         _key5,
@@ -497,14 +498,14 @@ function _generatePublicFile() {
         data,
         _content2,
         _data2,
-        _args10 = arguments;
+        _args11 = arguments;
 
-    return _regenerator.default.wrap(function _callee10$(_context10) {
+    return _regenerator.default.wrap(function _callee11$(_context11) {
       while (1) {
-        switch (_context10.prev = _context10.next) {
+        switch (_context11.prev = _context11.next) {
           case 0:
-            for (_len4 = _args10.length, arg = new Array(_len4), _key5 = 0; _key5 < _len4; _key5++) {
-              arg[_key5] = _args10[_key5];
+            for (_len4 = _args11.length, arg = new Array(_len4), _key5 = 0; _key5 < _len4; _key5++) {
+              arg[_key5] = _args11[_key5];
             }
 
             file = arg[0], absSrcPath = arg[1], support = arg[2], collectData = arg[3], spinner = arg[4];
@@ -517,60 +518,60 @@ function _generatePublicFile() {
             _tempData = (0, _defineProperty2.default)({}, dynamicName, (0, _objectSpread5.default)({}, collectData[dynamicName] || {}));
 
             if (!ext.match(/^(j|t)s$/i)) {
-              _context10.next = 25;
+              _context11.next = 25;
               break;
             }
 
-            _context10.next = 12;
+            _context11.next = 12;
             return _rimraf.default.sync(tempPublicPath);
 
           case 12:
             _transformFileSync2 = (0, _core.transformFileSync)(path, getBabelConfig()), code = _transformFileSync2.code;
-            _context10.next = 15;
+            _context11.next = 15;
             return writeFile(tempFilePath, code);
 
           case 15:
             delete require.cache[tempFilePath];
-            _context10.next = 18;
+            _context11.next = 18;
             return require(tempFilePath).default;
 
           case 18:
-            content = _context10.sent;
-            _context10.next = 21;
+            content = _context11.sent;
+            _context11.next = 21;
             return _rimraf.default.sync(tempPublicPath);
 
           case 21:
-            _context10.next = 23;
+            _context11.next = 23;
             return transLatePublic(content, support, path, spinner);
 
           case 23:
-            data = _context10.sent;
+            data = _context11.sent;
             _tempData[dynamicName] = deepmerge(data, _tempData[dynamicName]);
 
           case 25:
             if (!ext.match(/^json$/i)) {
-              _context10.next = 32;
+              _context11.next = 32;
               break;
             }
 
             delete require.cache[tempFilePath];
             _content2 = require(tempFilePath);
-            _context10.next = 30;
+            _context11.next = 30;
             return transLatePublic(_content2, support, path, spinner);
 
           case 30:
-            _data2 = _context10.sent;
+            _data2 = _context11.sent;
             _tempData[dynamicName] = deepmerge(_data2, _tempData[dynamicName]);
 
           case 32:
-            return _context10.abrupt("return", _tempData);
+            return _context11.abrupt("return", _tempData);
 
           case 33:
           case "end":
-            return _context10.stop();
+            return _context11.stop();
         }
       }
-    }, _callee10, this);
+    }, _callee11, this);
   }));
   return _generatePublicFile.apply(this, arguments);
 }
@@ -582,93 +583,93 @@ function writePublic(_x7, _x8) {
 function _writePublic() {
   _writePublic = (0, _asyncToGenerator2.default)(
   /*#__PURE__*/
-  _regenerator.default.mark(function _callee13(data, absSrcPath) {
-    return _regenerator.default.wrap(function _callee13$(_context13) {
+  _regenerator.default.mark(function _callee14(data, absSrcPath) {
+    return _regenerator.default.wrap(function _callee14$(_context14) {
       while (1) {
-        switch (_context13.prev = _context13.next) {
+        switch (_context14.prev = _context14.next) {
           case 0:
-            _context13.next = 2;
+            _context14.next = 2;
             return Object.keys(data).mapSync(
             /*#__PURE__*/
             function () {
-              var _ref6 = (0, _asyncToGenerator2.default)(
+              var _ref8 = (0, _asyncToGenerator2.default)(
               /*#__PURE__*/
-              _regenerator.default.mark(function _callee12(name) {
+              _regenerator.default.mark(function _callee13(name) {
                 var distFloder;
-                return _regenerator.default.wrap(function _callee12$(_context12) {
+                return _regenerator.default.wrap(function _callee13$(_context13) {
                   while (1) {
-                    switch (_context12.prev = _context12.next) {
+                    switch (_context13.prev = _context13.next) {
                       case 0:
                         distFloder = "".concat(absSrcPath.replace(/src\//, 'public/lang'));
-                        _context12.next = 3;
+                        _context13.next = 3;
                         return Object.keys(data[name]).mapSync(
                         /*#__PURE__*/
                         function () {
-                          var _ref7 = (0, _asyncToGenerator2.default)(
+                          var _ref9 = (0, _asyncToGenerator2.default)(
                           /*#__PURE__*/
-                          _regenerator.default.mark(function _callee11(lang) {
+                          _regenerator.default.mark(function _callee12(lang) {
                             var filePath, orignData;
-                            return _regenerator.default.wrap(function _callee11$(_context11) {
+                            return _regenerator.default.wrap(function _callee12$(_context12) {
                               while (1) {
-                                switch (_context11.prev = _context11.next) {
+                                switch (_context12.prev = _context12.next) {
                                   case 0:
                                     filePath = (0, _umiUtils.winPath)("".concat(distFloder, "/").concat(lang, "/").concat(name, ".json"));
 
                                     if (!(0, _fs.existsSync)(filePath)) {
-                                      _context11.next = 7;
+                                      _context12.next = 7;
                                       break;
                                     }
 
                                     orignData = require(filePath);
-                                    _context11.next = 5;
+                                    _context12.next = 5;
                                     return (0, _fs.writeFileSync)(filePath, JSON.stringify((0, _objectSpread5.default)({}, orignData, data[name][lang]), null, '\t'));
 
                                   case 5:
-                                    _context11.next = 9;
+                                    _context12.next = 9;
                                     break;
 
                                   case 7:
-                                    _context11.next = 9;
+                                    _context12.next = 9;
                                     return writeFile(filePath, JSON.stringify(data[name][lang], null, '\t'));
 
                                   case 9:
-                                    return _context11.abrupt("return", lang);
+                                    return _context12.abrupt("return", lang);
 
                                   case 10:
                                   case "end":
-                                    return _context11.stop();
+                                    return _context12.stop();
                                 }
                               }
-                            }, _callee11, this);
+                            }, _callee12, this);
                           }));
 
-                          return function (_x18) {
-                            return _ref7.apply(this, arguments);
+                          return function (_x19) {
+                            return _ref9.apply(this, arguments);
                           };
                         }());
 
                       case 3:
-                        return _context12.abrupt("return", name);
+                        return _context13.abrupt("return", name);
 
                       case 4:
                       case "end":
-                        return _context12.stop();
+                        return _context13.stop();
                     }
                   }
-                }, _callee12, this);
+                }, _callee13, this);
               }));
 
-              return function (_x17) {
-                return _ref6.apply(this, arguments);
+              return function (_x18) {
+                return _ref8.apply(this, arguments);
               };
             }());
 
           case 2:
           case "end":
-            return _context13.stop();
+            return _context14.stop();
         }
       }
-    }, _callee13, this);
+    }, _callee14, this);
   }));
   return _writePublic.apply(this, arguments);
 }
@@ -680,7 +681,7 @@ function generateFile() {
 function _generateFile() {
   _generateFile = (0, _asyncToGenerator2.default)(
   /*#__PURE__*/
-  _regenerator.default.mark(function _callee15() {
+  _regenerator.default.mark(function _callee16() {
     var _len5,
         arg,
         _key6,
@@ -689,14 +690,14 @@ function _generateFile() {
         absSrcPath,
         singular,
         langs,
-        _args15 = arguments;
+        _args16 = arguments;
 
-    return _regenerator.default.wrap(function _callee15$(_context15) {
+    return _regenerator.default.wrap(function _callee16$(_context16) {
       while (1) {
-        switch (_context15.prev = _context15.next) {
+        switch (_context16.prev = _context16.next) {
           case 0:
-            for (_len5 = _args15.length, arg = new Array(_len5), _key6 = 0; _key6 < _len5; _key6++) {
-              arg[_key6] = _args15[_key6];
+            for (_len5 = _args16.length, arg = new Array(_len5), _key6 = 0; _key6 < _len5; _key6++) {
+              arg[_key6] = _args16[_key6];
             }
 
             data = arg[0], support = arg[1], absSrcPath = arg[2], singular = arg[3];
@@ -704,52 +705,52 @@ function _generateFile() {
             langs.mapSync(
             /*#__PURE__*/
             function () {
-              var _ref8 = (0, _asyncToGenerator2.default)(
+              var _ref10 = (0, _asyncToGenerator2.default)(
               /*#__PURE__*/
-              _regenerator.default.mark(function _callee14(lang) {
+              _regenerator.default.mark(function _callee15(lang) {
                 var langPath, orignData;
-                return _regenerator.default.wrap(function _callee14$(_context14) {
+                return _regenerator.default.wrap(function _callee15$(_context15) {
                   while (1) {
-                    switch (_context14.prev = _context14.next) {
+                    switch (_context15.prev = _context15.next) {
                       case 0:
                         langPath = (0, _umiUtils.winPath)("".concat(absSrcPath, "/").concat(getLocaleFloder(singular), "/").concat(lang, ".json"));
 
                         if (!(0, _fs.existsSync)(langPath)) {
-                          _context14.next = 7;
+                          _context15.next = 7;
                           break;
                         }
 
                         orignData = require(langPath);
-                        _context14.next = 5;
+                        _context15.next = 5;
                         return (0, _fs.writeFileSync)(langPath, JSON.stringify((0, _objectSpread5.default)({}, orignData, data[lang]), null, '\t'));
 
                       case 5:
-                        _context14.next = 9;
+                        _context15.next = 9;
                         break;
 
                       case 7:
-                        _context14.next = 9;
+                        _context15.next = 9;
                         return (0, _fs.writeFileSync)(langPath, JSON.stringify(data[lang], null, '\t'));
 
                       case 9:
                       case "end":
-                        return _context14.stop();
+                        return _context15.stop();
                     }
                   }
-                }, _callee14, this);
+                }, _callee15, this);
               }));
 
-              return function (_x19) {
-                return _ref8.apply(this, arguments);
+              return function (_x20) {
+                return _ref10.apply(this, arguments);
               };
             }());
 
           case 4:
           case "end":
-            return _context15.stop();
+            return _context16.stop();
         }
       }
-    }, _callee15, this);
+    }, _callee16, this);
   }));
   return _generateFile.apply(this, arguments);
 }
@@ -761,78 +762,78 @@ function handlenormal(_x9, _x10, _x11, _x12) {
 function _handlenormal() {
   _handlenormal = (0, _asyncToGenerator2.default)(
   /*#__PURE__*/
-  _regenerator.default.mark(function _callee17(localeFiles, singular, absSrcPath, support) {
+  _regenerator.default.mark(function _callee18(localeFiles, singular, absSrcPath, support) {
     var spinner, localeData;
-    return _regenerator.default.wrap(function _callee17$(_context17) {
+    return _regenerator.default.wrap(function _callee18$(_context18) {
       while (1) {
-        switch (_context17.prev = _context17.next) {
+        switch (_context18.prev = _context18.next) {
           case 0:
             spinner = (0, _ora.default)();
-            spinner.start("\u6536\u96C6".concat(_chalk.default.blue('非动态'), "\u56FD\u9645\u5316\u4FE1\u606F\u5F00\u59CB"));
+            !_src_ && spinner.start("\u6536\u96C6".concat(_chalk.default.blue('非动态'), "\u56FD\u9645\u5316\u4FE1\u606F\u5F00\u59CB"));
             localeData = {}; // 收集国际化数据到非动态目录
 
-            _context17.next = 5;
+            _context18.next = 5;
             return localeFiles.mapSync(
             /*#__PURE__*/
             function () {
-              var _ref9 = (0, _asyncToGenerator2.default)(
+              var _ref11 = (0, _asyncToGenerator2.default)(
               /*#__PURE__*/
-              _regenerator.default.mark(function _callee16(file) {
+              _regenerator.default.mark(function _callee17(file) {
                 var singal;
-                return _regenerator.default.wrap(function _callee16$(_context16) {
+                return _regenerator.default.wrap(function _callee17$(_context17) {
                   while (1) {
-                    switch (_context16.prev = _context16.next) {
+                    switch (_context17.prev = _context17.next) {
                       case 0:
-                        _context16.next = 2;
+                        _context17.next = 2;
                         return addIntl(file, singular, absSrcPath, support, spinner);
 
                       case 2:
-                        singal = _context16.sent;
+                        singal = _context17.sent;
 
                         if (singal) {
-                          _context16.next = 7;
+                          _context17.next = 7;
                           break;
                         }
 
-                        return _context16.abrupt("return", null);
+                        return _context17.abrupt("return", null);
 
                       case 7:
                         localeData = deepmerge(singal, localeData);
 
                       case 8:
-                        return _context16.abrupt("return", file);
+                        return _context17.abrupt("return", file);
 
                       case 9:
                       case "end":
-                        return _context16.stop();
+                        return _context17.stop();
                     }
                   }
-                }, _callee16, this);
+                }, _callee17, this);
               }));
 
-              return function (_x20) {
-                return _ref9.apply(this, arguments);
+              return function (_x21) {
+                return _ref11.apply(this, arguments);
               };
             }());
 
           case 5:
             spinner.color = 'green';
-            spinner.succeed("\u6536\u96C6".concat(_chalk.default.blue('非动态'), "\u56FD\u9645\u5316\u4FE1\u606F\u6210\u529F"));
+            !_src_ && spinner.succeed("\u6536\u96C6".concat(_chalk.default.blue('非动态'), "\u56FD\u9645\u5316\u4FE1\u606F\u6210\u529F"));
             spinner.color = 'cyan';
-            spinner.start("\u5F00\u59CB\u5199\u5165".concat(_chalk.default.blue('非动态'), "\u56FD\u9645\u5316\u4FE1\u606F"));
-            _context17.next = 11;
+            !_src_ && spinner.start("\u5F00\u59CB\u5199\u5165".concat(_chalk.default.blue('非动态'), "\u56FD\u9645\u5316\u4FE1\u606F"));
+            _context18.next = 11;
             return generateFile(localeData, support, absSrcPath, singular);
 
           case 11:
             spinner.color = 'green';
-            spinner.succeed("\u5199\u5165".concat(_chalk.default.blue('非动态'), "\u56FD\u9645\u5316\u4FE1\u606F\u6210\u529F"));
+            !_src_ && spinner.succeed("\u5199\u5165".concat(_chalk.default.blue('非动态'), "\u56FD\u9645\u5316\u4FE1\u606F\u6210\u529F"));
 
           case 13:
           case "end":
-            return _context17.stop();
+            return _context18.stop();
         }
       }
-    }, _callee17, this);
+    }, _callee18, this);
   }));
   return _handlenormal.apply(this, arguments);
 }
@@ -844,7 +845,7 @@ function genDynamic() {
 function _genDynamic() {
   _genDynamic = (0, _asyncToGenerator2.default)(
   /*#__PURE__*/
-  _regenerator.default.mark(function _callee19() {
+  _regenerator.default.mark(function _callee20() {
     var _len6,
         arg,
         _key7,
@@ -854,74 +855,74 @@ function _genDynamic() {
         support,
         collectData,
         spinner,
-        _args19 = arguments;
+        _args20 = arguments;
 
-    return _regenerator.default.wrap(function _callee19$(_context19) {
+    return _regenerator.default.wrap(function _callee20$(_context20) {
       while (1) {
-        switch (_context19.prev = _context19.next) {
+        switch (_context20.prev = _context20.next) {
           case 0:
-            for (_len6 = _args19.length, arg = new Array(_len6), _key7 = 0; _key7 < _len6; _key7++) {
-              arg[_key7] = _args19[_key7];
+            for (_len6 = _args20.length, arg = new Array(_len6), _key7 = 0; _key7 < _len6; _key7++) {
+              arg[_key7] = _args20[_key7];
             }
 
             dynamicIntl = arg[0], dynamicLocale = arg[1], absSrcPath = arg[2], support = arg[3];
             collectData = {};
 
             if (!(dynamicIntl && dynamicLocale.length)) {
-              _context19.next = 12;
+              _context20.next = 12;
               break;
             }
 
             spinner = (0, _ora.default)();
-            spinner.start("\u6536\u96C6".concat(_chalk.default.yellow('动态'), "\u56FD\u9645\u5316\u4FE1\u606F\u5F00\u59CB"));
-            _context19.next = 8;
+            !_src_ && spinner.start("\u6536\u96C6".concat(_chalk.default.yellow('动态'), "\u56FD\u9645\u5316\u4FE1\u606F\u5F00\u59CB"));
+            _context20.next = 8;
             return dynamicLocale.mapSync(
             /*#__PURE__*/
             function () {
-              var _ref10 = (0, _asyncToGenerator2.default)(
+              var _ref12 = (0, _asyncToGenerator2.default)(
               /*#__PURE__*/
-              _regenerator.default.mark(function _callee18(file) {
+              _regenerator.default.mark(function _callee19(file) {
                 var data;
-                return _regenerator.default.wrap(function _callee18$(_context18) {
+                return _regenerator.default.wrap(function _callee19$(_context19) {
                   while (1) {
-                    switch (_context18.prev = _context18.next) {
+                    switch (_context19.prev = _context19.next) {
                       case 0:
-                        _context18.next = 2;
+                        _context19.next = 2;
                         return generatePublicFile(file, absSrcPath, support, collectData, spinner);
 
                       case 2:
-                        data = _context18.sent;
+                        data = _context19.sent;
                         collectData = deepmerge(data, collectData);
-                        return _context18.abrupt("return", file);
+                        return _context19.abrupt("return", file);
 
                       case 5:
                       case "end":
-                        return _context18.stop();
+                        return _context19.stop();
                     }
                   }
-                }, _callee18, this);
+                }, _callee19, this);
               }));
 
-              return function (_x21) {
-                return _ref10.apply(this, arguments);
+              return function (_x22) {
+                return _ref12.apply(this, arguments);
               };
             }());
 
           case 8:
-            spinner.succeed("\u6536\u96C6".concat(_chalk.default.yellow('动态'), "\u56FD\u9645\u5316\u4FE1\u606F\u6210\u529F"));
-            spinner.start("\u5F00\u59CB\u5199\u5165".concat(_chalk.default.yellow('动态'), "\u56FD\u9645\u5316\u4FE1\u606F"));
+            !_src_ && spinner.succeed("\u6536\u96C6".concat(_chalk.default.yellow('动态'), "\u56FD\u9645\u5316\u4FE1\u606F\u6210\u529F"));
+            !_src_ && spinner.start("\u5F00\u59CB\u5199\u5165".concat(_chalk.default.yellow('动态'), "\u56FD\u9645\u5316\u4FE1\u606F"));
             writePublic(collectData, absSrcPath);
-            spinner.succeed("\u5199\u5165".concat(_chalk.default.yellow('动态'), "\u56FD\u9645\u5316\u4FE1\u606F\u6210\u529F"));
+            !_src_ && spinner.succeed("\u5199\u5165".concat(_chalk.default.yellow('动态'), "\u56FD\u9645\u5316\u4FE1\u606F\u6210\u529F"));
 
           case 12:
-            return _context19.abrupt("return", true);
+            return _context20.abrupt("return", true);
 
           case 13:
           case "end":
-            return _context19.stop();
+            return _context20.stop();
         }
       }
-    }, _callee19, this);
+    }, _callee20, this);
   }));
   return _genDynamic.apply(this, arguments);
 }
@@ -933,7 +934,7 @@ function getTransLataData() {
 function _getTransLataData() {
   _getTransLataData = (0, _asyncToGenerator2.default)(
   /*#__PURE__*/
-  _regenerator.default.mark(function _callee20() {
+  _regenerator.default.mark(function _callee21() {
     var _len7,
         arg,
         _key8,
@@ -941,24 +942,28 @@ function _getTransLataData() {
         absSrcPath,
         support,
         dynamicIntl,
+        src,
         msgFloder,
+        partten,
         files,
         localeFiles,
         dynamicLocale,
-        _args20 = arguments;
+        _args21 = arguments;
 
-    return _regenerator.default.wrap(function _callee20$(_context20) {
+    return _regenerator.default.wrap(function _callee21$(_context21) {
       while (1) {
-        switch (_context20.prev = _context20.next) {
+        switch (_context21.prev = _context21.next) {
           case 0:
-            for (_len7 = _args20.length, arg = new Array(_len7), _key8 = 0; _key8 < _len7; _key8++) {
-              arg[_key8] = _args20[_key8];
+            for (_len7 = _args21.length, arg = new Array(_len7), _key8 = 0; _key8 < _len7; _key8++) {
+              arg[_key8] = _args21[_key8];
             }
 
-            singular = arg[0], absSrcPath = arg[1], support = arg[2], dynamicIntl = arg[3];
+            singular = arg[0], absSrcPath = arg[1], support = arg[2], dynamicIntl = arg[3], src = arg[4];
             msgFloder = getmessageFloder(singular);
-            _context20.next = 5;
-            return _globby.default.sync("**/".concat(msgFloder, "/**/**.{ts,js,json}"), {
+            partten = "**/".concat(msgFloder, "/**/**.{ts,js,json}");
+            if (src) partten = src;
+            _context21.next = 7;
+            return _globby.default.sync(partten, {
               cwd: absSrcPath
             }).map(function (name) {
               return {
@@ -967,8 +972,8 @@ function _getTransLataData() {
               };
             });
 
-          case 5:
-            files = _context20.sent;
+          case 7:
+            files = _context21.sent;
             localeFiles = [];
             dynamicLocale = [];
 
@@ -984,19 +989,19 @@ function _getTransLataData() {
               localeFiles = files;
             }
 
-            _context20.next = 11;
+            _context21.next = 13;
             return handlenormal(localeFiles, singular, absSrcPath, support);
 
-          case 11:
-            _context20.next = 13;
+          case 13:
+            _context21.next = 15;
             return genDynamic(dynamicIntl, dynamicLocale, absSrcPath, support);
 
-          case 13:
+          case 15:
           case "end":
-            return _context20.stop();
+            return _context21.stop();
         }
       }
-    }, _callee20, this);
+    }, _callee21, this);
   }));
   return _getTransLataData.apply(this, arguments);
 }
@@ -1041,8 +1046,37 @@ function _default(api) {
       }))();
     }
   });
-  api.onBuildSuccess(function (_ref3) {
-    var stats = _ref3.stats;
+
+  api._beforeServerWithApp(
+  /*#__PURE__*/
+  function () {
+    var _ref4 = (0, _asyncToGenerator2.default)(
+    /*#__PURE__*/
+    _regenerator.default.mark(function _callee5(_ref3) {
+      var app;
+      return _regenerator.default.wrap(function _callee5$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              app = _ref3.app;
+              _context5.next = 3;
+              return (0, _execa.default)('paik-intl', ['start']);
+
+            case 3:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, _callee5, this);
+    }));
+
+    return function (_x13) {
+      return _ref4.apply(this, arguments);
+    };
+  }());
+
+  api.onBuildSuccess(function (_ref5) {
+    var stats = _ref5.stats;
 
     if (process.env.NODE_ENV === 'production' && dynamicIntl) {
       var absOutputPath = paths.absOutputPath;
@@ -1053,7 +1087,9 @@ function _default(api) {
   api.registerCommand('intl', {
     hide: false
   }, function (args) {
-    getTransLataData(singular, absSrcPath, newSupport, dynamicIntl);
+    var src = args.src;
+    _src_ = src;
+    getTransLataData(singular, absSrcPath, newSupport, dynamicIntl, src);
   });
 }
 
@@ -1085,18 +1121,18 @@ function handleJsonFile(filePath, _unicode) {
 
 ;
 
-function compressionJosn(_x13, _x14) {
+function compressionJosn(_x14, _x15) {
   return _compressionJosn.apply(this, arguments);
 }
 
 function _compressionJosn() {
   _compressionJosn = (0, _asyncToGenerator2.default)(
   /*#__PURE__*/
-  _regenerator.default.mark(function _callee21(absOutputPath, _unicode) {
+  _regenerator.default.mark(function _callee22(absOutputPath, _unicode) {
     var langFloder, spinner;
-    return _regenerator.default.wrap(function _callee21$(_context21) {
+    return _regenerator.default.wrap(function _callee22$(_context22) {
       while (1) {
-        switch (_context21.prev = _context21.next) {
+        switch (_context22.prev = _context22.next) {
           case 0:
             langFloder = (0, _umiUtils.winPath)("".concat(absOutputPath, "/lang"));
 
@@ -1109,10 +1145,10 @@ function _compressionJosn() {
 
           case 2:
           case "end":
-            return _context21.stop();
+            return _context22.stop();
         }
       }
-    }, _callee21, this);
+    }, _callee22, this);
   }));
   return _compressionJosn.apply(this, arguments);
 }
