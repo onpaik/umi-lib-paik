@@ -10,6 +10,7 @@ module.exports = {
   "strToNumber": "change",
   "toDecimal": "change",
   "toLowerCase": "change",
+  "toQueryString": "change",
   "toUpperCase": "change",
   "trimLR": "change",
   "delInvalidProperty": "common",
