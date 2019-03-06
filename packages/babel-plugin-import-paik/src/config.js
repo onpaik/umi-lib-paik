@@ -28,6 +28,7 @@ module.exports = {
 	"isEmptyValue": "is/isEmpty",
 	"isFunction": "is",
 	"isInValid": "is",
+	"isMobile": "is",
 	"isNull": "is",
 	"isNumber": "is",
 	"isObject": "is",

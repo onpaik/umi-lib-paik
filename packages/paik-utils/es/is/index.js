@@ -1,4 +1,4 @@
-define(["exports", "./isArray", "./isBoolean", "./isFunction", "./isNull", "./isNumber", "./isObject", "./isString", "./isSymbol", "./isUndefined", "./isEmpty", "./isInValid", "./isClassComponent", "./isPromise"], function (_exports, _isArray, _isBoolean, _isFunction, _isNull, _isNumber, _isObject, _isString, _isSymbol, _isUndefined, _isEmpty, _isInValid, _isClassComponent, _isPromise) {
+define(["exports", "./isArray", "./isBoolean", "./isFunction", "./isNull", "./isNumber", "./isObject", "./isString", "./isSymbol", "./isUndefined", "./isEmpty", "./isInValid", "./isClassComponent", "./isPromise", "./isMobile"], function (_exports, _isArray, _isBoolean, _isFunction, _isNull, _isNumber, _isObject, _isString, _isSymbol, _isUndefined, _isEmpty, _isInValid, _isClassComponent, _isPromise, _isMobile) {
   "use strict";
 
   var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -84,6 +84,12 @@ define(["exports", "./isArray", "./isBoolean", "./isFunction", "./isNull", "./is
       return _isPromise.default;
     }
   });
+  Object.defineProperty(_exports, "isMobile", {
+    enumerable: true,
+    get: function get() {
+      return _isMobile.default;
+    }
+  });
   _exports.default = void 0;
   _isArray = _interopRequireDefault(_isArray);
   _isBoolean = _interopRequireDefault(_isBoolean);
@@ -98,6 +104,7 @@ define(["exports", "./isArray", "./isBoolean", "./isFunction", "./isNull", "./is
   _isInValid = _interopRequireDefault(_isInValid);
   _isClassComponent = _interopRequireDefault(_isClassComponent);
   _isPromise = _interopRequireDefault(_isPromise);
+  _isMobile = _interopRequireDefault(_isMobile);
   var _default = {
     isArray: _isArray.default,
     isBoolean: _isBoolean.default,
@@ -111,7 +118,8 @@ define(["exports", "./isArray", "./isBoolean", "./isFunction", "./isNull", "./is
     isEmpty: _isEmpty.default,
     isInValid: _isInValid.default,
     isClassComponent: _isClassComponent.default,
-    isPromise: _isPromise.default
+    isPromise: _isPromise.default,
+    isMobile: _isMobile.default
   };
   _exports.default = _default;
 });

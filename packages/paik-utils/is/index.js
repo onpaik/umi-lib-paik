@@ -84,6 +84,12 @@ Object.defineProperty(exports, "isPromise", {
     return _isPromise.default;
   }
 });
+Object.defineProperty(exports, "isMobile", {
+  enumerable: true,
+  get: function get() {
+    return _isMobile.default;
+  }
+});
 exports.default = void 0;
 
 var _isArray = _interopRequireDefault(require("./isArray"));
@@ -112,6 +118,8 @@ var _isClassComponent = _interopRequireDefault(require("./isClassComponent"));
 
 var _isPromise = _interopRequireDefault(require("./isPromise"));
 
+var _isMobile = _interopRequireDefault(require("./isMobile"));
+
 var _default = {
   isArray: _isArray.default,
   isBoolean: _isBoolean.default,
@@ -125,6 +133,7 @@ var _default = {
   isEmpty: _isEmpty.default,
   isInValid: _isInValid.default,
   isClassComponent: _isClassComponent.default,
-  isPromise: _isPromise.default
+  isPromise: _isPromise.default,
+  isMobile: _isMobile.default
 };
 exports.default = _default;
