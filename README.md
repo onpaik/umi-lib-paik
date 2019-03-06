@@ -3,6 +3,8 @@
  + eslint-config-onpaik
  + stylelint-config-onpaik
  + umi-plugin-locale-paik
+ + paik-utils
+ + babel-plugin-import-paik
 
 ## eslint-config-onpaik
 eslint 配置
