@@ -11,6 +11,7 @@ import isEmpty from './isEmpty';
 import isInValid from './isInValid';
 import isClassComponent from './isClassComponent';
 import isPromise from './isPromise';
+import isMobile from './isMobile';
 
 export {
   isArray,
@@ -26,6 +27,7 @@ export {
   isInValid,
   isClassComponent,
   isPromise,
+  isMobile,
 };
 
 export default {
@@ -42,4 +44,5 @@ export default {
   isInValid,
   isClassComponent,
   isPromise,
+  isMobile,
 };
