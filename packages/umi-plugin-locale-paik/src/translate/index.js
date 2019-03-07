@@ -347,6 +347,11 @@ export default function (api, opt={}) {
   });
   api.registerCommand('intl',{
     hide:false,
+    description: 'transform intl8 data to public or pages floder',
+    usage: `umi intl <command>`,
+    details:`Options for the command:
+${chalk.green(`--src              `)} the intl file path
+    `,
   },args => {
     const { src } = args;
     _src_ = src;
@@ -360,16 +365,22 @@ export default function (api, opt={}) {
   });
 }
 
-function compressFile(file,_unicode){
+function compressFile(file,_unicode,spinner){
   const data = readFileSync(file, 'utf-8');
-  const parseData = JSON.parse(data);
-  let stringifyData = JSON.stringify(parseData);
-  if(_unicode) stringifyData = stringifyData.replace(/[\u007F-\uFFFF]/g, chr => {
-    return "\\u" + ("0000" + chr.charCodeAt(0).toString(16)).substr(-4)
-  })
-  writeFileSync(file,stringifyData);
+  try{
+    const parseData = JSON.parse(data);
+    let stringifyData = JSON.stringify(parseData);
+    if(_unicode) stringifyData = stringifyData.replace(/[\u007F-\uFFFF]/g, chr => {
+      return "\\u" + ("0000" + chr.charCodeAt(0).toString(16)).substr(-4)
+    })
+    writeFileSync(file,stringifyData);
+  }catch(err){
+    spinner.fail('压缩处理动态国际化文件失败\n')
+    console.error(err);
+    process.exit(1);
+  }
 }
-function handleJsonFile(filePath,_unicode){
+function handleJsonFile(filePath,_unicode,spinner){
   // 根据文件路径读取文件，返回文件列表
   const files = readdirSync(filePath);
   files.forEach(fileName => {
@@ -379,7 +390,8 @@ function handleJsonFile(filePath,_unicode){
     const isDir = stats.isDirectory();
     if (isDir) handleJsonFile(filedir,_unicode);
     if (isFile) {
-      compressFile(filedir,_unicode);
+      const ext = getExt(filedir); 
+      ext.match(/json/i) && compressFile(filedir,_unicode,spinner);
     }
   });
 };
@@ -388,7 +400,7 @@ async function compressionJosn(absOutputPath,_unicode){
   if(existsSync(langFloder)){
     const spinner = ora();
     spinner.start('开始压缩处理动态国际化文件\n');
-    handleJsonFile(langFloder,_unicode);
+    handleJsonFile(langFloder,_unicode,spinner);
     spinner.succeed('压缩处理动态国际化文件完成\n');
   }
 }
