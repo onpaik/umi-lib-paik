@@ -1067,7 +1067,10 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
       }
     });
     api.registerCommand('intl', {
-      hide: false
+      hide: false,
+      description: 'transform intl8 data to public or pages floder',
+      usage: "umi intl <command>",
+      details: "Options for the command:\n".concat(_chalk.default.green("--src              "), " the intl file path\n    ")
     }, function (args) {
       var src = args.src;
       _src_ = src;
@@ -1075,17 +1078,24 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
     });
   }
 
-  function compressFile(file, _unicode) {
+  function compressFile(file, _unicode, spinner) {
     var data = (0, _fs.readFileSync)(file, 'utf-8');
-    var parseData = JSON.parse(data);
-    var stringifyData = JSON.stringify(parseData);
-    if (_unicode) stringifyData = stringifyData.replace(/[\u007F-\uFFFF]/g, function (chr) {
-      return "\\u" + ("0000" + chr.charCodeAt(0).toString(16)).substr(-4);
-    });
-    (0, _fs.writeFileSync)(file, stringifyData);
+
+    try {
+      var parseData = JSON.parse(data);
+      var stringifyData = JSON.stringify(parseData);
+      if (_unicode) stringifyData = stringifyData.replace(/[\u007F-\uFFFF]/g, function (chr) {
+        return "\\u" + ("0000" + chr.charCodeAt(0).toString(16)).substr(-4);
+      });
+      (0, _fs.writeFileSync)(file, stringifyData);
+    } catch (err) {
+      spinner.fail('压缩处理动态国际化文件失败\n');
+      console.error(err);
+      process.exit(1);
+    }
   }
 
-  function handleJsonFile(filePath, _unicode) {
+  function handleJsonFile(filePath, _unicode, spinner) {
     // 根据文件路径读取文件，返回文件列表
     var files = (0, _fs.readdirSync)(filePath);
     files.forEach(function (fileName) {
@@ -1096,7 +1106,8 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
       if (isDir) handleJsonFile(filedir, _unicode);
 
       if (isFile) {
-        compressFile(filedir, _unicode);
+        var ext = getExt(filedir);
+        ext.match(/json/i) && compressFile(filedir, _unicode, spinner);
       }
     });
   }
@@ -1121,7 +1132,7 @@ define(["exports", "@babel/runtime/helpers/defineProperty", "@babel/runtime/help
               if ((0, _fs.existsSync)(langFloder)) {
                 spinner = (0, _ora.default)();
                 spinner.start('开始压缩处理动态国际化文件\n');
-                handleJsonFile(langFloder, _unicode);
+                handleJsonFile(langFloder, _unicode, spinner);
                 spinner.succeed('压缩处理动态国际化文件完成\n');
               }
 
