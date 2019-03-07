@@ -12,6 +12,6 @@
     "antd":"3.x",
     "umi-plugin-react":"1.x",
     "concurrently":"^4.1.0",
-    "umi-plugin-locale-paik":"^3.1.7"
+    "umi-plugin-locale-paik": "^3.1.8"
   }
 }
