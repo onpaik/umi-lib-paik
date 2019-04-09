@@ -1,3 +1,6 @@
+[![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
+[![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
+
 # umi-plugin-locale-paik
 
 `umi`多语言国际化插件，官方[umi-plugin-locale](https://github.com/umijs/umi/tree/master/packages/umi-plugin-locale)的改进版本

@@ -38,6 +38,7 @@ module.exports = {
 	"isSymbol": "is/isSymbol",
 	"shams": "is/isSymbol",
 	"isUndefined": "is",
+	"customerContext": "react",
 	"sortTime": "sort",
 	"timeInterval": "time",
 	"getParam": "url",

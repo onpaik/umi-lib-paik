@@ -33,7 +33,7 @@
   "dependencies": {
     "hoist-non-react-statics": "^3.3.0",
     "invariant": "^2.2.4",
-    "react": "^16.8.2",
+    "react": "^16.8.6",
     "react-intl": "^2.8.0"
   },
   "publishConfig": {

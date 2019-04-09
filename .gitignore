@@ -7,4 +7,5 @@ yarn-error.log
 /paik-utils/
 *.tgz
 lerna-debug.log
+lerna.back.json
 /packages/umi-plugin-locale-paik/src/utils/withIntl/*

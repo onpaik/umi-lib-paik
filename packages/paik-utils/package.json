@@ -27,13 +27,14 @@
 		"get",
 		"is",
 		"preventDefault",
+		"react",
 		"sort",
 		"time",
 		"url",
 		"validate"
 	],
 	"author": "unonpaik",
-	"license": "MIT",
+	"license": "Anti996",
 	"publishConfig": {
 		"access": "public",
 		"registry": "https://registry.npmjs.org/"
