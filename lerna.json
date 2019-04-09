@@ -3,7 +3,11 @@
   "npmClient": "yarn",
   "version": "independent",
   "packages": [
-    "packages/*"
+    "packages/babel-plugin-import-paik",
+    "packages/eslint-config-onpaik",
+    "packages/paik-utils",
+    "packages/stylelint-config-onpaik",
+    "packages/umi-plugin-locale-paik"
   ],
   "registry":"https://registry.npmjs.org/",
   "command": {
