@@ -1,6 +1,6 @@
 {
 	"name": "babel-plugin-import-paik",
-	"version": "0.0.7",
+	"version": "0.0.8",
 	"description": "babel-plugin-import-paik",
 	"main": "lib/index.js",
 	"scripts": {
@@ -28,7 +28,7 @@
 		"@babel/core": "^7.4.3"
 	},
 	"devDependencies": {
-		"paik-utils": "^0.0.14"
+		"paik-utils": "^0.0.15"
 	},
 	"publishConfig": {
 		"access": "public",
