@@ -24,8 +24,8 @@
 	"author": "unonpaik",
 	"license": "Anti996",
 	"dependencies": {
-		"@babel/cli": "^7.4.3",
-		"@babel/core": "^7.4.3"
+		"@babel/cli": "^7.5.5",
+		"@babel/core": "^7.5.5"
 	},
 	"devDependencies": {
 		"paik-utils": "^0.0.15"
